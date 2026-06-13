@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title> Lesson 10 — 粵語歌歌詞解析（粵語特色表達與文化）</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@400;500;700&display=swap');
+
+  :root {
+    --bg: #fdfdfd;
+    --text: #1a1a1a;
+    --accent: #8b3a62;
+    --accent-light: #f5e6ee;
+    --muted: #666;
+    --border: #e0e0e0;
+    --correct: #2e7d32;
+    --correct-bg: #e8f5e9;
+    --wrong: #c62828;
+    --wrong-bg: #ffebee;
+    --warn-bg: #fff8e1;
+    --warn-border: #f9a825;
+    --lyric-bg: #faf8f5;
+    --jyut-border: #d4b8d4;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Noto Sans TC', -apple-system, sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--text);
+    background: var(--bg);
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+  }
+
+  h1 {
+    font-family: 'Noto Serif TC', Georgia, serif;
+    font-size: 1.8rem;
+    margin-bottom: 0.25rem;
+    color: var(--accent);
+  }
+
+  .lesson-meta {
+    color: var(--muted);
+    font-size: 0.85rem;
+    margin-bottom: 2rem;
+  }
+
+  .goal-box {
+    background: var(--accent-light);
+    border-left: 4px solid var(--accent);
+    padding: 1rem 1.25rem;
+    margin-bottom: 2rem;
+    border-radius: 0 4px 4px 0;
+  }
+
+  .goal-box strong { color: var(--accent); }
+
+  h2 {
+    font-family: 'Noto Serif TC', Georgia, serif;
+    font-size: 1.2rem;
+    margin-top: 2.5rem;
+    margin-bottom: 0.75rem;
+    color: var(--accent);
+  }
+
+  h3 {
+    font-family: 'Noto Serif TC', Georgia, serif;
+    font-size: 1.05rem;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--accent);
+  }
+
+  p { margin-bottom: 0.75rem; }
+
+  .lyric-card {
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--accent);
+    border-radius: 6px;
+    padding: 1.25rem;
+    margin: 1rem 0;
+    background: var(--lyric-bg);
+  }
+
+  .lyric-card .song-title {
+    font-family: 'Noto Serif TC', Georgia, serif;
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: var(--accent);
+    margin-bottom: 0.3rem;
+  }
+
+  .lyric-card .song-info {
+    font-size: 0.8rem;
+    color: var(--muted);
+    margin-bottom: 0.6rem;
+  }
+
+  .lyric-card .lyric-text {
+    font-family: 'Noto Serif TC', Georgia, serif;
+    font-size: 1.05rem;
+    line-height: 1.9;
+    margin-bottom: 0.75rem;
+    white-space: pre-line;
+  }
+
+  .lyric-card .translation {
+    font-size: 0.9rem;
+    color: var(--muted);
+    padding: 0.5rem 0.75rem;
+    background: #fff;
+    border-radius: 4px;
+    margin-top: 0.5rem;
+  }
+
+  .lyric-card .analysis {
+    margin-top: 0.75rem;
+    font-size: 0.92rem;
+  }
+
+  .lyric-card .analysis .point {
+    margin-bottom: 0.5rem;
+    padding-left: 1.2rem;
+    position: relative;
+  }
+
+  .lyric-card .analysis .point::before {
+    content: "◆";
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-size: 0.7rem;
+    top: 0.15rem;
+  }
+
+  .jyut {
+    color: var(--accent);
+    font-weight: 500;
+    font-size: 0.85rem;
+  }
+
+  .feature-box {
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1.25rem;
+    margin: 1rem 0;
+    background: white;
+  }
+
+  .feature-box h3 {
+    margin-top: 0;
+  }
+
+  .feature-box table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 0.5rem;
+    font-size: 0.92rem;
+  }
+
+  .feature-box th, .feature-box td {
+    text-align: left;
+    padding: 0.5rem 0.75rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .feature-box th {
+    font-weight: 700;
+    color: var(--accent);
+    background: var(--accent-light);
+    font-size: 0.85rem;
+  }
+
+  .feature-box .jyut-col { color: #6a1b6b; font-weight: 500; }
+
+  .chinese-note {
+    background: var(--warn-bg);
+    border-left: 3px solid var(--warn-border);
+    padding: 0.8rem 1rem;
+    margin: 1.5rem 0;
+    font-size: 0.9rem;
+  }
+
+  .chinese-note strong { color: #e65100; }
+
+  .quiz-section {
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 2px solid var(--border);
+  }
+
+  .quiz-section h2 {
+    margin-top: 0;
+  }
+
+  .quiz-question {
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1.25rem;
+    margin: 1rem 0;
+    position: relative;
+  }
+
+  .quiz-question .q-num {
+    position: absolute;
+    top: -0.6rem;
+    left: 1rem;
+    background: var(--accent);
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.1rem 0.5rem;
+    border-radius: 3px;
+  }
+
+  .quiz-question .context {
+    color: var(--muted);
+    font-size: 0.85rem;
+    margin-bottom: 0.5rem;
+    font-style: italic;
+  }
+
+  .quiz-question .sentence {
+    font-size: 1.05rem;
+    margin-bottom: 0.75rem;
+    line-height: 1.6;
+  }
+
+  .quiz-question .blank {
+    display: inline-block;
+    min-width: 100px;
+    border-bottom: 2px dashed var(--accent);
+    text-align: center;
+    font-weight: 600;
+    color: var(--accent);
+  }
+
+  .options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+  }
+
+  .option-btn {
+    background: white;
+    border: 2px solid var(--border);
+    border-radius: 4px;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.95rem;
+    cursor: pointer;
+    text-align: center;
+    font-family: 'Noto Sans TC', sans-serif;
+    transition: all 0.15s;
+  }
+
+  .option-btn:hover {
+    border-color: var(--accent);
+    background: var(--accent-light);
+  }
+
+  .option-btn.correct {
+    border-color: var(--correct);
+    background: var(--correct-bg);
+    color: var(--correct);
+    font-weight: 600;
+  }
+
+  .option-btn.wrong {
+    border-color: var(--wrong);
+    background: var(--wrong-bg);
+    color: var(--wrong);
+  }
+
+  .option-btn.reveal-correct {
+    border-color: var(--correct);
+    background: var(--correct-bg);
+    color: var(--correct);
+    font-weight: 600;
+  }
+
+  .feedback {
+    margin-top: 0.75rem;
+    padding: 0.6rem 0.8rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    display: none;
+  }
+
+  .feedback.show { display: block; }
+  .feedback.correct-fb { background: var(--correct-bg); color: var(--correct); }
+  .feedback.wrong-fb { background: var(--wrong-bg); color: var(--wrong); }
+
+  .score-box {
+    background: var(--accent-light);
+    border: 2px solid var(--accent);
+    border-radius: 6px;
+    padding: 1.25rem;
+    margin-top: 1.5rem;
+    text-align: center;
+    display: none;
+  }
+
+  .score-box.show { display: block; }
+  .score-box .score-num { font-size: 2rem; font-weight: 700; color: var(--accent); }
+  .score-box .score-label { color: var(--muted); font-size: 0.9rem; }
+
+  .followup {
+    background: #f0f4f8;
+    border-radius: 6px;
+    padding: 1rem 1.25rem;
+    margin-top: 2rem;
+    font-size: 0.9rem;
+  }
+
+  .followup strong { color: var(--accent); }
+
+  .resource-link {
+    display: inline-block;
+    margin-top: 0.5rem;
+    padding: 0.4rem 0.8rem;
+    background: var(--accent);
+    color: white;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+
+  .resource-link:hover { opacity: 0.9; }
+
+  .footer {
+    margin-top: 3rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+    font-size: 0.8rem;
+    color: var(--muted);
+    text-align: center;
+  }
+
+  .footer a { color: var(--accent); text-decoration: none; }
+
+  .nav-disabled {
+    color: var(--muted);
+    text-decoration: line-through;
+    opacity: 0.5;
+  }
+
+  @media print {
+    body { padding: 1.5cm; max-width: none; }
+    .option-btn, .feedback, .score-box { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<h1>粵語歌歌詞解析</h1>
+<p class="lesson-meta">Lesson 10 &middot; ~15 minutes &middot; 粵語文化與語法特色</p>
+
+<div class="goal-box">
+  <strong>本課目標：</strong>透過經典粵語歌曲歌詞，認識粵語的獨特表達方式、語法差異和文化內涵。學完後能看懂粵語歌詞中的方言詞、文法結構和雙關語，理解粵語歌為什麼聽起來和普通話歌完全不同。
+</div>
+
+<h2>為什麼粵語歌很重要？</h2>
+<p>
+  粵語歌是粵語學習者的最好教材。粵語有九聲六調，旋律和語言天然結合。相比普通話，粵語歌詞保留了更多中古漢語的用字和文法——例如「咗」（已）、「嘅」（的）、「嘢」（東西）、「睇」（看）、「行」（走）。
+</p>
+<p>
+  很多粵語歌的詞作者（如黃偉文、林夕）是粵語文字遊戲的大師，他們利用粵語的同音多義和聲調特點，創造出普通話翻譯無法保留的雙關和韻律。
+</p>
+
+<h2>經典歌詞拆解</h2>
+
+<div class="lyric-card">
+  <div class="song-title">《海闊天空》—— Beyond</div>
+  <div class="song-info">1993年 &middot; 黃家駒作詞作曲 &middot; 粵語樂壇最經典作品之一</div>
+  <div class="lyric-text">仍然自由嚟自我選擇，理想按我我掌舵
+雨灑風乾要收養，我不可再問
+我不可再問，為何我的歌聲無法與你配
+因為我唱得跟妳不是一樣</div>
+  <div class="translation">
+    <strong>普通話對照：</strong>依然自由地自我選擇，理想由我決定。風雨的磨練讓我成長，我不再追问。我不再追问，為什麼我的歌聲無法與你相配，因為我唱的和你不是一樣的。
+  </div>
+  <div class="analysis">
+    <div class="point"><strong>嚟嚟（loi4loi4）</strong>：「嚟」是「來」的粵語發音。這裡「自由嚟」=「自由地」，「嚟」作為副詞尾相當於普通話的「地」。粵語中「嚟」不僅是動詞（來），還可以做連接詞，表示「以……的方式」。</div>
+    <div class="point"><strong>收養（sau1 joeng5）</strong>：這裡不是「領養小孩」的意思，而是「承受、經歷」的引申義。粵語中「收養」在歌詞裏有被風雨洗禮、磨練的意思，比普通話的「承受」更有畫面感。</div>
+    <div class="point"><strong>配（pei3）</strong>：配得上、相匹配。整句意思是「我的歌聲與你的（欣賞）不匹配」，因為粵語和普通話的聽眾基礎不同。</div>
+  </div>
+</div>
+
+<div class="lyric-card">
+  <div class="song-title">《光年之外》—— 鄧紫棋（粵語版）</div>
+  <div class="song-info">粵語版與普通話版對比 —— 粵語的語法差異如何改變表達</div>
+  <div class="lyric-text">普通話版：我們還有太多空間
+粵語版：我哋仲有咁多空間</div>
+  <div class="translation">
+    <strong>對比分析：</strong>
+    「我們」→「我哋（ngo5 dei6）」；「還」→「仲（zung6）」；「太多」→「咁多（gam1 do1）」
+    <br>
+    普通話的「還」在粵語中用「仲」，表示「仍然」；「太多」在粵語中用「咁多」強調程度，語氣比「太多」更強烈。
+  </div>
+</div>
+
+<div class="lyric-card">
+  <div class="song-title">《風中的歌》—— 陳奕迅</div>
+  <div class="song-info">例句拆解粵語歌中的常見文法結構</div>
+  <div class="lyric-text">你講嘅嘢，我唔係聽唔明
+只係唔想理，你講啲咩嘢
+行開啲啦，唔使再講
+我知你心入面，有啲嘢講唔出</div>
+  <div class="translation">
+    <strong>普通話對照：</strong>你說的話，我不是聽不懂，只是不想管你說的是什麼。走開吧，不用再說了。我知道你心底，有些話說不出來。
+  </div>
+  <div class="analysis">
+    <div class="point"><strong>嘅（ge3）</strong>：這裡第一個「嘅」相當於普通話「的」——「你講嘅」=「你說的」。但注意粵語中「嘅」也可以當句末語氣詞，表示肯定強調。</div>
+    <div class="point"><strong>唔係（m4 hai6）</strong>：「不是」的粵語發音。「唔」是粵語否定詞，相當於普通話的「不」。</div>
+    <div class="point"><strong>聽唔明（ting1 m4 ming4）</strong>：粵語特有的「動詞＋唔＋結果」結構，表示「做不到某事」。= 普通話「聽不懂」。對比：「聽得明」=聽得懂。這是粵語最重要的語法之一。</div>
+    <div class="point"><strong>啲（di1）</strong>：量詞，表示「一些」。「你講啲咩嘢」=你說些什麼東西。</div>
+    <div class="point"><strong>行開啲（hong4 hoi1 di1）</strong>：「行開」=走開，「啲」=一點/遠一點。粵語中「動詞＋開＋啲」表示「往開的方向移動」。這是粵語空間表達的特色。</div>
+    <div class="point"><strong>有啲（jau5 di1）</strong>：「有些」的粵語說法。結構和中文相似但發音不同。</div>
+  </div>
+</div>
+
+<h2>粵語歌詞五大特色</h2>
+
+<div class="feature-box">
+  <h3>1. 保留中古漢語用字</h3>
+  <p>粵語保留了大量中古漢語用字和發音，歌詞中常見普通話已少用的字：</p>
+  <table>
+    <tr><th>粵語字</th><th>粵語音（粵拼）</th><th>普通話</th><th>意思</th></tr>
+    <tr><td>睇</td><td class="jyut-col">tai2</td><td>看</td><td>看</td></tr>
+    <tr><td>行</td><td class="jyut-col">hong4</td><td>走</td><td>走</td></tr>
+    <tr><td>食</td><td class="jyut-col">sik6</td><td>吃</td><td>吃</td></tr>
+    <tr><td>飲</td><td class="jyut-col">jam2</td><td>喝</td><td>喝</td></tr>
+    <tr><td>返</td><td class="jyut-col">faan2</td><td>回</td><td>回</td></tr>
+    <tr><td>早</td><td class="jyut-col">zo2</td><td>早</td><td>早（完成）</td></tr>
+    <tr><td>畀</td><td class="jyut-col">bei2</td><td>給</td><td>給</td></tr>
+    <tr><td>唔</td><td class="jyut-col">m4</td><td>不</td><td>不</td></tr>
+  </table>
+</div>
+
+<div class="feature-box">
+  <h3>2. 獨特的語法結構</h3>
+  <table>
+    <tr><th>粵語結構</th><th>普通話</th><th>例子</th></tr>
+    <tr><td>動＋唔＋結果</td><td>動＋不＋結果</td><td>買唔到（買不到）、食唔完（吃不完）</td></tr>
+    <tr><td>動＋得＋結果</td><td>動＋得＋結果</td><td>睇得明（看得懂）、行得到（走得到）</td></tr>
+    <tr><td>未＋動＋㗎</td><td>還沒＋動＋呢</td><td>未食㗎（還沒吃呢）</td></tr>
+    <tr><td>咗（表示完成）</td><td>了</td><td>我食咗飯（我吃了飯）</td></tr>
+    <tr><td>緊（表示進行）</td><td>在／正在</td><td>我食緊飯（我正在吃飯）</td></tr>
+  </table>
+</div>
+
+<div class="feature-box">
+  <h3>3. 語氣詞的豐富表達</h3>
+  <p>粵語歌歌詞大量使用語氣詞，它們幾乎沒有對應的普通話翻譯：</p>
+  <table>
+    <tr><th>語氣詞</th><th>粵拼</th><th>功能</th><th>近似普通話</th></tr>
+    <tr><td>嘅</td><td class="jyut-col">ge3</td><td>肯定、強調</td><td>的（句末）</td></tr>
+    <tr><td>喇</td><td class="jyut-col">laa3</td><td>新情況告知</td><td>了</td></tr>
+    <tr><td>㗎</td><td class="jyut-col">gaa3</td><td>確認、解釋</td><td>的／嘛</td></tr>
+    <tr><td>啫</td><td class="jyut-col">ze1</td><td>不過如此</td><td>罷了</td></tr>
+    <tr><td>嘛</td><td class="jyut-col">maa3</td><td>理所当然</td><td>嘛</td></tr>
+    <tr><td>啦</td><td class="jyut-col">laa1</td><td>提醒、勸告</td><td>吧</td></tr>
+  </table>
+</div>
+
+<div class="feature-box">
+  <h3>4. 聲調與音樂的完美結合</h3>
+  <p>粵語有六個主要聲調（入聲三個短調），每個字都有固定聲調。這意味著：</p>
+  <p>
+    <strong>填詞人（寫歌詞的人）必須考慮每個字的聲調是否和旋律匹配。</strong>如果字的聲調和旋律走向衝突，聽起來就會像走調。這就是為什麼粵語歌不能直接照普通話歌填詞——普通話四聲太少，旋律空間不同。
+  </p>
+  <p>
+    經典案例：黃霑為《滄海一聲笑》填詞時，每個字的聲調都經過精心設計，旋律走向與粵語聲調完全吻合。這首歌的旋律是五聲音階（宮商角徵羽），粵語聲調恰好能貼合這五個音。
+  </p>
+</div>
+
+<div class="feature-box">
+  <h3>5. 雙關與文字遊戲</h3>
+  <p>粵語歌詞最精彩的地方在於雙關——一個字同時有兩個意思。這依賴於粵語的同音字極多：</p>
+  <p>
+    <strong>經典例子：</strong>林夕為陳奕迅寫的《富士山下》中「誰能憑藉著愛算」，「愛算」同時隱含「算數／計較」的意思。粵語中「算」（syun3）和「數」（sou3）音近，形成層次感。
+  </p>
+</div>
+
+<div class="chinese-note">
+  <strong>學習建議：</strong>聽粵語歌時不要只跟著唱，要逐字逐句分析——哪些字是粵語特有、哪些是語法結構、哪些是雙關。每首歌都是活生生的粵語課。推薦從陳奕迅、張國榮、譚詠麟的歌開始，歌詞相對通俗易懂。
+</div>
+
+<h2>練習：看懂粵語歌詞</h2>
+<p>閱讀下面幾句粵語歌詞，選擇正確的理解。共 8 題。</p>
+
+<div class="quiz-section">
+  <h2>練習：你睇得明幾多？</h2>
+
+  <div class="quiz-question" id="q1">
+    <span class="q-num">Q1</span>
+    <div class="context">歌詞：「你講嘅嘢，我唔係聽唔明。」</div>
+    <div class="sentence">這句的意思是：</div>
+    <div class="options">
+      <button class="option-btn" data-correct="false" onclick="check(this)">我不聽你說話</button>
+      <button class="option-btn" data-correct="true" onclick="check(this)">我聽得懂，只是不想管</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="quiz-question" id="q2">
+    <span class="q-num">Q2</span>
+    <div class="context">歌詞：「我食咗飯未？」</div>
+    <div class="sentence">「咗」在這裡的意思是：</div>
+    <div class="options">
+      <button class="option-btn" data-correct="true" onclick="check(this)">已經（完成體標記）</button>
+      <button class="option-btn" data-correct="false" onclick="check(this)">正在（進行體標記）</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="quiz-question" id="q3">
+    <span class="q-num">Q3</span>
+    <div class="context">歌詞：「買唔到票。」</div>
+    <div class="sentence">「買唔到」的結構是：</div>
+    <div class="options">
+      <button class="option-btn" data-correct="false" onclick="check(this)">動詞＋肯定＋結果</button>
+      <button class="option-btn" data-correct="true" onclick="check(this)">動詞＋否定＋結果（做不到）</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="quiz-question" id="q4">
+    <span class="q-num">Q4</span>
+    <div class="context">歌詞：「行開啲啦，唔使再講。」</div>
+    <div class="sentence">「行開啲」在普通話中最接近的意思是：</div>
+    <div class="options">
+      <button class="option-btn" data-correct="true" onclick="check(this)">走遠一點／走開</button>
+      <button class="option-btn" data-correct="false" onclick="check(this)">走路很快</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="quiz-question" id="q5">
+    <span class="q-num">Q5</span>
+    <div class="context">以下哪個字在粵語中意思是「走」？</div>
+    <div class="sentence">請選擇正確的粵語字：</div>
+    <div class="options">
+      <button class="option-btn" data-correct="false" onclick="check(this)">睇</button>
+      <button class="option-btn" data-correct="true" onclick="check(this)">行</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="quiz-question" id="q6">
+    <span class="q-num">Q6</span>
+    <div class="context">歌詞：「返工返學。」</div>
+    <div class="sentence">「返」的意思是：</div>
+    <div class="options">
+      <button class="option-btn" data-correct="true" onclick="check(this)">回／去（上班、上學）</button>
+      <button class="option-btn" data-correct="false" onclick="check(this)">返回家中</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="quiz-question" id="q7">
+    <span class="q-num">Q7</span>
+    <div class="context">歌詞：「你知唔知？」</div>
+    <div class="sentence">「知唔知」這個結構表達的是：</div>
+    <div class="options">
+      <button class="option-btn" data-correct="false" onclick="check(this)">我不知道</button>
+      <button class="option-btn" data-correct="true" onclick="check(this)">你知道嗎？（動＋唔＋動＝正反問句）</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="quiz-question" id="q8">
+    <span class="q-num">Q8</span>
+    <div class="context">粵語歌歌詞中常見的「嘅」，以下哪種用法是正確的？</div>
+    <div class="sentence">請選擇「嘅」的正确用法：</div>
+    <div class="options">
+      <button class="option-btn" data-correct="true" onclick="check(this)">「係我嘅」（我的）和「好靚嘅」（很好的，句末強調）</button>
+      <button class="option-btn" data-correct="false" onclick="check(this)">「我去嘅」（我去的地方）和「食嘅」（吃的食物）</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="score-box" id="score-box">
+    <div class="score-num" id="score-num"></div>
+    <div class="score-label" id="score-label"></div>
+  </div>
+</div>
+
+<div class="followup">
+  <strong>繼續練習：</strong>找一首你喜歡的粵語歌，把歌詞逐句翻譯成普通話，標出每個粵語特有的字和語法結構。推薦從以下歌手開始：
+  <br><br>
+  <strong>入門級：</strong>陳奕迅（用詞通俗）&middot; 張學友（語法標準）&middot; 楊千嬅（口語化強）<br>
+  <strong>進階級：</strong>林夕作詞的歌曲（文字遊戲多）&middot; 黃霑作詞的歌曲（古典韻味濃）&middot; 張國榮（聲調與旋律結合最佳）<br>
+  <br>
+  <strong>推薦歌單：</strong>《海闊天空》《富士山下》《十年》《風繼續吹》《千機變》《光年之外（粵語版）》《陀飛輪》
+  <br><br>
+  <a href="../reference/jyutping-cantonese-song.html" class="resource-link">粵拼快速參考</a>
+</div>
+
+<div class="footer">
+  <a href="0009-shejiao-hanxuan.html">上一课</a> | <a href="0000-toc.html">目录</a> | <span class="nav-disabled">下一课</span>
+
+</div>
+
+<script>
+  const explanations = {
+    q1: {
+      correct: '"唔係聽唔明" = 不是聽不懂。整句意思：我聽得懂你說的，只是不想管。關鍵結構："唔係……唔明" 是一個否定框架，裡面才是核心意思。',
+      wrong: '"唔係聽唔明" 的意思是「不是聽不懂」= 我聽得懂。整句是：我聽得懂，只是不想管你說什麼。'
+    },
+    q2: {
+      correct: '"咗" 是粵語的完成體標記，相當於普通話的「了」。"我食咗飯" = "我吃了飯"。所以"未食咗" = "還沒吃（完）"。',
+      wrong: '"咗"表示動作完成，不是進行。"食緊飯"才是正在吃（緊=在/正在）。"食咗飯"=吃了飯。'
+    },
+    q3: {
+      correct: '"買唔到"是粵語特有的"動詞＋唔＋結果"結構，表示做不到某事。"唔"是否定，"到"是結果。合起來=買不到。對比"買得到"=買得到。',
+      wrong: '"買唔到"的結構是：買(動詞)＋唔(否定)＋到(結果) = 做不到買這個動作。這是一個否定可能補語結構。'
+    },
+    q4: {
+      correct: '"行開啲" = 走開一點。"行"=走，"開"=往開的方向，"啲"=一點。粵語中"動詞＋開＋啲"表示遠離說話者的移動方向。',
+      wrong: '"行開啲"不是走得快，而是"走遠一點/走開"。"開"表示遠離，"啲"表示程度。整個結構表示空間上的遠離。'
+    },
+    q5: {
+      correct: '"行（hong4）"在粵語中是"走"的意思。"睇（tai2）"才是"看"。粵語保留了中古漢語的用字："行"古義就是走路。',
+      wrong: '"睇（tai2）"是"看"的意思。"行（hong4）"才是"走"。注意粵語中"行"=走，"企"=站，"飛"=跑。'
+    },
+    q6: {
+      correct: '"返"在粵語中是"回／去"的意思，不限于"回家"。"返工"=上班，"返學"=上學，"返嚟"=回來。',
+      wrong: '"返"不僅僅指"回家"。它泛指"回/去"某處："返工"（去上班）、"返學"（去上學）、"返屋企"（回家）。'
+    },
+    q7: {
+      correct: '"知唔知"是粵語正反問句結構：動詞＋唔＋動詞 = "你知道嗎？"。類似結構還有"食唔食"（吃不吃）、"去唔去"（去不去）。',
+      wrong: '"知唔知" = "你知道嗎？" 不是"我不知道"。這是粵語最常見的問句結構——正反問句：肯定＋唔＋否定。'
+    },
+    q8: {
+      correct: '"嘅"有兩個主要用法：(1)結構助詞"的"——"我嘅"=我的；(2)句末語氣詞表強調——"好靚嘅"=很漂亮（的）。選項A正確描述了兩者。',
+      wrong: '"嘅"作"的"時用在名詞前（我嘅書）或句末強調（靚嘅）。選項B的"我去嘅"和"食嘅"雖也可用，但A更全面準確地描述兩個核心用法。'
+    }
+  };
+
+  let answered = {};
+  let score = 0;
+  const total = 8;
+
+  function check(btn) {
+    const question = btn.closest('.quiz-question');
+    const qid = question.id;
+    if (answered[qid]) return;
+    answered[qid] = true;
+
+    const isCorrect = btn.dataset.correct === 'true';
+    const allBtns = question.querySelectorAll('.option-btn');
+    const feedback = question.querySelector('.feedback');
+
+    allBtns.forEach(b => {
+      b.style.pointerEvents = 'none';
+      if (b.dataset.correct === 'true') b.classList.add('reveal-correct');
+    });
+
+    if (isCorrect) {
+      btn.classList.add('correct');
+      feedback.className = 'feedback show correct-fb';
+      feedback.textContent = explanations[qid].correct;
+      score++;
+    } else {
+      btn.classList.add('wrong');
+      feedback.className = 'feedback show wrong-fb';
+      feedback.textContent = explanations[qid].wrong;
+    }
+
+    if (Object.keys(answered).length === total) {
+      const box = document.getElementById('score-box');
+      const num = document.getElementById('score-num');
+      const label = document.getElementById('score-label');
+      num.textContent = score + ' / ' + total;
+      if (score === total) label.textContent = '靚！你對粵語歌詞的理解非常好！';
+      else if (score >= 6) label.textContent = '唔錯！再複習一下不懂的地方就完美了。';
+      else label.textContent = '加油！多聽幾首歌歌詞就慢慢懂了。';
+      box.classList.add('show');
+    }
+  }
+</script></body>
+</html>

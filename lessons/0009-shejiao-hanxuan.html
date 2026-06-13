@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第九课 — 社交寒暄与敬语</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap');
+
+  :root {
+    --bg: #fdfdfd;
+    --text: #1a1a1a;
+    --accent: #b71c1c;
+    --accent-light: #fce4ec;
+    --muted: #666;
+    --border: #e0e0e0;
+    --correct: #2e7d32;
+    --correct-bg: #e8f5e9;
+    --wrong: #c62828;
+    --wrong-bg: #ffebee;
+    --warn-bg: #fff8e1;
+    --warn-border: #f9a825;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Noto Sans SC', -apple-system, sans-serif;
+    font-size: 16px;
+    line-height: 1.8;
+    color: var(--text);
+    background: var(--bg);
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+  }
+
+  h1 {
+    font-family: 'Noto Serif SC', Georgia, serif;
+    font-size: 1.8rem;
+    margin-bottom: 0.25rem;
+    color: var(--accent);
+  }
+
+  .lesson-meta {
+    color: var(--muted);
+    font-size: 0.85rem;
+    margin-bottom: 2rem;
+  }
+
+  .goal-box {
+    background: var(--accent-light);
+    border-left: 4px solid var(--accent);
+    padding: 1rem 1.25rem;
+    margin-bottom: 2rem;
+    border-radius: 0 4px 4px 0;
+  }
+
+  .goal-box strong { color: var(--accent); }
+
+  h2 {
+    font-family: 'Noto Serif SC', Georgia, serif;
+    font-size: 1.2rem;
+    margin-top: 2.5rem;
+    margin-bottom: 0.75rem;
+    color: var(--accent);
+  }
+
+  h3 {
+    font-family: 'Noto Serif SC', Georgia, serif;
+    font-size: 1.05rem;
+    margin-bottom: 0.25rem;
+    color: var(--accent);
+  }
+
+  p { margin-bottom: 0.75rem; }
+
+  .card {
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1.25rem;
+    margin: 1rem 0;
+  }
+
+  .card h3 { margin-bottom: 0.5rem; }
+
+  .comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+    font-size: 0.95rem;
+  }
+
+  .comparison-table th {
+    background: var(--accent);
+    color: white;
+    padding: 0.6rem 0.8rem;
+    text-align: left;
+    font-weight: 600;
+  }
+
+  .comparison-table td {
+    padding: 0.5rem 0.8rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .comparison-table tr:nth-child(even) {
+    background: #fafafa;
+  }
+
+  .cantonese {
+    font-family: 'Noto Serif SC', Georgia, serif;
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  .pinyin {
+    color: var(--muted);
+    font-size: 0.9rem;
+  }
+
+  .chinese-note {
+    background: var(--warn-bg);
+    border-left: 3px solid var(--warn-border);
+    padding: 0.8rem 1rem;
+    margin: 1.5rem 0;
+    font-size: 0.9rem;
+  }
+
+  .chinese-note strong { color: #e65100; }
+
+  .quiz-section {
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 2px solid var(--border);
+  }
+
+  .quiz-section h2 {
+    margin-top: 0;
+  }
+
+  .quiz-question {
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1.25rem;
+    margin: 1rem 0;
+    position: relative;
+  }
+
+  .quiz-question .q-num {
+    position: absolute;
+    top: -0.6rem;
+    left: 1rem;
+    background: var(--accent);
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.1rem 0.5rem;
+    border-radius: 3px;
+  }
+
+  .quiz-question .context {
+    color: var(--muted);
+    font-size: 0.85rem;
+    margin-bottom: 0.5rem;
+    font-style: italic;
+  }
+
+  .quiz-question .sentence {
+    font-size: 1.05rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .quiz-question .sentence .blank {
+    display: inline-block;
+    min-width: 120px;
+    border-bottom: 2px dashed var(--accent);
+    text-align: center;
+    font-weight: 600;
+    color: var(--accent);
+  }
+
+  .options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+  }
+
+  .option-btn {
+    background: white;
+    border: 2px solid var(--border);
+    border-radius: 4px;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.95rem;
+    cursor: pointer;
+    text-align: center;
+    font-family: 'Noto Sans SC', sans-serif;
+    transition: all 0.15s;
+  }
+
+  .option-btn:hover {
+    border-color: var(--accent);
+    background: var(--accent-light);
+  }
+
+  .option-btn.correct {
+    border-color: var(--correct);
+    background: var(--correct-bg);
+    color: var(--correct);
+    font-weight: 600;
+  }
+
+  .option-btn.wrong {
+    border-color: var(--wrong);
+    background: var(--wrong-bg);
+    color: var(--wrong);
+  }
+
+  .option-btn.reveal-correct {
+    border-color: var(--correct);
+    background: var(--correct-bg);
+    color: var(--correct);
+    font-weight: 600;
+  }
+
+  .feedback {
+    margin-top: 0.75rem;
+    padding: 0.6rem 0.8rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    display: none;
+  }
+
+  .feedback.show { display: block; }
+  .feedback.correct-fb { background: var(--correct-bg); color: var(--correct); }
+  .feedback.wrong-fb { background: var(--wrong-bg); color: var(--wrong); }
+
+  .score-box {
+    background: var(--accent-light);
+    border: 2px solid var(--accent);
+    border-radius: 6px;
+    padding: 1.25rem;
+    margin-top: 1.5rem;
+    text-align: center;
+    display: none;
+  }
+
+  .score-box.show { display: block; }
+  .score-box .score-num { font-size: 2rem; font-weight: 700; color: var(--accent); }
+  .score-box .score-label { color: var(--muted); font-size: 0.9rem; }
+
+  .followup {
+    background: #f0f4f8;
+    border-radius: 6px;
+    padding: 1rem 1.25rem;
+    margin-top: 2rem;
+    font-size: 0.9rem;
+  }
+
+  .followup strong { color: var(--accent); }
+
+  .resource-link {
+    display: inline-block;
+    margin-top: 0.5rem;
+    padding: 0.4rem 0.8rem;
+    background: var(--accent);
+    color: white;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+
+  .resource-link:hover { opacity: 0.9; }
+
+  .footer {
+    margin-top: 3rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+    font-size: 0.8rem;
+    color: var(--muted);
+    text-align: center;
+  }
+
+  .footer a { color: var(--accent); text-decoration: none; }
+
+  .nav-disabled {
+    color: var(--muted);
+    text-decoration: line-through;
+    opacity: 0.5;
+  }
+
+  @media print {
+    body { padding: 1.5cm; max-width: none; }
+    .option-btn, .feedback, .score-box { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<h1>社交寒暄与敬语</h1>
+<p class="lesson-meta">第九课 &middot; ~12 minutes &middot; 日常会话基础</p>
+
+<div class="goal-box">
+  <strong>本节课目标</strong>：学会粤语中最常用的社交寒暄用语和敬语表达，包括见面问候、告别、感谢致歉、称呼长辈和职场敬语——让你在真实社交场合说得自然、听得明白。
+</div>
+
+<h2>为什么这课很重要</h2>
+<p>
+  很多学粤语的人能点餐、能讲价，但跟长辈打招呼时会紧张，在职场中不知道该用哪种语气。粤语的社交用语和普通话差别很大——不仅仅是词汇替换，还包括<strong>称呼方式</strong>、<strong>语气助词</strong>和<strong>敬语层级</strong>。这些看似"不重要"的寒暄，实际上决定了别人觉得你<span class="cantonese">有冇礼貌</span>（有没有礼貌）。
+</p>
+
+<h2>见面问候</h2>
+
+<div class="card">
+  <h3>👋 基础问候</h3>
+  <table class="comparison-table">
+    <tr><th>场景</th><th>粤语</th><th>普通话</th><th>说明</th></tr>
+    <tr><td>通用问候</td><td><span class="cantonese">你好吗？</span><br><span class="pinyin">nei5 hou2 ma3?</span></td><td>你好吗？</td><td>字面相同，但语调不同。粤语的"好"声调更高。</td></tr>
+    <tr><td>最近怎样</td><td><span class="cantonese">最近点呀？</span><br><span class="pinyin">zui3 gan2 dim2 aa3?</span></td><td>最近怎么样？</td><td><span class="cantonese">点</span> = 怎样，<span class="cantonese">呀</span> = 语气词，软化语气。</td></tr>
+    <tr><td>很久不见</td><td><span class="cantonese">好久冇见呀！</span><br><span class="pinyin">haau2 ma5 mou5 gin3 aa3!</span></td><td>好久不见！</td><td><span class="cantonese">冇</span> = 没有，比普通话更口语化。</td></tr>
+    <tr><td>食咗饭未？</td><td><span class="cantonese">食咗饭未？</span><br><span class="pinyin">sik6 zo2 faan6 mui6?</span></td><td>吃了吗？</td><td>粤语最经典的寒暄语。不是真问你吃没吃，而是"你好"的粤语版。</td></tr>
+  </table>
+</div>
+
+<div class="chinese-note">
+  <strong>文化提示：</strong>"食咗饭未？"是粤语区最高频的寒暄语，地位等同普通话的"吃了吗"。但不同之处是：回答时可以很简短（<span class="cantonese">食咗喇</span> / 吃了）、也可以反向问候。这反映了岭南饮食文化中"吃"的核心地位。
+</div>
+
+<div class="card">
+  <h3>🌅 按时间段问候</h3>
+  <table class="comparison-table">
+    <tr><th>时段</th><th>粤语</th><th>普通话</th></tr>
+    <tr><td>早上</td><td><span class="cantonese">朝早！</span><br><span class="pinyin">ziu1 zou2!</span></td><td>早上好！</td></tr>
+    <tr><td>下午</td><td><span class="cantonese">下昼好！</span><br><span class="pinyin">haa6 zau2 hou2!</span></td><td>下午好！</td></tr>
+    <tr><td>晚上</td><td><span class="cantonese>夜晚好！</span><br><span class="pinyin">jam5 mu5 hou2!</span></td><td>晚上好！</td></tr>
+    <tr><td>周末愉快</td><td><span class="cantonese">周末愉快！</span><br><span class="pinyin">zau1 mo6 jyu6 faat3!</span></td><td>周末愉快！</td></tr>
+  </table>
+</div>
+
+<h2>告别用语</h2>
+
+<div class="card">
+  <h3>👋 道别方式</h3>
+  <table class="comparison-table">
+    <tr><th>场景</th><th>粤语</th><th>普通话</th><th>说明</th></tr>
+    <tr><td>通用告别</td><td><span class="cantonese">拜拜！</span><br><span class="pinyin">baak3 baak3!</span></td><td>拜拜！</td><td>来自英语 bye-bye，最通用。</td></tr>
+    <tr><td>先走了</td><td><span class="cantonese">我先走啦！</span><br><span class="pinyin">ng5 sin1 zou2 laa3!</span></td><td>我先走了！</td><td><span class="cantonese">啦</span> = 了+啊，让语气更柔和。</td></tr>
+    <tr><td>回头见</td><td><span class="cantonese">回头见！</span><br><span class="pinyin">wai4 tau4 gin3!</span></td><td>回头见！</td><td>朋友间随意使用。</td></tr>
+    <tr><td>保重</td><td><span class="cantonese">保重啊！</span><br><span class="pinyin">bou2 zung3 aa3!</span></td><td>保重！</td><td>较正式的告别，用于长期不见。</td></tr>
+    <tr><td>慢走</td><td><span class="cantonese">慢走啊！</span><br><span class="pinyin">maan6 zau2 aa3!</span></td><td>慢走！</td><td>送别对方时用的客套话。</td></tr>
+  </table>
+</div>
+
+<h2>感谢与致歉</h2>
+
+<div class="card">
+  <h3>🙏 感谢表达</h3>
+  <table class="comparison-table">
+    <tr><th>程度</th><th>粤语</th><th>普通话</th><th>说明</th></tr>
+    <tr><td>一般感谢</td><td><span class="cantonese">多谢！</span><br><span class="pinyin">do1 ze6!</span></td><td>谢谢！</td><td>最常用。</td></tr>
+    <tr><td>非常感谢</td><td><span class="cantonese">多谢晒！</span><br><span class="pinyin">do1 ze6 saai3!</span></td><td>非常感谢！</td><td><span class="cantonese">晒</span> = 全部，表"彻底感谢"。</td></tr>
+    <tr><td>不客气</td><td><span class="cantonese">冇问题！</span><br><span class="pinyin">mou4 man6 tai4!</span></td><td>不客气！</td><td>也可说：<span class="cantonese">应该嘅</span>（ying1 goi1 ge3）</td></tr>
+    <tr><td>劳驾了</td><td><span class="cantonese">劳烦你！</span><br><span class="pinyin">lou4 faan4 nei5!</span></td><td>劳驾！</td><td>请求帮忙时使用。</td></tr>
+  </table>
+</div>
+
+<div class="card">
+  <h3>😔 道歉表达</h3>
+  <table class="comparison-table">
+    <tr><th>程度</th><th>粤语</th><th>普通话</th><th>说明</th></tr>
+    <tr><td>小歉意</td><td><span class="cantonese">唔好意思！</span><br><span class="pinyin">m4 hou2 ji3 si6!</span></td><td>不好意思！</td><td>最通用的道歉。</td></tr>
+    <tr><td>正式道歉</td><td><span class="cantonese">对唔住！</span><br><span class="pinyin">deoi3 m4 zyu6!</span></td><td>对不起！</td><td>更正式，用于真正的错误。</td></tr>
+    <tr><td>真的抱歉</td><td><span class="cantonese">真係好抱歉！</span><br><span class="pinyin">zhen1 hai6 hou2 pu3 jiu6!</span></td><td>真的很抱歉！</td><td>强调句，<span class="cantonese">真係</span> = 真的。</td></tr>
+  </table>
+</div>
+
+<div class="chinese-note">
+  <strong>关键区别：</strong>普通话的"不好意思"和"对不起"在粤语中是<strong>分得很清楚</strong>的两个词。<span class="cantonese">唔好意思</span>用于轻微的冒犯（比如踩到别人的脚、打断别人说话），<span class="cantonese">对唔住</span>用于真正的过失（比如迟到很久、弄坏了别人的东西）。用错了会显得不够真诚或过于隆重。
+</div>
+
+<h2>称呼系统</h2>
+
+<div class="card">
+  <h3>👤 人称与称呼</h3>
+  <p>粤语的称呼系统是比普通话更精细的社交工具，尤其是对长辈、上级和不太熟的人：</p>
+  <table class="comparison-table">
+    <tr><th>关系</th><th>粤语称呼</th><th>普通话</th><th>使用场景</th></tr>
+    <tr><td>年长男性</td><td><span class="cantonese">阿叔 / 伯伯</span></td><td>叔叔 / 伯伯</td><td>称呼父亲的兄弟或邻居长辈</td></tr>
+    <tr><td>年长女性</td><td><span class="cantonese">阿姨 / 姐</span></td><td>阿姨 / 姐</td><td><span class="cantonese">姐</span>（方姐）用于称任何年长女性，非常常用</td></tr>
+    <tr><td>年轻人</td><td><span class="cantonese">細佬 / 細妹</span></td><td>弟弟 / 妹妹</td><td>也可用于称呼不熟的年轻人</td></tr>
+    <tr><td>同事</td><td><span class="cantonese">同事</span></td><td>同事</td><td>粤语中直接称呼对方为"XX同事"很自然</td></tr>
+    <tr><td>老师/师傅</td><td><span class="cantonese">师傅 / 老师</span></td><td>师傅 / 老师</td><td>对专业人士（医生、律师、教练）用"师傅"更亲切</td></tr>
+    <tr><td>自己</td><td><span class="cantonese">我</span></td><td>我</td><td>粤语中很少用谦称，直接用"我"即可</td></tr>
+  </table>
+</div>
+
+<div class="card">
+  <h3>🤝 职场敬语</h3>
+  <p>粤语职场中有几组高频敬语，掌握它们能让你的专业形象大大加分：</p>
+  <table class="comparison-table">
+    <tr><th>场景</th><th>粤语</th><th>普通话</th></tr>
+    <tr><td>请多指教</td><td><span class="cantonese">请多关照！</span><br><span class="pinyin">cing2 do1 gou1 ziu3!</span></td><td>请多关照！</td></tr>
+    <tr><td>辛苦了</td><td><span class="cantonese">辛苦晒！</span><br><span class="pinyin">san1 hou2 saai3!</span></td><td>辛苦了！</td></tr>
+    <tr><td>不好意思打扰了</td><td><span class="cantonese">打扰晒啦！</span><br><span class="pinyin">daau2 jau2 saai3 laa3!</span></td><td>打扰了！</td></tr>
+    <tr><td>麻烦你了</td><td><span class="cantonese">麻烦你啦！</span><br><span class="pinyin">ma6 faan3 nei5 laa3!</span></td><td>麻烦你了！</td></tr>
+    <tr><td>请问</td><td><span class="cantonese">请问一下</span><br><span class="pinyin">cing3 maan5 jat1 ha6</span></td><td>请问一下</td></tr>
+    <tr><td>搞掂就通知你</td><td><span class="cantonese">搞掂就同我讲！</span><br><span class="pinyin">gaau2 dim6 zau6 tung4 ng5 gong2!</span></td><td>完成就告诉我！</td></tr>
+  </table>
+</div>
+
+<div class="chinese-note">
+  <strong>语气助词的魔力：</strong>注意上面的表达中频繁出现的<span class="cantonese">晒</span>和<span class="cantonese">啦</span>。<span class="cantonese">晒</span>表示"全部"，用在感谢或辛苦后面（多谢晒、辛苦晒），让语气更真诚更强烈。<span class="cantonese">啦</span>是"了+啊"的组合，让句子从"冷冰冰陈述"变成"带温度的交流"。省略语气助词，粤语听起来就像在读说明书。
+</div>
+
+<h2>完整对话示例</h2>
+
+<div class="card">
+  <h3>🏢 职场晨间寒暄</h3>
+  <p><span class="cantonese">A：</span>朝早！最近点呀？</p>
+  <p><span class="cantonese">B：</span>朝早！还好呀，你呢？</p>
+  <p><span class="cantonese">A：</span>都係啦，最近忙紧个新项目。</p>
+  <p><span class="cantonese">B：</span>加油啊！有咩需要帮忙嘅同我讲啦。</p>
+  <p><span class="cantonese">A：</span>多谢晒！你人真好。</p>
+  <br>
+  <p><strong>翻译：</strong></p>
+  <p>A：早上好！最近怎么样？</p>
+  <p>B：早上好！还好啦，你呢？</p>
+  <p>A：都一样，最近在忙新项目。</p>
+  <p>B：加油！有什么需要帮忙的跟我说。</p>
+  <p>A：非常感谢！你真好。</p>
+</div>
+
+<div class="followup">
+  <strong>有想法？</strong>随便问我——你觉得哪个寒暄用语最难掌握？为什么某个场合该用<span class="cantonese">唔好意思</span>还是<span class="cantonese">对唔住</span>？这种问题正是我们应该聊的。直接问我，我来解释。
+  <br><br>
+  <strong>推荐资源：</strong><a href="https://www.rthk.hk/live" target="_blank">香港电台粤语直播</a> — 在真实场景中听地道粤语寒暄，比任何课本都有效。
+  <br><br>
+  <a href="../reference/shejiao-hanxuan.html" class="resource-link">查看速查卡</a>
+</div>
+
+<div class="footer">
+  <a href="0008-time-expressions.html">上一课</a> | <a href="0000-toc.html">目录</a> | <a href="0010-cantonese-song-lyrics.html">下一课</a>
+
+</div>
+
+<div class="quiz-section">
+  <h2>练习：选对表达</h2>
+  <p>根据你的理解选择正确的粤语表达。共 8 题。</p>
+
+  <div class="quiz-question" id="q1">
+    <span class="q-num">Q1</span>
+    <div class="context">你在街上碰到一个比你年长的同事，他不是你熟人。</div>
+    <div class="sentence">你应该怎么说？</div>
+    <div class="options">
+      <button class="option-btn" data-correct="false" onclick="check(this)">喂！你点呀？</button>
+      <button class="option-btn" data-correct="true" onclick="check(this)">陈哥，朝早！最近点呀？</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="quiz-question" id="q2">
+    <span class="q-num">Q2</span>
+    <div class="context">同事帮了你的一个大忙，你想真诚感谢。</div>
+    <div class="sentence">哪个表达最合适？</div>
+    <div class="options">
+      <button class="option-btn" data-correct="false" onclick="check(this)">多谢！</button>
+      <button class="option-btn" data-correct="true" onclick="check(this)">多谢晒！</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="quiz-question" id="q3">
+    <span class="q-num">Q3</span>
+    <div class="context">你在餐厅不小心把水洒到了别人身上。</div>
+    <div class="sentence">你该说：</div>
+    <div class="options">
+      <button class="option-btn" data-correct="true" onclick="check(this)">对唔住！</button>
+      <button class="option-btn" data-correct="false" onclick="check(this)">唔好意思！</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="quiz-question" id="q4">
+    <span class="q-num">Q4</span>
+    <div class="context">你跟朋友约好了见面，到了之后朋友还没来。你应该怎么打招呼？</div>
+    <div class="sentence">朋友来了，你说：</div>
+    <div class="options">
+      <button class="option-btn" data-correct="false" onclick="check(this)">你好吗？</button>
+      <button class="option-btn" data-correct="true" onclick="check(this)">好久冇见呀！</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="quiz-question" id="q5">
+    <span class="q-num">Q5</span>
+    <div class="context">你在办公室下班前跟同事道别。</div>
+    <div class="sentence">最自然的说法是：</div>
+    <div class="options">
+      <button class="option-btn" data-correct="false" onclick="check(this)">拜拜！保重啊！</button>
+      <button class="option-btn" data-correct="true" onclick="check(this)">我先走啦！回头见！</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="quiz-question" id="q6">
+    <span class="q-num">Q6</span>
+    <div class="context">你想问一个年长女性同事周末过得好不好。</div>
+    <div class="sentence">正确的称呼方式是：</div>
+    <div class="options">
+      <button class="option-btn" data-correct="false" onclick="check(this)">王小姐，周末愉快！</button>
+      <button class="option-btn" data-correct="true" onclick="check(this)">王姐，周末愉快！</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="quiz-question" id="q7">
+    <span class="q-num">Q7</span>
+    <div class="context">你迟到了 30 分钟去开会，需要道歉。</div>
+    <div class="sentence">你应该说：</div>
+    <div class="options">
+      <button class="option-btn" data-correct="false" onclick="check(this)">唔好意思，我迟到了。</button>
+      <button class="option-btn" data-correct="true" onclick="check(this)">对唔住，我迟到了。</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="quiz-question" id="q8">
+    <span class="q-num">Q8</span>
+    <div class="context">你第一次加入一个新的项目组，想跟大家认识。</div>
+    <div class="sentence">你应该说：</div>
+    <div class="options">
+      <button class="option-btn" data-correct="false" onclick="check(this)">我係新嘅，大家好！</button>
+      <button class="option-btn" data-correct="true" onclick="check(this)">大家好！请多关照！以后有咩需要帮忙嘅搵我啦。</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="score-box" id="score-box">
+    <div class="score-num" id="score-num"></div>
+    <div class="score-label" id="score-label"></div>
+  </div>
+</div>
+
+<script>
+  const explanations = {
+    q1: {
+      correct: '"陈哥" + 问候 = 正确的社交礼仪。粤语中称呼年长同事要用尊称（哥/姐/叔），不能直接"喂"。',
+      wrong: '"喂"在粤语中是非常粗鲁的打招呼方式，尤其对年长或不太熟的人。应该先称呼对方（陈哥/李姐），再加问候。'
+    },
+    q2: {
+      correct: '"多谢晒"中的"晒"表示"全部、彻底"，用于大忙时表示"彻底感谢"。"多谢"只是普通感谢，力度不够。',
+      wrong: '"多谢"太简单了。对方帮了你大忙，需要用"多谢晒"——"晒"表示全部、彻底，表达更真诚的感谢。'
+    },
+    q3: {
+      correct: '"对唔住"用于真正的过失。把水洒在别人身上是较严重的冒犯，用"对唔住"比"唔好意思"更合适。',
+      wrong: '"唔好意思"程度太轻了。洒水在别人身上是比较严重的冒犯，应该用"对唔住"（对不起），而不是"唔好意思"（不好意思）。'
+    },
+    q4: {
+      correct: '"好久冇见呀！"是重逢时最自然的寒暄。"冇"=没有，"呀"软化语气。',
+      wrong: '"你好吗？"太正式、太生硬了。朋友之间久别重逢，应该说"好久冇见呀"，更自然亲切。'
+    },
+    q5: {
+      correct: '"我先走啦！回头见！"是职场下班时最自然的组合。"啦"让语气柔和，"回头见"表示下次再见。',
+      wrong: '"保重"是用于长期分别时的辞别（比如出国几个月），每天下班说"保重"太隆重了。"我先走啦！回头见！"才是正确的。'
+    },
+    q6: {
+      correct: '"王姐"比"王小姐"更符合粤语职场称呼习惯。粤语中对年长女性同事用"姐"是最自然的称呼。',
+      wrong: '"王小姐"在粤语中显得太正式、有点距离感。粤语职场中称呼年长女性同事用"姐"（王姐）更自然亲切。'
+    },
+    q7: {
+      correct: '"对唔住"用于真正的过失。迟到 30 分钟是明显的错误，应该用"对唔住"而非较轻的"唔好意思"。',
+      wrong: '"唔好意思"程度太轻了。迟到 30 分钟是真正的过失，应该用"对唔住"——这是"对不起"的意思，表示你意识到自己犯了错。'
+    },
+    q8: {
+      correct: '"请多关照" + 主动帮忙 = 最完整的自我介绍。既表达了礼貌，又展现了合作态度。',
+      wrong: '"大家好！我係新嘅"语法不对，而且太简短。粤语中自我介绍应该更完整——"请多关照"是标准用语，加上主动表示愿意帮忙会更自然。'
+    }
+  };
+
+  let answered = {};
+  let score = 0;
+  const total = 8;
+
+  function check(btn) {
+    const question = btn.closest('.quiz-question');
+    const qid = question.id;
+    if (answered[qid]) return;
+    answered[qid] = true;
+
+    const isCorrect = btn.dataset.correct === 'true';
+    const allBtns = question.querySelectorAll('.option-btn');
+    const feedback = question.querySelector('.feedback');
+
+    allBtns.forEach(b => {
+      b.style.pointerEvents = 'none';
+      if (b.dataset.correct === 'true') b.classList.add('reveal-correct');
+    });
+
+    if (isCorrect) {
+      btn.classList.add('correct');
+      feedback.className = 'feedback show correct-fb';
+      feedback.textContent = explanations[qid].correct;
+      score++;
+    } else {
+      btn.classList.add('wrong');
+      feedback.className = 'feedback show wrong-fb';
+      feedback.textContent = explanations[qid].wrong;
+    }
+
+    if (Object.keys(answered).length === total) {
+      const box = document.getElementById('score-box');
+      const num = document.getElementById('score-num');
+      const label = document.getElementById('score-label');
+      num.textContent = score + ' / ' + total;
+      if (score === total) label.textContent = '完美！你对粤语社交用语掌握得很好！';
+      else if (score >= 6) label.textContent = '不错！复习一下错题，解释告诉你为什么选错。';
+      else label.textContent = '继续加油！重新读一遍上面的例子，再来一次。';
+      box.classList.add('show');
+    }
+  }
+</script></body>
+</html>

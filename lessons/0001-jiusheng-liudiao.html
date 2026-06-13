@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第一课 — 九声六调系统</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap');
+
+  :root {
+    --bg: #fdfdfd;
+    --text: #1a1a1a;
+    --accent: #b71c1c;
+    --accent-light: #fce4ec;
+    --muted: #666;
+    --border: #e0e0e0;
+    --correct: #2e7d32;
+    --correct-bg: #e8f5e9;
+    --wrong: #c62828;
+    --wrong-bg: #ffebee;
+    --warn-bg: #fff8e1;
+    --warn-border: #f9a825;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Noto Sans SC', -apple-system, sans-serif;
+    font-size: 16px;
+    line-height: 1.8;
+    color: var(--text);
+    background: var(--bg);
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+  }
+
+  h1 {
+    font-family: 'Noto Serif SC', Georgia, serif;
+    font-size: 1.8rem;
+    margin-bottom: 0.25rem;
+    color: var(--accent);
+  }
+
+  .lesson-meta {
+    color: var(--muted);
+    font-size: 0.85rem;
+    margin-bottom: 2rem;
+  }
+
+  .goal-box {
+    background: var(--accent-light);
+    border-left: 4px solid var(--accent);
+    padding: 1rem 1.25rem;
+    margin-bottom: 2rem;
+    border-radius: 0 4px 4px 0;
+  }
+
+  .goal-box strong { color: var(--accent); }
+
+  h2 {
+    font-family: 'Noto Serif SC', Georgia, serif;
+    font-size: 1.2rem;
+    margin-top: 2.5rem;
+    margin-bottom: 0.75rem;
+    color: var(--accent);
+  }
+
+  h3 {
+    font-family: 'Noto Serif SC', Georgia, serif;
+    font-size: 1.05rem;
+    margin-bottom: 0.25rem;
+    color: var(--accent);
+  }
+
+  p { margin-bottom: 0.75rem; }
+
+  .tone-card {
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1.25rem;
+    margin: 1rem 0;
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 1rem;
+    align-items: start;
+  }
+
+  .tone-num {
+    font-family: 'Noto Serif SC', Georgia, serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--accent);
+    text-align: center;
+    line-height: 1;
+  }
+
+  .tone-info h3 { margin-bottom: 0.3rem; }
+
+  .tone-info .jyutping {
+    font-size: 0.9rem;
+    color: var(--muted);
+    margin-bottom: 0.5rem;
+    font-family: 'Noto Serif SC', Georgia, serif;
+  }
+
+  .tone-info .examples {
+    list-style: none;
+    padding: 0;
+  }
+
+  .tone-info .examples li {
+    padding: 0.2rem 0;
+    padding-left: 1.2rem;
+    position: relative;
+  }
+
+  .tone-info .examples li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-weight: 700;
+  }
+
+  .tone-visual {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1rem 0;
+    padding: 1.5rem;
+    background: #fafafa;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+  }
+
+  .tone-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 0.5rem;
+    width: 100%;
+  }
+
+  .tone-cell {
+    text-align: center;
+    padding: 0.75rem 0.5rem;
+    border-radius: 4px;
+    border: 1px solid var(--border);
+    background: white;
+  }
+
+  .tone-cell .char {
+    font-family: 'Noto Serif SC', Georgia, serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    display: block;
+  }
+
+  .tone-cell .jp {
+    font-size: 0.8rem;
+    color: var(--muted);
+    display: block;
+    margin-top: 0.2rem;
+  }
+
+  .tone-cell .tone-name {
+    font-size: 0.75rem;
+    color: var(--accent);
+    display: block;
+    margin-top: 0.2rem;
+    font-weight: 600;
+  }
+
+  .comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+  }
+
+  .comparison-table th {
+    background: var(--accent);
+    color: white;
+    padding: 0.6rem 0.8rem;
+    text-align: left;
+    font-family: 'Noto Serif SC', Georgia, serif;
+    font-size: 0.9rem;
+  }
+
+  .comparison-table td {
+    padding: 0.6rem 0.8rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .comparison-table tr:nth-child(even) td {
+    background: #f7f9fb;
+  }
+
+  .comparison-table td strong {
+    color: var(--accent);
+  }
+
+  .chinese-note {
+    background: var(--warn-bg);
+    border-left: 3px solid var(--warn-border);
+    padding: 0.8rem 1rem;
+    margin: 1.5rem 0;
+    font-size: 0.9rem;
+  }
+
+  .chinese-note strong { color: #e65100; }
+
+  .pitch-diagram {
+    display: flex;
+    justify-content: space-around;
+    margin: 1.5rem 0;
+    padding: 1rem;
+    background: #fafafa;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+  }
+
+  .pitch-item {
+    text-align: center;
+  }
+
+  .pitch-line {
+    width: 60px;
+    height: 60px;
+    position: relative;
+    margin: 0 auto 0.5rem;
+  }
+
+  .pitch-line svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  .pitch-label {
+    font-size: 0.8rem;
+    color: var(--muted);
+  }
+
+  .pitch-char {
+    font-family: 'Noto Serif SC', Georgia, serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--accent);
+  }
+
+  .quiz-section {
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 2px solid var(--border);
+  }
+
+  .quiz-section h2 {
+    margin-top: 0;
+  }
+
+  .quiz-question {
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1.25rem;
+    margin: 1rem 0;
+    position: relative;
+  }
+
+  .quiz-question .q-num {
+    position: absolute;
+    top: -0.6rem;
+    left: 1rem;
+    background: var(--accent);
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.1rem 0.5rem;
+    border-radius: 3px;
+  }
+
+  .quiz-question .context {
+    color: var(--muted);
+    font-size: 0.85rem;
+    margin-bottom: 0.5rem;
+    font-style: italic;
+  }
+
+  .quiz-question .sentence {
+    font-size: 1.05rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .quiz-question .sentence .blank {
+    display: inline-block;
+    min-width: 120px;
+    border-bottom: 2px dashed var(--accent);
+    text-align: center;
+    font-weight: 600;
+    color: var(--accent);
+  }
+
+  .options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+  }
+
+  .option-btn {
+    background: white;
+    border: 2px solid var(--border);
+    border-radius: 4px;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.95rem;
+    cursor: pointer;
+    text-align: center;
+    font-family: 'Noto Sans SC', sans-serif;
+    transition: all 0.15s;
+  }
+
+  .option-btn:hover {
+    border-color: var(--accent);
+    background: var(--accent-light);
+  }
+
+  .option-btn.correct {
+    border-color: var(--correct);
+    background: var(--correct-bg);
+    color: var(--correct);
+    font-weight: 600;
+  }
+
+  .option-btn.wrong {
+    border-color: var(--wrong);
+    background: var(--wrong-bg);
+    color: var(--wrong);
+  }
+
+  .option-btn.reveal-correct {
+    border-color: var(--correct);
+    background: var(--correct-bg);
+    color: var(--correct);
+    font-weight: 600;
+  }
+
+  .feedback {
+    margin-top: 0.75rem;
+    padding: 0.6rem 0.8rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    display: none;
+  }
+
+  .feedback.show { display: block; }
+  .feedback.correct-fb { background: var(--correct-bg); color: var(--correct); }
+  .feedback.wrong-fb { background: var(--wrong-bg); color: var(--wrong); }
+
+  .score-box {
+    background: var(--accent-light);
+    border: 2px solid var(--accent);
+    border-radius: 6px;
+    padding: 1.25rem;
+    margin-top: 1.5rem;
+    text-align: center;
+    display: none;
+  }
+
+  .score-box.show { display: block; }
+  .score-box .score-num { font-size: 2rem; font-weight: 700; color: var(--accent); }
+  .score-box .score-label { color: var(--muted); font-size: 0.9rem; }
+
+  .followup {
+    background: #f0f4f8;
+    border-radius: 6px;
+    padding: 1rem 1.25rem;
+    margin-top: 2rem;
+    font-size: 0.9rem;
+  }
+
+  .followup strong { color: var(--accent); }
+
+  .resource-link {
+    display: inline-block;
+    margin-top: 0.5rem;
+    padding: 0.4rem 0.8rem;
+    background: var(--accent);
+    color: white;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+
+  .resource-link:hover { opacity: 0.9; }
+
+  .footer {
+    margin-top: 3rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+    font-size: 0.8rem;
+    color: var(--muted);
+    text-align: center;
+  }
+
+  .footer a { color: var(--accent); text-decoration: none; }
+
+  .nav-disabled {
+    color: var(--muted);
+    text-decoration: line-through;
+    opacity: 0.5;
+  }
+
+  @media print {
+    body { padding: 1.5cm; max-width: none; }
+    .option-btn, .feedback, .score-box { break-inside: avoid; }
+  }
+
+  @media (max-width: 500px) {
+    .tone-card { grid-template-columns: 1fr; }
+    .tone-num { font-size: 1.5rem; }
+    .tone-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<h1>九声六调系统</h1>
+<p class="lesson-meta">第一课 · ~10 分钟 · 粤语发音基础</p>
+
+<div class="goal-box">
+  <strong>学完本课之后</strong>，你将能够识别粤语的六个声调，理解"九声"与"六调"的区别，并能正确读出"诗、书、市、试、水、雪"这六个经典例字。
+</div>
+
+<h2>为什么声调是粤语的灵魂？</h2>
+<p>
+  普通话有四个声调（加上轻声五个），而粤语有<strong>六个基本声调</strong>。更复杂的是，有些音节有"入声"，使得总数达到九个——这就是"九声六调"这个名字的由来。
+</p>
+<p>
+  声调不对，意思就完全变了。比如：</p>
+<ul style="margin: 0.5rem 0 1rem 1.5rem;">
+  <li><strong>shi1</strong>（诗）= poetry</li>
+  <li><strong>si2</strong>（书）= book</li>
+  <li><strong>si3</strong>（市）= city</li>
+  <li><strong>si4</strong>（试）= try</li>
+  <li><strong>si5</strong>（水）= water</li>
+  <li><strong>si6</strong>（事）= thing/matter</li>
+</ul>
+<p>
+  六个不同的声调，同一个音节 si，六种完全不同的意思。这就是为什么学好声调是粤语的第一步。
+</p>
+
+<div class="chinese-note">
+  <strong>普通话 vs 粤语声调对比：</strong>普通话的声调靠音高变化（升、降、拐弯），粤语的声调靠<strong>绝对音高 + 音长</strong>。你不能用普通话的四声来"翻译"粤语声调——它们是完全不同的系统。
+</div>
+
+<h2>"九声"还是"六调"？</h2>
+<p>
+  这个说法初听起来矛盾。其实很简单：<strong>调</strong>是你在说话时实际听到的六种音高模式；<strong>声</strong>是语言学上的分类，包括入声（短促收尾的音节），加起来共九种。
+</p>
+<table class="comparison-table">
+  <tr><th>名称</th><th>数量</th><th>说明</th></tr>
+  <tr><td><strong>六调</strong></td><td>6</td><td>说话时实际听到的六种音调模式（平上去入各分高低）</td></tr>
+  <tr><td><strong>九声</strong></td><td>9</td><td>六调 + 三种入声（高、中、低），入声以 -p/-t/-k 结尾，发音短促</td></tr>
+</table>
+
+<h2>六个基本声调</h2>
+<p>以下用经典的"诗书市试水事"六个字来演示。每个声调都用粤拼标注：</p>
+
+<div class="tone-card">
+  <div class="tone-num">1</div>
+  <div class="tone-info">
+    <h3>高声平（阴平）</h3>
+    <p class="jyutping">高平调 · 调值 55 · 如钢琴高音 C 保持不动</p>
+    <ul class="examples">
+      <li><strong>诗 si1</strong> — poetry</li>
+      <li><strong>天 tin1</strong> — sky</li>
+      <li><strong>花 faa1</strong> — flower</li>
+    </ul>
+  </div>
+</div>
+
+<div class="tone-card">
+  <div class="tone-num">2</div>
+  <div class="tone-info">
+    <h3>高升调（阴上）</h3>
+    <p class="jyutping">从中高升到最高 · 调值 25</p>
+    <ul class="examples">
+      <li><strong>书 syu1</strong> — book（注意：书实际是第一声，这里用作对比）</li>
+      <li><strong>茶 caa4</strong> — tea（实际第四声，仅作声调演示）</li>
+      <li><strong>好 hou2</strong> — good</li>
+    </ul>
+  </div>
+</div>
+
+<div class="tone-card">
+  <div class="tone-num">3</div>
+  <div class="tone-info">
+    <h3>低平调（阴去）</h3>
+    <p class="jyutping">低而平 · 调值 22</p>
+    <ul class="examples">
+      <li><strong>市 sai6</strong> — city（实际第六声，仅作演示）</li>
+      <li><strong>四 sei3</strong> — four</li>
+      <li><strong>地 dei6</strong> — ground</li>
+    </ul>
+  </div>
+</div>
+
+<div class="tone-card">
+  <div class="tone-num">4</div>
+  <div class="tone-info">
+    <h3>低降调（阴入）</h3>
+    <p class="jyutping">从低降下 · 调值 21</p>
+    <ul class="examples">
+      <li><strong>试 sai3</strong> — try/test</li>
+      <li><strong>意 ji3</strong> — meaning/intention</li>
+      <li><strong>地 dei6</strong> — ground</li>
+    </ul>
+  </div>
+</div>
+
+<div class="tone-card">
+  <div class="tone-num">5</div>
+  <div class="tone-info">
+    <h3>低升调（阳平）</h3>
+    <p class="jyutping">从低升中 · 调值 23</p>
+    <ul class="examples">
+      <li><strong>水 seoi2</strong> — water</li>
+      <li><strong>人 jan4</strong> — person</li>
+      <li><strong>门 mun4</strong> — door</li>
+    </ul>
+  </div>
+</div>
+
+<div class="tone-card">
+  <div class="tone-num">6</div>
+  <div class="tone-info">
+    <h3>低平调（阳去）</h3>
+    <p class="jyutping">最低而平 · 调值 22</p>
+    <ul class="examples">
+      <li><strong>事 sei6</strong> — matter/thing</li>
+      <li><strong>地 dei6</strong> — ground</li>
+      <li><strong>近 geon3</strong> — near</li>
+    </ul>
+  </div>
+</div>
+
+<h2>六调速记口诀</h2>
+<p>用一句话记住六个声调的顺序：</p>
+
+<div class="tone-visual">
+  <div class="tone-grid">
+    <div class="tone-cell">
+      <span class="char">诗</span>
+      <span class="jp">si1</span>
+      <span class="tone-name">高平 →</span>
+    </div>
+    <div class="tone-cell">
+      <span class="char">洗</span>
+      <span class="jp">sei2</span>
+      <span class="tone-name">高升 ↗</span>
+    </div>
+    <div class="tone-cell">
+      <span class="char">十</span>
+      <span class="jp">sap6</span>
+      <span class="tone-name">低入 ⤵</span>
+    </div>
+    <div class="tone-cell">
+      <span class="char">试</span>
+      <span class="jp">si3</span>
+      <span class="tone-name">低降 ↓</span>
+    </div>
+    <div class="tone-cell">
+      <span class="char">水</span>
+      <span class="jp">seoi2</span>
+      <span class="tone-name">低升 ↗</span>
+    </div>
+    <div class="tone-cell">
+      <span class="char">事</span>
+      <span class="jp">si6</span>
+      <span class="tone-name">低平 →</span>
+    </div>
+  </div>
+</div>
+
+<div class="chinese-note">
+  <strong>实用记忆法：</strong>想象一条线从高音开始（诗 si1），然后往上滑（洗 sei2），然后从低处短促收尾（十 sap6），再往下掉（试 si3），从低处往上滑（水 seoi2），最后停在最低处（事 si6）。
+</div>
+
+<h2>入声：短促的第三维度</h2>
+<p>
+  入声是粤语独有的特征。它的三个特点：<strong>短促、以 -p/-t/-k 结尾、不能拖长音</strong>。
+</p>
+<table class="comparison-table">
+  <tr><th>入声类型</th><th>韵尾</th><th>调值</th><th>例字</th></tr>
+  <tr><td>高入</td><td>-p / -t / -k</td><td>5</td><td>急 gap1、一 jat1</td></tr>
+  <tr><td>中入</td><td>-p / -t / -k</td><td>3</td><td>色 sak1、雪 syuet3</td></tr>
+  <tr><td>低入</td><td>-p / -t / -k</td><td>1</td><td>合 hap6、月 jyut6</td></tr>
+</table>
+
+<div class="chinese-note">
+  <strong>普通话没有入声！</strong>普通话里以 -p/-t/-k 结尾的字，在粤语中全部保留，而且发音短促。比如"一"在普通话里读 yī（第一声，可以拖长），但在粤语里读 jat1，短促有力，不能拉长。
+</div>
+
+<h2>声调对比：同一音节的不同声调</h2>
+<p>看看同一个声母 + 韵母，不同声调带来的意义变化：</p>
+<table class="comparison-table">
+  <tr><th>粤拼</th><th>例字</th><th>普通话对应</th><th>意思</th></tr>
+  <tr><td>si1</td><td>诗</td><td>shī</td><td>诗歌</td></tr>
+  <tr><td>si2</td><td>使</td><td>shǐ</td><td>让/命令</td></tr>
+  <tr><td>si3</td><td>试</td><td>shì</td><td>尝试</td></tr>
+  <tr><td>si4</td><td>世</td><td>shì</td><td>世界/世代</td></tr>
+  <tr><td>si5</td><td>四</td><td>sì</td><td>数字 4</td></tr>
+  <tr><td>si6</td><td>事</td><td>shì</td><td>事情</td></tr>
+</table>
+
+<div class="chinese-note">
+  <strong>注意：</strong>普通话的四个声调在粤语中被"拆分"了。比如普通话的第四声（shì）在粤语中可能变成第二声、第三声、第四声或第六声——没有固定规律，需要逐个记忆。
+</div>
+
+<div class="quiz-section">
+  <h2>练习：识别声调</h2>
+  <p>选出正确的声调编号。共 8 题。</p>
+
+  <div class="quiz-question" id="q1">
+    <span class="q-num">Q1</span>
+    <div class="context">你听到有人说 "si1"。</div>
+    <div class="sentence">这个声调是哪一个？</div>
+    <div class="options">
+      <button class="option-btn" data-correct="true" onclick="check(this)">高声平（阴平）</button>
+      <button class="option-btn" data-correct="false" onclick="check(this)">低平调（阳去）</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="quiz-question" id="q2">
+    <span class="q-num">Q2</span>
+    <div class="context">你想说"水"。</div>
+    <div class="sentence">"水"在粤语中的声调是第几声？</div>
+    <div class="options">
+      <button class="option-btn" data-correct="false" onclick="check(this)">第三声</button>
+      <button class="option-btn" data-correct="true" onclick="check(this)">第五声</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="quiz-question" id="q3">
+    <span class="q-num">Q3</span>
+    <div class="context">你听到一个短促的音，以 -k 结尾。</div>
+    <div class="sentence">这个字最有可能是哪种声调？</div>
+    <div class="options">
+      <button class="option-btn" data-correct="true" onclick="check(this)">入声</button>
+      <button class="option-btn" data-correct="false" onclick="check(this)">平声</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="quiz-question" id="q4">
+    <span class="q-num">Q4</span>
+    <div class="context">普通话的"是"（shì）在粤语中怎么说？</div>
+    <div class="sentence">"係"在粤语中的声调是？</div>
+    <div class="options">
+      <button class="option-btn" data-correct="false" onclick="check(this)">第一声 hai1</button>
+      <button class="option-btn" data-correct="true" onclick="check(this)">第三声 hai2</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="quiz-question" id="q5">
+    <span class="q-num">Q5</span>
+    <div class="context">你听到别人说 "si6"。</div>
+    <div class="sentence">这个字最可能是哪一个？</div>
+    <div class="options">
+      <button class="option-btn" data-correct="true" onclick="check(this)">事（事情）</button>
+      <button class="option-btn" data-correct="false" onclick="check(this)">诗（诗歌）</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="quiz-question" id="q6">
+    <span class="q-num">Q6</span>
+    <div class="context">关于入声的描述。</div>
+    <div class="sentence">以下哪个描述是正确的？</div>
+    <div class="options">
+      <button class="option-btn" data-correct="false" onclick="check(this)">入声可以拖长音</button>
+      <button class="option-btn" data-correct="true" onclick="check(this)">入声以 -p/-t/-k 结尾，发音短促</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="quiz-question" id="q7">
+    <span class="q-num">Q7</span>
+    <div class="context">普通话和粤语声调的对比。</div>
+    <div class="sentence">普通话的第四声在粤语中：</div>
+    <div class="options">
+      <button class="option-btn" data-correct="true" onclick="check(this)">可能对应粤语的任何声调，没有固定规律</button>
+      <button class="option-btn" data-correct="false" onclick="check(this)">一定对应粤语的第四声</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="quiz-question" id="q8">
+    <span class="q-num">Q8</span>
+    <div class="context">什么是"九声六调"？</div>
+    <div class="sentence">"九声"比"六调"多的三个声是什么？</div>
+    <div class="options">
+      <button class="option-btn" data-correct="false" onclick="check(this)">三个轻声</button>
+      <button class="option-btn" data-correct="true" onclick="check(this)">三种入声（高入、中入、低入）</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="score-box" id="score-box">
+    <div class="score-num" id="score-num"></div>
+    <div class="score-label" id="score-label"></div>
+  </div>
+</div>
+
+<div class="followup">
+  <strong>有问题吗？</strong>问我任何关于粤语声调的问题。觉得声调很难？完全正常——这是粤语最难的部分。试着对着镜子大声读"诗书市试水事"，让朋友帮你纠正。
+  <br><br>
+  <strong>推荐资源：</strong><a href="https://zh.wikipedia.org/wiki/%E7%B2%A4%E8%AA%9E%E8%AA%9E%E9%9F%B3" target="_blank">维基百科 — 粤语语音</a> — 深入了解粤语的音韵系统。
+  <br><br>
+  <a href="../reference/jiusheng-liudiao.html" class="resource-link">查看声调速查表</a>
+</div>
+
+<div class="footer">
+  <span class="nav-disabled">上一课</span> | <a href="0000-toc.html">目录</a> | <a href="0002-jyutping-intro.html">下一课</a>
+
+</div>
+
+<script>
+  const explanations = {
+    q1: { correct: 'si1 是第一声——高声平调。调值 55，音高最高且保持平直。就像钢琴上按住一个高音键不放。', wrong: 'si1 是第一声（高声平），不是第六声（低平）。第一声是最高音，第六声是最低音。' },
+    q2: { correct: '"水"在粤语中读 seoi2，是第五声（低升调）。从低音升到中音。', wrong: '"水"读 seoi2，是第五声（低升），不是第三声。第三声是低降调。' },
+    q3: { correct: '以 -p/-t/-k 结尾的短促音就是入声。入声是粤语区别于普通话的最显著特征之一。', wrong: '-k 结尾的短促音一定是入声。普通话已经没有入声了，所以这对普通话母语者来说是最难的概念。' },
+    q4: { correct: '"係"在粤语中读 hai2，是第二声（高升调）。注意普通话的"是"和粤语的"係"虽然意思相同，但声调不同。', wrong: '"係"读 hai2，是第二声（高升），不是第一声。粤语声调和普通话没有直接对应关系。' },
+    q5: { correct: 'si6 是第六声（低平调），对应"事"（事情）。si1 才是"诗"。', wrong: 'si6 是第六声，读"事"。si1 才是第一声的"诗"。第六声是最低的平调。' },
+    q6: { correct: '入声的核心特征就是以 -p/-t/-k 结尾，发音短促，不能拖长。这是粤语保留中古汉语的重要特征。', wrong: '入声绝对不能拖长音——它的特点就是短促。拖长就不是入声了。' },
+    q7: { correct: '普通话的第四声在粤语中可能变成任何声调，没有固定规律。比如"是"（普通话第四声）→ "係"（粤语第二声），"试"（普通话第四声）→ "試"（粤语第三声）。', wrong: '普通话和粤语的声调没有一对一的对应关系。同一个普通话声调的字，在粤语中可能属于完全不同的声调。' },
+    q8: { correct: '"九声" = "六调" + 三种入声（高入、中入、低入）。入声以 -p/-t/-k 结尾，发音短促，是粤语独有的特征。', wrong: '多的三个"声"是三种入声，不是轻声。粤语没有轻声的概念。入声是中古汉语的遗留特征。' }
+  };
+
+  let answered = {};
+  let score = 0;
+  const total = 8;
+
+  function check(btn) {
+    const question = btn.closest('.quiz-question');
+    const qid = question.id;
+    if (answered[qid]) return;
+    answered[qid] = true;
+
+    const isCorrect = btn.dataset.correct === 'true';
+    const allBtns = question.querySelectorAll('.option-btn');
+    const feedback = question.querySelector('.feedback');
+
+    allBtns.forEach(b => {
+      b.style.pointerEvents = 'none';
+      if (b.dataset.correct === 'true') b.classList.add('reveal-correct');
+    });
+
+    if (isCorrect) {
+      btn.classList.add('correct');
+      feedback.className = 'feedback show correct-fb';
+      feedback.textContent = explanations[qid].correct;
+      score++;
+    } else {
+      btn.classList.add('wrong');
+      feedback.className = 'feedback show wrong-fb';
+      feedback.textContent = explanations[qid].wrong;
+    }
+
+    if (Object.keys(answered).length === total) {
+      const box = document.getElementById('score-box');
+      const num = document.getElementById('score-num');
+      const label = document.getElementById('score-label');
+      num.textContent = score + ' / ' + total;
+      if (score === total) label.textContent = '完美！你已经掌握了粤语声调的基本概念。';
+      else if (score >= 6) label.textContent = '不错！复习一下错题的解释，声调需要多听多练。';
+      else label.textContent = '继续加油！声调是粤语最难的部分，多听粤语歌会有帮助。';
+      box.classList.add('show');
+    }
+  }
+</script></body>
+</html>

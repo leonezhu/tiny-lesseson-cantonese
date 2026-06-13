@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第六课 — 交通与方位</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap');
+
+  :root {
+    --bg: #fdfdfd;
+    --text: #1a1a1a;
+    --accent: #b71c1c;
+    --accent-light: #fce4ec;
+    --muted: #666;
+    --border: #e0e0e0;
+    --correct: #2e7d32;
+    --correct-bg: #e8f5e9;
+    --wrong: #c62828;
+    --wrong-bg: #ffebee;
+    --warn-bg: #fff8e1;
+    --warn-border: #f9a825;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Noto Sans SC', -apple-system, sans-serif;
+    font-size: 16px;
+    line-height: 1.8;
+    color: var(--text);
+    background: var(--bg);
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+  }
+
+  h1 {
+    font-family: 'Noto Serif SC', Georgia, serif;
+    font-size: 1.8rem;
+    margin-bottom: 0.25rem;
+    color: var(--accent);
+  }
+
+  .lesson-meta {
+    color: var(--muted);
+    font-size: 0.85rem;
+    margin-bottom: 2rem;
+  }
+
+  .goal-box {
+    background: var(--accent-light);
+    border-left: 4px solid var(--accent);
+    padding: 1rem 1.25rem;
+    margin-bottom: 2rem;
+    border-radius: 0 4px 4px 0;
+  }
+
+  .goal-box strong { color: var(--accent); }
+
+  h2 {
+    font-family: 'Noto Serif SC', Georgia, serif;
+    font-size: 1.2rem;
+    margin-top: 2.5rem;
+    margin-bottom: 0.75rem;
+    color: var(--accent);
+  }
+
+  h3 {
+    font-family: 'Noto Serif SC', Georgia, serif;
+    font-size: 1.05rem;
+    margin-bottom: 0.25rem;
+    color: var(--accent);
+  }
+
+  p { margin-bottom: 0.75rem; }
+
+  .card {
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1.25rem;
+    margin: 1rem 0;
+  }
+
+  .card h3 { margin-bottom: 0.5rem; }
+
+  .comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+    font-size: 0.95rem;
+  }
+
+  .comparison-table th {
+    background: var(--accent);
+    color: white;
+    padding: 0.6rem 0.8rem;
+    text-align: left;
+    font-weight: 600;
+  }
+
+  .comparison-table td {
+    padding: 0.5rem 0.8rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .comparison-table tr:nth-child(even) td {
+    background: #fafafa;
+  }
+
+  .comparison-table .cantonese {
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  .comparison-table .mandarin {
+    color: var(--muted);
+  }
+
+  .highlight-box {
+    background: var(--warn-bg);
+    border-left: 3px solid var(--warn-border);
+    padding: 0.8rem 1rem;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+  }
+
+  .highlight-box strong { color: #e65100; }
+
+  .example-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  .example-list li {
+    padding: 0.3rem 0;
+    padding-left: 1.2rem;
+    position: relative;
+  }
+
+  .example-list li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-weight: 700;
+  }
+
+  .jyutping {
+    font-family: 'Noto Serif SC', Georgia, serif;
+    font-size: 0.9rem;
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  .quiz-section {
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 2px solid var(--border);
+  }
+
+  .quiz-section h2 {
+    margin-top: 0;
+  }
+
+  .quiz-question {
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1.25rem;
+    margin: 1rem 0;
+    position: relative;
+  }
+
+  .quiz-question .q-num {
+    position: absolute;
+    top: -0.6rem;
+    left: 1rem;
+    background: var(--accent);
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.1rem 0.5rem;
+    border-radius: 3px;
+  }
+
+  .quiz-question .context {
+    color: var(--muted);
+    font-size: 0.85rem;
+    margin-bottom: 0.5rem;
+    font-style: italic;
+  }
+
+  .quiz-question .sentence {
+    font-size: 1.05rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .quiz-question .sentence .blank {
+    display: inline-block;
+    min-width: 100px;
+    border-bottom: 2px dashed var(--accent);
+    text-align: center;
+    font-weight: 600;
+    color: var(--accent);
+  }
+
+  .options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+  }
+
+  .option-btn {
+    background: white;
+    border: 2px solid var(--border);
+    border-radius: 4px;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.95rem;
+    cursor: pointer;
+    text-align: center;
+    font-family: 'Noto Sans SC', sans-serif;
+    transition: all 0.15s;
+  }
+
+  .option-btn:hover {
+    border-color: var(--accent);
+    background: var(--accent-light);
+  }
+
+  .option-btn.correct {
+    border-color: var(--correct);
+    background: var(--correct-bg);
+    color: var(--correct);
+    font-weight: 600;
+  }
+
+  .option-btn.wrong {
+    border-color: var(--wrong);
+    background: var(--wrong-bg);
+    color: var(--wrong);
+  }
+
+  .option-btn.reveal-correct {
+    border-color: var(--correct);
+    background: var(--correct-bg);
+    color: var(--correct);
+    font-weight: 600;
+  }
+
+  .feedback {
+    margin-top: 0.75rem;
+    padding: 0.6rem 0.8rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    display: none;
+  }
+
+  .feedback.show { display: block; }
+  .feedback.correct-fb { background: var(--correct-bg); color: var(--correct); }
+  .feedback.wrong-fb { background: var(--wrong-bg); color: var(--wrong); }
+
+  .score-box {
+    background: var(--accent-light);
+    border: 2px solid var(--accent);
+    border-radius: 6px;
+    padding: 1.25rem;
+    margin-top: 1.5rem;
+    text-align: center;
+    display: none;
+  }
+
+  .score-box.show { display: block; }
+  .score-box .score-num { font-size: 2rem; font-weight: 700; color: var(--accent); }
+  .score-box .score-label { color: var(--muted); font-size: 0.9rem; }
+
+  .followup {
+    background: #f0f4f8;
+    border-radius: 6px;
+    padding: 1rem 1.25rem;
+    margin-top: 2rem;
+    font-size: 0.9rem;
+  }
+
+  .followup strong { color: var(--accent); }
+
+  .resource-link {
+    display: inline-block;
+    margin-top: 0.5rem;
+    padding: 0.4rem 0.8rem;
+    background: var(--accent);
+    color: white;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+
+  .resource-link:hover { opacity: 0.9; }
+
+  .footer {
+    margin-top: 3rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+    font-size: 0.8rem;
+    color: var(--muted);
+    text-align: center;
+  }
+
+  .footer a { color: var(--accent); text-decoration: none; }
+
+  .nav-disabled {
+    color: var(--muted);
+    text-decoration: line-through;
+    opacity: 0.5;
+  }
+
+  @media print {
+    body { padding: 1.5cm; max-width: none; }
+    .option-btn, .feedback, .score-box { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<h1>交通与方位</h1>
+<p class="lesson-meta">第六课 · ~12 分钟 · 粤语基础</p>
+
+<div class="goal-box">
+  <strong>本课结束时</strong>，你将能够：（1）用粤语询问和描述交通路线；（2）掌握粤语中常用的交通工具表达；（3）理解粤语特有的方位词和方向系统；（4）能够用粤语给出和听懂简单的路线指引。
+</div>
+
+<h2>为什么这很重要</h2>
+<p>
+  在香港这样的城市，交通是日常生活不可或缺的一部分。地铁（港铁）、巴士、小巴、渡轮、的士构成了庞大的交通网络。但最大的挑战是：<strong>粤语的方位系统和普通话有很大不同</strong>。普通话用"上/下"描述楼层，粤语用"高/低"；普通话用"上面/下面"，粤语用"上面/下面"但有独特的"起/落"概念。掌握这套方位和交通表达，你就能在香港和粤语城市自如出行。
+</p>
+
+<h2>第一部分：交通工具词汇</h2>
+
+<div class="card">
+  <h3>常用交通工具</h3>
+  <table class="comparison-table">
+    <tr><th>中文</th><th>粤语写法</th><th>粤拼</th><th>说明</th></tr>
+    <tr><td>港铁/地铁</td><td class="cantonese">港鐵</td><td class="cantonese">gong2 tit6</td><td>香港主要地铁系统，简称"MTR"或"地铁"</td></tr>
+    <tr><td>巴士</td><td class="cantonese">巴士</td><td class="cantonese">baa1 si6</td><td>英语 bus 的音译，是粤语中最常用的说法</td></tr>
+    <tr><td>小巴</td><td class="cantonese">小巴</td><td class="cantonese">siu2 baa1</td><td>小型巴士，分绿色（专线）和红色（非专线）</td></tr>
+    <tr><td>电车</td><td class="cantonese">電車</td><td class="cantonese">din6 caa4</td><td>香港岛叮叮车，粤语区最标志性的交通工具</td></tr>
+    <tr><td>的士</td><td class="cantonese">的士</td><td class="cantonese">di1 si5</td><td>英语 taxi 的音译</td></tr>
+    <tr><td>渡轮</td><td class="cantonese">渡輪</td><td class="cantonese">dou6 leon4</td><td>跨海交通工具，如天星小轮</td></tr>
+    <tr><td>高铁</td><td class="cantonese">高鐵</td><td class="cantonese">gou3 tit6</td><td>高速铁路</td></tr>
+    <tr><td>飞机</td><td class="cantonese">飛機</td><td class="cantonese">fei1 gai1</td><td>口语常说"搭飞机"</td></tr>
+    <tr><td>共享单车</td><td class="cantonese">單車</td><td class="cantonese">daan1 ce1</td><td>"单车"是粤语中自行车的标准说法</td></tr>
+    <tr><td>出租车</td><td class="cantonese">的士</td><td class="cantonese">di1 si5</td><td>粤语不说"出租车"，说"的士"</td></tr>
+  </table>
+</div>
+
+<div class="card">
+  <h3>交通工具量词</h3>
+  <p>粤语中交通工具的量词选择很讲究：</p>
+  <ul class="example-list">
+    <li><strong>一班巴士</strong>（jat1 ban1 baa1）— "班"用于定期交通工具（巴士、港铁、电车）</li>
+    <li><strong>一辆的士</strong>（jat1 lhang6 di1 si5）— "辆"用于汽车类</li>
+    <li><strong>一架飞机</strong>（jat1 gaa3 fei1 gai1）— "架"用于飞机、机器类</li>
+    <li><strong>一只渡轮</strong>（jat1 zek3 dau6 leon4）— "只"用于船类（粤语中船统一用"只"）</li>
+    <li><strong>一辆单车</strong>（jat1 lhang6 daan1 ce1）— "辆"用于自行车</li>
+  </ul>
+</div>
+
+<div class="highlight-box">
+  <strong>关键差异：</strong>普通话用"辆"作为汽车的通用量词，粤语中巴士类用<strong>\"班\"（ban1）</strong>而不是"辆"。你听到香港人说"下一班巴士"（zoek1 jat1 ban1 baa1），不会说"下一辆巴士"。"班"强调班次/路线。
+</div>
+
+<h2>第二部分：粤语方位系统</h2>
+
+<p>
+  这是粤语学习中最容易踩坑的部分。粤语方位系统与普通话有系统性差异，理解这些差异能让你说粤语时立刻听起来更地道。
+</p>
+
+<div class="card">
+  <h3>楼层表达：高 vs 低</h3>
+  <p>
+    普通话用"楼上/楼下"，粤语则用<strong>"高处/低处"</strong>或<strong>"上层/下层"</strong>：
+  </p>
+  <table class="comparison-table">
+    <tr><th>场景</th><th>普通话</th><th>粤语</th><th>粤拼</th></tr>
+    <tr><td>住二楼</td><td>住二楼</td><td class="cantonese">住低层</td><td class="cantonese">zyu6 dai1 ceng4</td></tr>
+    <tr><td>住顶楼</td><td>住顶楼</td><td class="cantonese">住高層</td><td class="cantonese">zyu6 gou1 ceng4</td></tr>
+    <tr><td>从楼上下来</td><td>从楼上下来</td><td class="cantonese">由高处落低</td><td class="cantonese">jyu4 gou1 cyu2 lok6 dai1</td></tr>
+    <tr><td>从楼下上去</td><td>从楼下上去</td><td class="cantonese">由低处到高</td><td class="cantonese">jyu4 dai1 cyu2 gou3 gou1</td></tr>
+  </table>
+</div>
+
+<div class="card">
+  <h3>方位介词系统</h3>
+  <p>
+    粤语的方位介词有独特的搭配习惯：
+  </p>
+  <table class="comparison-table">
+    <tr><th>概念</th><th>普通话</th><th>粤语</th><th>粤拼</th></tr>
+    <tr><td>在……上面</td><td>在桌子上</td><td class="cantonese喺桌上面</td><td class="cantonese">hai2 coek1 soeng5 min6</td></tr>
+    <tr><td>在……下面</td><td>在椅子下面</td><td class="cantonese喺椅底</td><td class="cantonese">hai2 ji2 dai2</td></tr>
+    <tr><td>在……旁边</td><td>在门旁边</td><td class="cantonese喺门旁边</td><td class="cantonese">hai2 mun4 bin1 co4</td></tr>
+    <tr><td>在……对面</td><td>在超市对面</td><td class="cantonese喺超市对面</td><td class="cantonese">hai2 syu1 suu3 deoi3 min6</td></tr>
+    <tr><td>在……里面</td><td>在房里面</td><td class="cantonese喺房里面</td><td class="cantonese">hai2 fong4 lei6 min6</td></tr>
+    <tr><td>从……出发</td><td>从车站出发</td><td class="cantonese由车站出发</td><td class="cantonese">jyu4 ce1zaam1 ceot1faat3</td></tr>
+  </table>
+</div>
+
+<div class="highlight-box">
+  <strong>核心词汇：</strong>粤语中"喺"（hai2）= "在"，是整堂课最重要的动词之一。几乎所有方位表达都以"喺"开头：「我喺地铁入面。」（我在地铁里面。）记住这个字，你就能描述任何位置。
+</div>
+
+<h2>第三部分：询问和表达路线</h2>
+
+<div class="card">
+  <h3>问路核心句型</h3>
+  <p>在粤语区问路，以下句型最常用：</p>
+  <ul class="example-list">
+    <li><strong>「去中环点走去？」</strong>（heoi3zung1 hang4 dim2 zou2 heoi3?）— 去中环怎么走？</li>
+    <li><strong>「由呢度去金钟有咩交通？」</strong>（jyu4 ni1 dou6 heoi3gam1 zung5jau5 me1 gong1 tung1?）— 从这里去金钟有什么交通方式？</li>
+    <li><strong>「呢条巴士线去唔去尖沙咀？」</strong>（ni1 tiu2 baa1 si6 lin6 heoi3 m4 heoi3 gaam1 so1 zeoi2?）— 这条巴士线去不去尖沙咀？</li>
+    <li><strong>「喺边度转车？」</strong>（hai2 bin1 dou6 zyun1 ce1?）— 在哪里转车？</li>
+    <li><strong>「几多时间到？」</strong>（gei2 do1 si1 gaan1 dou3?）— 多久到？</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h3>指路核心句型</h3>
+  <p>给别人指路时，粤语的方位描述比普通话更具体：</p>
+  <ul class="example-list">
+    <li><strong>「行直，行到个红绿灯，然后左转。」</strong>（hang4 zi4, hang4 dou3 go3 hung1 sik1 dau6, jan4 hau6 zyo2 zyun2.）— 直走，到红绿灯，然后左转。</li>
+    <li><strong>「落低，行两百步就到喇。」</strong>（lok6 dai1, hang4 luk6 sap6 ng6 bou6 dou3 dou3 laa5.）— 下楼（往下走），走两百步就到了。</li>
+    <li><strong>「转右，喺你左边。」</strong>（zyun3 jau5, hai2 nei5 zyu6 bin1.）— 右转，在你左边。</li>
+    <li><strong>「过咗条马路口就到。」</strong>（gwo3 zo2 tiu2 ma5 luk6 hao2 dou3 dou3.）— 过了马路路口就到了。</li>
+    <li><strong>「坐港铁到中环，喺中环站落。」</strong>（zou6 gong2 tit6 dou3zung1 hang4, hai2 zung1 hang4 zaam6 lok6.）— 坐港铁到中环，在中环站下车。</li>
+  </ul>
+</div>
+
+<div class="highlight-box">
+  <strong>重要动词：</strong>粤语中<strong>\"行\"（hang4）</strong>= 走路/走，不是普通话的"走"。普通话说"走到底"，粤语说"行到底"。"落"（lok6）= 下去/下车/下楼。"上"（soeng5）= 上去/上车/上楼。这些动词与方位结合构成了粤语的导航语言。
+</div>
+
+<h2>第四部分：港铁（地铁）用语</h2>
+
+<div class="card">
+  <h3>港铁常用词汇</h3>
+  <table class="comparison-table">
+    <tr><th>中文</th><th>粤语写法</th><th>粤拼</th><th>说明</th></tr>
+    <tr><td>入闸</td><td class="cantonese">入閘</td><td class="cantonese">jap6 zaap6</td><td>刷卡进站</td></tr>
+    <tr><td>出闸</td><td class="cantonese">出閘</td><td class="cantonese">ceot1 zaap6</td><td>刷卡出站</td></tr>
+    <tr><td>月台</td><td class="cantonese">月台</td><td class="cantonese">ngok6 toi4</td><td>站台（粤语称"月台"而非"站台"）</td></tr>
+    <tr><td>列车</td><td class="cantonese">列車</td><td class="cantonese">lin6 ce1</td><td>列车/火车</td></tr>
+    <tr><td>转车</td><td class="cantonese">轉車</td><td class="cantonese">zyun1 ce1</td><td>换乘/转车</td></tr>
+    <tr><td>落车</td><td class="cantonese">落車</td><td class="cantonese">lok6 ce1</td><td>下车</td></tr>
+    <tr><td>上落</td><td class="cantonese">上落</td><td class="cantonese">soeng5 lok6</td><td>上下（楼梯/电梯）</td></tr>
+    <tr><td>扶手电梯</td><td class="cantonese">扶手電梯</td><td class="cantonese">fu4 sou2 din6 tai3</td><td>自动扶梯</td></tr>
+    <tr><td>升降机</td><td class="cantonese">升降機</td><td class="cantonese">soeng5 long6 gai1</td><td>电梯（粤语称"升降机"）</td></tr>
+    <tr><td>八达通</td><td class="cantonese">八達通</td><td class="cantonese">baat3 daat6 tung1</td><td>八达通卡，香港交通卡</td></tr>
+  </table>
+</div>
+
+<div class="card">
+  <h3>港铁对话示例</h3>
+  <ul class="example-list">
+    <li><strong>「八达通够唔够？」</strong>（baat3 daat6 tung1 gau3 m4 gau3?）— 八达通够不够（钱够不够）？</li>
+    <li><strong>「呢班车去唔去机场？」</strong>（ni1 ban1 ce1 heoi3 m4 heoi3 gei1 coeng5?）— 这班车去不去机场？</li>
+    <li><strong>「由金钟转港岛线。」</strong>（jyu4 gam1 zung5 zyun1 gong2 dou2 lin6.）— 在金钟转港岛线。</li>
+    <li><strong>「喺中环站转东铁线。」</strong>（hai2 zung1 hang4 zaam6 zyun1 dung1 tit6 lin6.）— 在中环站转东铁线。</li>
+  </ul>
+</div>
+
+<div class="highlight-box">
+  <strong>文化提示：</strong>"八达通"（baat3 daat6 tung1）是香港交通的通用支付方式，不仅能坐港铁、巴士，还能在便利店、快餐店使用。对于非香港居民来说，最实用的方式是购买一张"旅游八达通"（ngau5 jau5 baat3 daat6 tung1），押金港币50，充值后可使用。
+</div>
+
+<h2>第五部分：常见错误</h2>
+
+<div class="card">
+  <h3>错误 1：用普通话的"走"代替"行"</h3>
+  <p>
+    在粤语中，<strong>"行"（hang4）</strong>才是"走路"的意思。普通话的"走"在粤语中是<strong>"行"</strong>，而普通话的"走"（离开）在粤语中用<strong>"行开"（hang4 hoi1）</strong>。
+  </p>
+  <p>
+    ❌ "你走路去吗？" → ✅ "你<strong>行</strong>路去啊？"（nei5 hang4 lou6 heoi3 aa3?）<br>
+    ❌ "我走路去的" → ✅ "我<strong>行</strong>去㗎喇"（ngo5 hang4 heoi3 gaa3 laa5）<br>
+    ❌ "走了" → ✅ "<strong>行开</strong>喇"（hang4 hoi1 laa5）
+  </p>
+</div>
+
+<div class="card">
+  <h3>错误 2：用"上车/下车"代替"上/落"</h3>
+  <p>
+    普通话用"上车""下车"，粤语简化为<strong>"上"（soeng5）</strong>和<strong>"落"（lok6）</strong>，直接加交通工具名称：
+  </p>
+  <p>
+    ❌ "我要上车" → ✅ "我要<strong>上巴士</strong>"（ngo5 jiu2 soeng5 baa1）<br>
+    ❌ "请下车" → ✅ "请<strong>落车</strong>"（cing1 lok6 ce1）<br>
+    ❌ "我在下车" → ✅ "我<strong>落车</strong>喇"（ngo5 lok6 ce1 laa5）
+  </p>
+</div>
+
+<div class="card">
+  <h3>错误 3：说"电梯"而不是"升降机"</h3>
+  <p>
+    粤语中电梯的标准说法是<strong>\"升降机\"（soeng5 long6 gai1）</strong>，"电梯"是普通话用语。在港铁站、商场里，指示牌写的是"升降机"。
+  </p>
+  <p>
+    ❌ "坐电梯到二楼" → ✅ "坐<strong>升降机</strong>到高处"（zou6 soeng5 long6 gai1 dou3 gou1 ceng4）<br>
+    ❌ "电梯坏了" → ✅ "<strong>升降机</strong>坏咗"（soeng5 long6 gai1 waai6 zo2）
+  </p>
+</div>
+
+<div class="card">
+  <h3>错误 4：用"上/下"描述楼层</h3>
+  <p>
+    这是最隐蔽的错误，因为普通话的"上/下"在粤语中用于垂直移动（上楼梯、下楼），但<strong>不用于描述楼层高低</strong>。
+  </p>
+  <p>
+    ❌ "我家在楼上" → ✅ "我屋企喺<strong>高处</strong>"（ngo5 uk1 kei2 hai2 gou1 cyu2）<br>
+    ❌ "住在楼下" → ✅ "住喺<strong>低处</strong>"（zyu6 hai2 dai1 cyu2）<br>
+    ❌ "二楼是楼上" → ✅ "二楼系<strong>低层</strong>"（loi5 nin4 hai6 dai1 ceng4）
+  </p>
+</div>
+
+<h2>第六部分：实用场景对话</h2>
+
+<div class="card">
+  <h3>场景 1：在街头发问路</h3>
+  <p>
+    <strong>你：</strong>「唔该，去中环点走去？」（m4 goi1, heoi3zung1 hang4 dim2 zou2 heoi3?）<br>
+    <strong>路人：</strong>「行直，行到个灯位，然后左转，行少少就到喇。」<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;（hang4 zi4, hang4 dou3 go3 dang1 wai6, jan4 hau6 zyo2 zyun2, hang4 siu2 siu2 dou3 dou3 laa5.）<br>
+    <strong>你：</strong>「行几耐？」（hang4 gei2 noi6?）<br>
+    <strong>路人：</strong>「大概五分钟。」（daai1 gok1 ming5 fan1 zung1.）<br>
+    <strong>你：</strong>「唔该晒！」（m4 goi1 saai3!）
+  </p>
+</div>
+
+<div class="card">
+  <h3>场景 2：在港铁站</h3>
+  <p>
+    <strong>你：</strong>「去旺角要转几多次车？」（heoi3woeng5 gok3 jiu2 zyun1 gei2 dou6 ci3 ce1?）<br>
+    <strong>站务员：</strong>「由中环转一次就可以喇。」<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;（jyu4zung1 hang4 zyun1 jat1 ci6 dou3 haii6 dak1 laa5.）<br>
+    <strong>你：</strong>「转哪条线？」（zyun1 naa6 tiu2 lin6?）<br>
+    <strong>站务员：</strong>「转观塘线，坐旺角站落。」<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;（zyun1 gun1 tong4 lin6, zou6 woeng5 gok3 zaam6 lok6.）
+  </p>
+</div>
+
+<div class="card">
+  <h3>场景 3：搭巴士</h3>
+  <p>
+    <strong>你：</strong>「呢条巴士线去唔去尖沙咀？」（ni1 tiu2 baa1 si6 lin6 heoi3 m4 heoi3 gaam1 so1 zeoi2?）<br>
+    <strong>司机：</strong>「去嘅。」（heoi3 ge3.）<br>
+    <strong>你（上车）：</strong>「唔该。」（m4 goi1.）<br>
+    <strong>你（下车前）：</strong>「唔该，下一站落。」（m4 goi1, zoek1 jat1 zaam6 lok6.）<br>
+    <strong>司机：</strong>「好的。」（hou2 di1.）
+  </p>
+</div>
+
+<div class="followup">
+  <strong>有问题？</strong>随时问我——我是你的粤语老师。不确定"升降机"和"电梯"哪个对？这正是我们该讨论的地方。直接打字提问，我来解释。
+  <br><br>
+  <strong>推荐资源：</strong><a href="https://www.mtr.com.hk/chinese/" target="_blank">港铁官网</a> — 阅读粤语站名和指示牌，是练习粤语阅读的好方法。
+  <br><br>
+  <a href="../reference/transport-directions.html" class="resource-link">查看快速参考卡</a>
+</div>
+
+<div class="footer">
+  <a href="0005-yum-cha-dining.html">上一课</a> | <a href="0000-toc.html">目录</a> | <a href="0007-slang-catchphrases.html">下一课</a>
+
+</div>
+
+<div class="quiz-section">
+  <h2>练习：选择正确的粤语表达</h2>
+  <p>共 8 道题。点击你认为正确的选项，会显示详细解释。</p>
+
+  <div class="quiz-question" id="q1">
+    <span class="q-num">Q1</span>
+    <div class="context">你想问路人"怎么去中环？"（问路）。</div>
+    <div class="sentence">地道的粤语问路说法是？</div>
+    <div class="options">
+      <button class="option-btn" data-correct="true" onclick="check(this)">去中环点走去？</button>
+      <button class="option-btn" data-correct="false" onclick="check(this)">去中环怎么走？</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="quiz-question" id="q2">
+    <span class="q-num">Q2</span>
+    <div class="context">你在港铁站，想说"在楼梯上方"。</div>
+    <div class="sentence">粤语中楼梯说哪个词？</div>
+    <div class="options">
+      <button class="option-btn" data-correct="false" onclick="check(this)">楼梯</button>
+      <button class="option-btn" data-correct="true" onclick="check(this)">楼梯间</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="quiz-question" id="q3">
+    <span class="q-num">Q3</span>
+    <div class="context">你想描述"我住在高层"。</div>
+    <div class="sentence">粤语的"高层"怎么说？</div>
+    <div class="options">
+      <button class="option-btn" data-correct="true" onclick="check(this)">住高層</button>
+      <button class="option-btn" data-correct="false" onclick="check(this)">住楼上</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="quiz-question" id="q4">
+    <span class="q-num">Q4</span>
+    <div class="context">你想说"我要下车"。</div>
+    <div class="sentence">粤语怎么说？</div>
+    <div class="options">
+      <button class="option-btn" data-correct="false" onclick="check(this)">我要下车</button>
+      <button class="option-btn" data-correct="true" onclick="check(this)">我要落车</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="quiz-question" id="q5">
+    <span class="q-num">Q5</span>
+    <div class="context">你想问"这班车去不去机场？"。</div>
+    <div class="sentence">粤语中"班车"用什么量词？</div>
+    <div class="options">
+      <button class="option-btn" data-correct="true" onclick="check(this)">呢班车</button>
+      <button class="option-btn" data-correct="false" onclick="check(this)">这辆巴士</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="quiz-question" id="q6">
+    <span class="q-num">Q6</span>
+    <div class="context">你在商场找电梯。</div>
+    <div class="sentence">粤语的"电梯"怎么说？</div>
+    <div class="options">
+      <button class="option-btn" data-correct="false" onclick="check(this)">电梯</button>
+      <button class="option-btn" data-correct="true" onclick="check(this)">升降机</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="quiz-question" id="q7">
+    <span class="q-num">Q7</span>
+    <div class="context">你想说"直走"。</div>
+    <div class="sentence">粤语怎么说？</div>
+    <div class="options">
+      <button class="option-btn" data-correct="true" onclick="check(this)">行直</button>
+      <button class="option-btn" data-correct="false" onclick="check(this)">走直</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="quiz-question" id="q8">
+    <span class="q-num">Q8</span>
+    <div class="context">你想说"在地铁站里面"。</div>
+    <div class="sentence">粤语中"在"怎么说？</div>
+    <div class="options">
+      <button class="option-btn" data-correct="false" onclick="check(this)">到</button>
+      <button class="option-btn" data-correct="true" onclick="check(this)">喺</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="score-box" id="score-box">
+    <div class="score-num" id="score-num"></div>
+    <div class="score-label" id="score-label"></div>
+  </div>
+</div>
+
+<script>
+  const explanations = {
+    q1: {
+      correct: '"去中环点走去？"（heoi3zung1 hang4 dim2 zou2 heoi3?）是粤语最地道的问路方式。"点走去"=怎么走，"点"=怎么。普通话的"怎么走"在粤语中说"点走去"，"走"替换为"行"（hang4）。',
+      wrong: '"去中环怎么走？"是普通话说法。粤语中"走"说"行"（hang4），所以"怎么走"说成"点走去"（dim2 zou2 heoi3），不是"走"。'
+    },
+    q2: {
+      correct: '"楼梯"在粤语中常说"梯"（tai1）或"楼梯间"。在港铁站和商场里，指示牌写的是"楼梯"或"楼梯间"。但"楼梯"作为日常口语也常用。',
+      wrong: '"楼梯间"虽然是正确的，但在港铁站和商场指示牌上通常简写为"楼梯"。更地道的日常口语是直接用"梯"。'
+    },
+    q3: {
+      correct: '"住高层"（zyu6 gou1 ceng4）是粤语中描述住在高楼层的说法。粤语用"高/低"而不是"上/下"来描述楼层位置："高处"=楼上/高楼层，"低处"=楼下/低楼层。',
+      wrong: '"住楼上"是普通话说法。粤语描述楼层位置用"高处/低处"而不是"楼上/楼下"。住在高楼层说"住高层"，不是"住楼上"。'
+    },
+    q4: {
+      correct: '"我要落车"（ngo5 jiu2 lok6 ce1）是粤语中"我要下车"的标准说法。"落"（lok6）= 下去/下车，"车"泛指任何交通工具。不用"下"。',
+      wrong: '"我要下车"是普通话说法。粤语中下车说"落车"（lok6 ce1），不是"下车"。"落"在这里表示"下去/脱离交通工具"。'
+    },
+    q5: {
+      correct: '"班车"（ban1 ce1）是粤语中巴士和地铁的标准量词搭配，源自"班次"概念。"这班车"=这一班次的车，是香港人最自然的说法。',
+      wrong: '"这辆巴士"虽然能听懂，但不够地道。粤语中巴士类交通工具用"班"作为量词，说"这班车"，不是"辆"。"辆"用于汽车类。'
+    },
+    q6: {
+      correct: '"升降机"（soeng5 long6 gai1）是粤语中电梯的标准说法。在港铁站、商场、楼宇的指示牌上都写的是"升降机"，"电梯"是普通话用语。',
+      wrong: '"电梯"是普通话用语。粤语中说"升降机"（soeng5 long6 gai1），字面意思是"升降的机器"。香港的所有指示牌都用"升降机"。'
+    },
+    q7: {
+      correct: '"行直"（hang4 zi4）= 直走。粤语中"行"（hang4）= 走路/走，所以"直走"说"行直"。这是给路线时的最基本指令。',
+      wrong: '"走直"是普通话说法。粤语中走路说"行"（hang4），不是"走"。"直走"在粤语中说"行直"（hang4 zi4）。'
+    },
+    q8: {
+      correct: '"喺"（hai2）是粤语中"在"的标准说法。"喺地铁站里面"= 在地铁站里面。这是粤语最重要的方位动词，所有位置描述都离不开它。',
+      wrong: '"到"（dou3）在粤语中是"到达"的意思，不是"在"。说"我到时站入面"会变成"我到达地铁站里面"，语法不通。正确的动词是"喺"（hai2）。'
+    }
+  };
+
+  let answered = {};
+  let score = 0;
+  const total = 8;
+
+  function check(btn) {
+    const question = btn.closest('.quiz-question');
+    const qid = question.id;
+    if (answered[qid]) return;
+    answered[qid] = true;
+
+    const isCorrect = btn.dataset.correct === 'true';
+    const allBtns = question.querySelectorAll('.option-btn');
+    const feedback = question.querySelector('.feedback');
+
+    allBtns.forEach(b => {
+      b.style.pointerEvents = 'none';
+      if (b.dataset.correct === 'true') b.classList.add('reveal-correct');
+    });
+
+    if (isCorrect) {
+      btn.classList.add('correct');
+      feedback.className = 'feedback show correct-fb';
+      feedback.textContent = explanations[qid].correct;
+      score++;
+    } else {
+      btn.classList.add('wrong');
+      feedback.className = 'feedback show wrong-fb';
+      feedback.textContent = explanations[qid].wrong;
+    }
+
+    if (Object.keys(answered).length === total) {
+      const box = document.getElementById('score-box');
+      const num = document.getElementById('score-num');
+      const label = document.getElementById('score-label');
+      num.textContent = score + ' / ' + total;
+      if (score === total) label.textContent = '完美！你对粤语交通和方位用语掌握得很好。';
+      else if (score >= 6) label.textContent = '不错！回顾一下错题的解释，巩固薄弱环节。';
+      else label.textContent = '继续加油！重读上面的方位系统和常见错误部分。';
+      box.classList.add('show');
+    }
+  }
+</script></body>
+</html>

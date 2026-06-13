@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>交通與方位速查卡 — Cantonese Transport & Directions</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@400;500;700&display=swap');
+
+  :root {
+    --bg: #fdfdfd;
+    --text: #1a1a1a;
+    --accent: #b71c1c;
+    --accent-light: #fce4ec;
+    --muted: #666;
+    --border: #e0e0e0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Noto Sans TC', -apple-system, sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--text);
+    background: var(--bg);
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 1.5rem 1.5rem;
+  }
+
+  h1 {
+    font-family: 'Noto Serif TC', Georgia, serif;
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+    color: var(--accent);
+  }
+
+  .subtitle { color: var(--muted); font-size: 0.85rem; margin-bottom: 1.5rem; }
+
+  h2 {
+    font-family: 'Noto Serif TC', Georgia, serif;
+    font-size: 1rem;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--accent);
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0.5rem 0;
+    font-size: 0.9rem;
+  }
+
+  th {
+    background: var(--accent-light);
+    color: var(--accent);
+    font-weight: 700;
+    padding: 0.5rem;
+    text-align: left;
+    border-bottom: 2px solid var(--accent);
+  }
+
+  td {
+    padding: 0.4rem 0.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  tr:hover td { background: #fafafa; }
+
+  .cantonese {
+    font-family: 'Noto Serif TC', Georgia, serif;
+    font-weight: 700;
+    color: var(--accent);
+  }
+
+  .pinyin {
+    font-size: 0.8rem;
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  .back-link {
+    display: inline-block;
+    margin-bottom: 1.5rem;
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 0.85rem;
+  }
+
+  .back-link:hover { text-decoration: underline; }
+
+  .footer {
+    margin-top: 2rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--border);
+    font-size: 0.75rem;
+    color: var(--muted);
+  }
+
+  @media print {
+    body { padding: 1cm; max-width: none; }
+  }
+</style>
+</head>
+<body>
+
+<a href="../lessons/0006-transportation-directions.html" class="back-link">← 返回第6課</a>
+
+<h1>交通與方位速查卡</h1>
+<p class="subtitle">Cantonese Transport & Directions Quick Reference</p>
+
+<h2>交通工具（Transportation）</h2>
+<table>
+  <tr><th>粵語</th><th>粵拼</th><th>普通話</th></tr>
+  <tr><td class="cantonese">港鐵</td><td class="pinyin">gong2 tit6</td><td>地铁</td></tr>
+  <tr><td class="cantonese">巴士</td><td class="pinyin">baa1 si6</td><td>公共汽车/公交</td></tr>
+  <tr><td class="cantonese">小巴</td><td class="pinyin">siu2 baa1</td><td>小型巴士</td></tr>
+  <tr><td class="cantonese">電車</td><td class="pinyin">din6 caa4</td><td>有轨电车</td></tr>
+  <tr><td class="cantonese">的士</td><td class="pinyin">di1 si5</td><td>出租车</td></tr>
+  <tr><td class="cantonese">渡輪</td><td class="pinyin">dou6 leon4</td><td>渡轮</td></tr>
+  <tr><td class="cantonese">高鐵</td><td class="pinyin">gou3 tit6</td><td>高铁</td></tr>
+  <tr><td class="cantonese">飛機</td><td class="pinyin">fei1 gai1</td><td>飞机</td></tr>
+  <tr><td class="cantonese">單車</td><td class="pinyin">daan1 ce1</td><td>自行车</td></tr>
+</table>
+
+<h2>量詞搭配（Classifiers）</h2>
+<table>
+  <tr><th>粵語</th><th>說明</th></tr>
+  <tr><td class="cantonese">一班巴士</td><td>"班"用於定期交通工具</td></tr>
+  <tr><td class="cantonese">一架飛機</td><td>"架"用於機器類</td></tr>
+  <tr><td class="cantonese">一輛的士</td><td>"輛"用於汽車類</td></tr>
+  <tr><td class="cantonese">一隻渡輪</td><td>"隻"用於船類</td></tr>
+  <tr><td class="cantonese">一輛單車</td><td>"輛"用於自行車</td></tr>
+</table>
+
+<h2>方位動詞（Position Verbs）</h2>
+<table>
+  <tr><th>粵語</th><th>粵拼</th><th>普通話</th></tr>
+  <tr><td class="cantonese">喺</td><td class="pinyin">hai2</td><td>在</td></tr>
+  <tr><td class="cantonese">行</td><td class="pinyin">hang4</td><td>走/走路</td></tr>
+  <tr><td class="cantonese">上</td><td class="pinyin">soeng5</td><td>上/上去</td></tr>
+  <tr><td class="cantonese">落</td><td class="pinyin">lok6</td><td>下/下去/下车</td></tr>
+  <tr><td class="cantonese">高處</td><td class="pinyin">gou1 cyu2</td><td>楼上/高楼层</td></tr>
+  <tr><td class="cantonese">低處</td><td class="pinyin">dai1 cyu2</td><td>楼下/低楼层</td></tr>
+</table>
+
+<h2>港鐵用語（MTR Vocabulary）</h2>
+<table>
+  <tr><th>粵語</th><th>粵拼</th><th>普通話</th></tr>
+  <tr><td class="cantonese">入閘</td><td class="pinyin">jap6 zaap6</td><td>进站</td></tr>
+  <tr><td class="cantonese">出閘</td><td class="pinyin">ceot1 zaap6</td><td>出站</td></tr>
+  <tr><td class="cantonese">月台</td><td class="pinyin">ngok6 toi4</td><td>站台</td></tr>
+  <tr><td class="cantonese">轉車</td><td class="pinyin">zyun1 ce1</td><td>换乘/转车</td></tr>
+  <tr><td class="cantonese">落車</td><td class="pinyin">lok6 ce1</td><td>下车</td></tr>
+  <tr><td class="cantonese">扶手电梯</td><td class="pinyin">fu4 sou2 din6 tai3</td><td>自动扶梯</td></tr>
+  <tr><td class="cantonese">升降機</td><td class="pinyin">soeng5 long6 gai1</td><td>电梯</td></tr>
+  <tr><td class="cantonese">八達通</td><td class="pinyin">baat3 daat6 tung1</td><td>八达通卡</td></tr>
+</table>
+
+<h2>問路句型模板（Question Templates）</h2>
+<table>
+  <tr><th>粵語</th><th>普通話</th></tr>
+  <tr><td class="cantonese">去X點走去？</td><td>去X怎么走？</td></tr>
+  <tr><td class="cantonese">由呢度去X有咩交通？</td><td>从这里去X有什么交通？</td></tr>
+  <tr><td class="cantonese">呢條線去唔去X？</td><td>这条线去不去X？</td></tr>
+  <tr><td class="cantonese">喺邊度轉車？</td><td>在哪里转车？</td></tr>
+  <tr><td class="cantonese">行幾耐？</td><td>走多久？</td></tr>
+  <tr><td class="cantonese">幾多時間到？</td><td>多久到？</td></tr>
+</table>
+
+<h2>指路句型模板（Direction Templates）</h2>
+<table>
+  <tr><th>粵語</th><th>普通話</th></tr>
+  <tr><td class="cantonese">行直，行到X然後Y</td><td>直走，到X然后Y</td></tr>
+  <tr><td class="cantonese">落低，行X步就到</td><td>下去，走X步就到</td></tr>
+  <tr><td class="cantonese">轉X，喺你X邊</td><td>转X，在你X边</td></tr>
+  <tr><td class="cantonese">坐港鐵到X，喺X站落</td><td>坐地铁到X，在X站下车</td></tr>
+</table>
+
+<div class="footer">
+  <span>交通與方位速查卡 · TeachHub · 第6課參考</span>
+</div>
+
+</body>
+</html>

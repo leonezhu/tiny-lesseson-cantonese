@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>声调速查表 — 九声六调系统</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap');
+
+  :root {
+    --bg: #fdfdfd;
+    --text: #1a1a1a;
+    --accent: #b71c1c;
+    --accent-light: #fce4ec;
+    --muted: #666;
+    --border: #e0e0e0;
+    --correct: #2e7d32;
+    --correct-bg: #e8f5e9;
+    --wrong: #c62828;
+    --wrong-bg: #ffebee;
+    --warn-bg: #fff8e1;
+    --warn-border: #f9a825;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Noto Sans SC', -apple-system, sans-serif;
+    font-size: 16px;
+    line-height: 1.8;
+    color: var(--text);
+    background: var(--bg);
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+  }
+
+  h1 {
+    font-family: 'Noto Serif SC', Georgia, serif;
+    font-size: 1.8rem;
+    margin-bottom: 0.25rem;
+    color: var(--accent);
+  }
+
+  .lesson-meta {
+    color: var(--muted);
+    font-size: 0.85rem;
+    margin-bottom: 2rem;
+  }
+
+  h2 {
+    font-family: 'Noto Serif SC', Georgia, serif;
+    font-size: 1.2rem;
+    margin-top: 2.5rem;
+    margin-bottom: 0.75rem;
+    color: var(--accent);
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+    font-size: 0.95rem;
+  }
+
+  th {
+    background: var(--accent);
+    color: white;
+    padding: 0.6rem 0.8rem;
+    text-align: left;
+    font-family: 'Noto Serif SC', Georgia, serif;
+  }
+
+  td {
+    padding: 0.5rem 0.8rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  tr:nth-child(even) td { background: #f7f9fb; }
+
+  td strong { color: var(--accent); }
+
+  .tone-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+
+  .tone-box {
+    text-align: center;
+    padding: 1.25rem 0.75rem;
+    border-radius: 8px;
+    border: 2px solid var(--border);
+    background: white;
+  }
+
+  .tone-box .num {
+    font-family: 'Noto Serif SC', Georgia, serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--accent);
+    display: block;
+    line-height: 1;
+  }
+
+  .tone-box .name {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text);
+    display: block;
+    margin-top: 0.5rem;
+  }
+
+  .tone-box .jp {
+    font-size: 0.85rem;
+    color: var(--muted);
+    display: block;
+    margin-top: 0.3rem;
+  }
+
+  .tone-box .examples {
+    font-size: 0.85rem;
+    margin-top: 0.5rem;
+    color: var(--muted);
+  }
+
+  .pitch-row {
+    display: grid;
+    grid-template-columns: 50px 1fr;
+    gap: 0.5rem;
+    margin: 0.5rem 0;
+    align-items: center;
+  }
+
+  .pitch-num {
+    font-family: 'Noto Serif SC', Georgia, serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--accent);
+    text-align: center;
+  }
+
+  .pitch-bar {
+    height: 40px;
+    background: linear-gradient(to right, #f0f0f0, #fafafa);
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .pitch-line {
+    position: absolute;
+    width: 3px;
+    height: 100%;
+    background: var(--accent);
+    border-radius: 2px;
+  }
+
+  .back-link {
+    display: inline-block;
+    margin-top: 2rem;
+    padding: 0.5rem 1rem;
+    background: var(--accent);
+    color: white;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+
+  .back-link:hover { opacity: 0.9; }
+
+  .footer {
+    margin-top: 3rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+    font-size: 0.8rem;
+    color: var(--muted);
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .footer a { color: var(--accent); text-decoration: none; }
+
+  @media print {
+    body { padding: 1.5cm; max-width: none; }
+  }
+
+  @media (max-width: 500px) {
+    .tone-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<h1>粤语声调速查表</h1>
+<p class="lesson-meta">六调 + 三入 = 九声</p>
+
+<h2>六个基本声调</h2>
+
+<div class="tone-grid">
+  <div class="tone-box">
+    <span class="num">1</span>
+    <span class="name">高声平</span>
+    <span class="jp">阴平 · 调值 55</span>
+    <div class="examples">诗 si1 · 天 tin1 · 花 faa1</div>
+  </div>
+  <div class="tone-box">
+    <span class="num">2</span>
+    <span class="name">高升调</span>
+    <span class="jp">阴上 · 调值 25</span>
+    <div class="examples">好 hou2 · 美 mei5 · 老 lou2</div>
+  </div>
+  <div class="tone-box">
+    <span class="num">3</span>
+    <span class="name">低平调</span>
+    <span class="jp">阴去 · 调值 22</span>
+    <div class="examples">四 sei3 · 世 sai3 · 地 dei6</div>
+  </div>
+  <div class="tone-box">
+    <span class="num">4</span>
+    <span class="name">低降调</span>
+    <span class="jp">阴入 · 调值 21</span>
+    <div class="examples">试 sai3 · 意 ji3 · 力 lik6</div>
+  </div>
+  <div class="tone-box">
+    <span class="num">5</span>
+    <span class="name">低升调</span>
+    <span class="jp">阳平 · 调值 23</span>
+    <div class="examples">水 seoi2 · 人 jan4 · 门 mun4</div>
+  </div>
+  <div class="tone-box">
+    <span class="num">6</span>
+    <span class="name">低平调</span>
+    <span class="jp">阳去 · 调值 22</span>
+    <div class="examples">事 sei6 · 近 geon3 · 地 dei6</div>
+  </div>
+</div>
+
+<h2>三种入声（短促收尾）</h2>
+<table>
+  <tr><th>类型</th><th>调值</th><th>韵尾</th><th>例字</th></tr>
+  <tr><td><strong>高入</strong></td><td>5</td><td>-p / -t / -k</td><td>急 gap1 · 一 jat1 · 角 gok3</td></tr>
+  <tr><td><strong>中入</strong></td><td>3</td><td>-p / -t / -k</td><td>色 sak1 · 雪 syuet3 · 骨 gwat1</td></tr>
+  <tr><td><strong>低入</strong></td><td>1</td><td>-p / -t / -k</td><td>合 hap6 · 月 jyut6 · 十 sap6</td></tr>
+</table>
+
+<h2>速记：六调走向</h2>
+<table>
+  <tr><th>调</th><th>走向</th><th>形象描述</th></tr>
+  <tr><td>1</td><td>→</td><td>高音平直，像按住钢琴高音键</td></tr>
+  <tr><td>2</td><td>↗</td><td>从中高往最高升</td></tr>
+  <tr><td>3</td><td>→</td><td>低音平直，像叹气</td></tr>
+  <tr><td>4</td><td>↓</td><td>低处下降</td></tr>
+  <tr><td>5</td><td>↗</td><td>从低处往上升</td></tr>
+  <tr><td>6</td><td>→</td><td>最低处平直</td></tr>
+</table>
+
+<a href="../lessons/0001-jiusheng-liudiao.html" class="back-link">← 返回第一课</a>
+
+<div class="footer">
+  <span>声调速查表</span>
+  <a href="../lessons/0001-jiusheng-liudiao.html">第一课 →</a>
+</div>
+
+</body>
+</html>

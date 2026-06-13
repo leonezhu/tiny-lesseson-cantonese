@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第四课 — 粤语数字与量词（粤语特色）</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap');
+
+  :root {
+    --bg: #fdfdfd;
+    --text: #1a1a1a;
+    --accent: #b71c1c;
+    --accent-light: #fce4ec;
+    --muted: #666;
+    --border: #e0e0e0;
+    --correct: #2e7d32;
+    --correct-bg: #e8f5e9;
+    --wrong: #c62828;
+    --wrong-bg: #ffebee;
+    --warn-bg: #fff8e1;
+    --warn-border: #f9a825;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Noto Sans SC', -apple-system, sans-serif;
+    font-size: 16px;
+    line-height: 1.8;
+    color: var(--text);
+    background: var(--bg);
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+  }
+
+  h1 {
+    font-family: 'Noto Serif SC', Georgia, serif;
+    font-size: 1.8rem;
+    margin-bottom: 0.25rem;
+    color: var(--accent);
+  }
+
+  .lesson-meta {
+    color: var(--muted);
+    font-size: 0.85rem;
+    margin-bottom: 2rem;
+  }
+
+  .goal-box {
+    background: var(--accent-light);
+    border-left: 4px solid var(--accent);
+    padding: 1rem 1.25rem;
+    margin-bottom: 2rem;
+    border-radius: 0 4px 4px 0;
+  }
+
+  .goal-box strong { color: var(--accent); }
+
+  h2 {
+    font-family: 'Noto Serif SC', Georgia, serif;
+    font-size: 1.2rem;
+    margin-top: 2.5rem;
+    margin-bottom: 0.75rem;
+    color: var(--accent);
+  }
+
+  h3 {
+    font-family: 'Noto Serif SC', Georgia, serif;
+    font-size: 1.05rem;
+    margin-bottom: 0.25rem;
+    color: var(--accent);
+  }
+
+  p { margin-bottom: 0.75rem; }
+
+  .card {
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1.25rem;
+    margin: 1rem 0;
+  }
+
+  .card h3 { margin-bottom: 0.5rem; }
+
+  .comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+    font-size: 0.95rem;
+  }
+
+  .comparison-table th {
+    background: var(--accent);
+    color: white;
+    padding: 0.6rem 0.8rem;
+    text-align: left;
+    font-weight: 600;
+  }
+
+  .comparison-table td {
+    padding: 0.5rem 0.8rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .comparison-table tr:nth-child(even) td {
+    background: #fafafa;
+  }
+
+  .comparison-table .cantonese {
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  .comparison-table .mandarin {
+    color: var(--muted);
+  }
+
+  .highlight-box {
+    background: var(--warn-bg);
+    border-left: 3px solid var(--warn-border);
+    padding: 0.8rem 1rem;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+  }
+
+  .highlight-box strong { color: #e65100; }
+
+  .example-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  .example-list li {
+    padding: 0.3rem 0;
+    padding-left: 1.2rem;
+    position: relative;
+  }
+
+  .example-list li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-weight: 700;
+  }
+
+  .jyutping {
+    font-family: 'Noto Serif SC', Georgia, serif;
+    font-size: 0.9rem;
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  .quiz-section {
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 2px solid var(--border);
+  }
+
+  .quiz-section h2 {
+    margin-top: 0;
+  }
+
+  .quiz-question {
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1.25rem;
+    margin: 1rem 0;
+    position: relative;
+  }
+
+  .quiz-question .q-num {
+    position: absolute;
+    top: -0.6rem;
+    left: 1rem;
+    background: var(--accent);
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.1rem 0.5rem;
+    border-radius: 3px;
+  }
+
+  .quiz-question .context {
+    color: var(--muted);
+    font-size: 0.85rem;
+    margin-bottom: 0.5rem;
+    font-style: italic;
+  }
+
+  .quiz-question .sentence {
+    font-size: 1.05rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .quiz-question .sentence .blank {
+    display: inline-block;
+    min-width: 100px;
+    border-bottom: 2px dashed var(--accent);
+    text-align: center;
+    font-weight: 600;
+    color: var(--accent);
+  }
+
+  .options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+  }
+
+  .option-btn {
+    background: white;
+    border: 2px solid var(--border);
+    border-radius: 4px;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.95rem;
+    cursor: pointer;
+    text-align: center;
+    font-family: 'Noto Sans SC', sans-serif;
+    transition: all 0.15s;
+  }
+
+  .option-btn:hover {
+    border-color: var(--accent);
+    background: var(--accent-light);
+  }
+
+  .option-btn.correct {
+    border-color: var(--correct);
+    background: var(--correct-bg);
+    color: var(--correct);
+    font-weight: 600;
+  }
+
+  .option-btn.wrong {
+    border-color: var(--wrong);
+    background: var(--wrong-bg);
+    color: var(--wrong);
+  }
+
+  .option-btn.reveal-correct {
+    border-color: var(--correct);
+    background: var(--correct-bg);
+    color: var(--correct);
+    font-weight: 600;
+  }
+
+  .feedback {
+    margin-top: 0.75rem;
+    padding: 0.6rem 0.8rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    display: none;
+  }
+
+  .feedback.show { display: block; }
+  .feedback.correct-fb { background: var(--correct-bg); color: var(--correct); }
+  .feedback.wrong-fb { background: var(--wrong-bg); color: var(--wrong); }
+
+  .score-box {
+    background: var(--accent-light);
+    border: 2px solid var(--accent);
+    border-radius: 6px;
+    padding: 1.25rem;
+    margin-top: 1.5rem;
+    text-align: center;
+    display: none;
+  }
+
+  .score-box.show { display: block; }
+  .score-box .score-num { font-size: 2rem; font-weight: 700; color: var(--accent); }
+  .score-box .score-label { color: var(--muted); font-size: 0.9rem; }
+
+  .followup {
+    background: #f0f4f8;
+    border-radius: 6px;
+    padding: 1rem 1.25rem;
+    margin-top: 2rem;
+    font-size: 0.9rem;
+  }
+
+  .followup strong { color: var(--accent); }
+
+  .resource-link {
+    display: inline-block;
+    margin-top: 0.5rem;
+    padding: 0.4rem 0.8rem;
+    background: var(--accent);
+    color: white;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+
+  .resource-link:hover { opacity: 0.9; }
+
+  .footer {
+    margin-top: 3rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+    font-size: 0.8rem;
+    color: var(--muted);
+    text-align: center;
+  }
+
+  .footer a { color: var(--accent); text-decoration: none; }
+
+  .nav-disabled {
+    color: var(--muted);
+    text-decoration: line-through;
+    opacity: 0.5;
+  }
+
+  @media print {
+    body { padding: 1.5cm; max-width: none; }
+    .option-btn, .feedback, .score-box { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<h1>粤语数字与量词（粤语特色）</h1>
+<p class="lesson-meta">第四课 · ~10 分钟 · 粤语基础</p>
+
+<div class="goal-box">
+  <strong>本课结束时</strong>，你将能够：（1）用粤语说出 0–9999 的数字；（2）正确使用粤语的量词系统；（3）区分粤语与普通话在数字和量词上的关键差异，避免"普通话式粤语"。
+</div>
+
+<h2>为什么这很重要</h2>
+<p>
+  很多人以为"粤语数字跟普通话一样"，其实不然。粤语在数字读音、量词选择和数量表达方式上都有独特的规则。最典型的问题是：<strong>同一个东西，普通话用一个量词，粤语用另一个</strong>——比如"一张纸"在粤语里是"一张纸"，但"一部电话""一架飞机""一头牛"，量词完全不同。
+</p>
+
+<h2>第一部分：粤语数字读音</h2>
+
+<p>粤语数字的基本读法和普通话类似，但有几个关键差异需要注意。</p>
+
+<div class="card">
+  <h3>0–10 基本数字</h3>
+  <table class="comparison-table">
+    <tr><th>数字</th><th>粤语读音（粤拼）</th><th>粤语写法</th><th>普通话</th></tr>
+    <tr><td>0</td><td class="cantonese">ling4</td><td class="cantonese">零</td><td>líng</td></tr>
+    <tr><td>1</td><td class="cantonese">jat1</td><td class="cantonese">一</td><td>yī</td></tr>
+    <tr><td>2</td><td class="cantonese">ji6</td><td class="cantonese">二</td><td>èr</td></tr>
+    <tr><td>3</td><td class="cantonese">saam1</td><td class="cantonese">三</td><td>sān</td></tr>
+    <tr><td>4</td><td class="cantonese">sei3</td><td class="cantonese">四</td><td>sì</td></tr>
+    <tr><td>5</td><td class="cantonese">ng5</td><td class="cantonese">五</td><td>wǔ</td></tr>
+    <tr><td>6</td><td class="cantonese">luk6</td><td class="cantonese">六</td><td>liù</td></tr>
+    <tr><td>7</td><td class="cantonese">cat1</td><td class="cantonese">七</td><td>qī</td></tr>
+    <tr><td>8</td><td class="cantonese">baat3</td><td class="cantonese">八</td><td>bā</td></tr>
+    <tr><td>9</td><td class="cantonese">gau2</td><td class="cantonese">九</td><td>jiǔ</td></tr>
+    <tr><td>10</td><td class="cantonese">sap6</td><td class="cantonese">十</td><td>shí</td></tr>
+  </table>
+</div>
+
+<div class="highlight-box">
+  <strong>关键差异：</strong>粤语 1 读 "jat1"（入声，短促），不是普通话的 "yī"。粤语 4 读 "sei3"，不是 "sì"。粤语 6 读 "luk6"（带 -k 入声韵尾），不是 "liù"。这些读音差异是粤语最基础的语音特征。
+</div>
+
+<div class="card">
+  <h3>11–99 组合规则</h3>
+  <p>粤语数字组合规则与普通话基本相同，但有一个<strong>重要例外</strong>：</p>
+  <ul class="example-list">
+    <li><strong>11–19</strong>：十一（sap6 jat1）、十二（sap6 ji6）…… 十九（sap6 gau2）</li>
+    <li><strong>20–90</strong>：二十（ji6 sap6）、三十（saam1 sap6）…… 九十（gau2 sap6）</li>
+    <li><strong>21–99</strong>：二十一（ji6 sap6 jat1）、八十八（baat3 baat3 sap6 baat3）</li>
+  </ul>
+  <p style="margin-top: 0.75rem;">
+    <strong>例外：11 的特殊读法</strong> — 口语中，11 常说 "yat1 sap6 yat1"（一十一），而不是 "sap6 yat1"（十一）。这在报电话号码、房间号时尤其常见。<br>
+    <span class="jyutping">例：房号 1103 → "yat1 sap6 yat1 ling4 saam1"</span>
+  </p>
+</div>
+
+<div class="card">
+  <h3>百、千、万</h3>
+  <table class="comparison-table">
+    <tr><th>数字</th><th>粤语读音（粤拼）</th><th>粤语写法</th><th>普通话</th></tr>
+    <tr><td>100</td><td class="cantonese">bak3</td><td class="cantonese">百</td><td>bǎi</td></tr>
+    <tr><td>1,000</td><td class="cantonese">cin3</td><td class="cantonese">千</td><td>qiān</td></tr>
+    <tr><td>10,000</td><td class="cantonese">seoi1</td><td class="cantonese">万</td><td>wàn</td></tr>
+    <tr><td>100,000,000</td><td class="cantonese">jat1 ceoi3 saap6 lou6</td><td class="cantonese">一亿八千万</td><td>1.8 亿</td></tr>
+  </table>
+  <p style="margin-top: 0.75rem;">
+    <strong>粤语数字组合示例：</strong><br>
+    238 → ji6 sap6 saam1 baat3（二十三八）<br>
+    1,567 → jat1 bak3 ng5 luk6 cat1（一百五六七）<br>
+    9,999 → gau2 saam1 saam1 saam1（九九九九）
+  </p>
+</div>
+
+<h2>第二部分：粤语量词系统</h2>
+
+<p>量词（classifier）是粤语与普通话差异最大的地方之一。很多情况下，<strong>同一个名词在粤语和普通话中用量词不同</strong>。</p>
+
+<div class="card">
+  <h3>量词对比表</h3>
+  <table class="comparison-table">
+    <tr><th>名词</th><th>普通话</th><th>粤语</th><th>说明</th></tr>
+    <tr><td>电话</td><td class="mandarin">一部电话</td><td class="cantonese">一部电话</td><td>相同</td></tr>
+    <tr><td>飞机</td><td class="mandarin">一架飞机</td><td class="cantonese">一架飞机</td><td>相同</td></tr>
+    <tr><td>牛</td><td class="mandarin">一头牛</td><td class="cantonese">一头牛</td><td>相同</td></tr>
+    <tr><td>车</td><td class="mandarin">一辆车</td><td class="cantonese">部车 / 辆车</td><td>粤语常用"部"</td></tr>
+    <tr><td>书</td><td class="mandarin">一本书</td><td class="cantonese">本书 / 本册书</td><td>粤语口语常省略量词</td></tr>
+    <tr><td>纸</td><td class="mandarin">一张纸</td><td class="cantonese">张纸</td><td>粤语口语常省略量词</td></tr>
+    <tr><td>人</td><td class="mandarin">一个人</td><td class="cantonese">个人</td><td>粤语口语常省略量词</td></tr>
+    <tr><td>件衣服</td><td class="mandarin">一件衣服</td><td class="cantonese">件衫</td><td>粤语用"衫"泛指衣服</td></tr>
+    <tr><td>碗饭</td><td class="mandarin">一碗饭</td><td class="cantonese">碗饭</td><td>粤语口语常省略量词</td></tr>
+  </table>
+</div>
+
+<div class="highlight-box">
+  <strong>核心规律：</strong>粤语口语中，当上下文足够清晰时，<strong>量词经常被省略</strong>。"买书"说成"买书"（maai2 cyu4），"吃饭"说成"食饭"（sik6 faan6），不需要量词。这在正式场合（如演讲）中不自然，但在日常对话中非常普遍。
+</div>
+
+<div class="card">
+  <h3>粤语特有量词</h3>
+  <table class="comparison-table">
+    <tr><th>量词</th><th>粤拼</th><th>用途</th><th>示例</th></tr>
+    <tr><td>粒</td><td class="cantonese">lap1</td><td>小圆球形物体</td><td>一粒糖、一粒珠、一粒钉</td></tr>
+    <tr><td>条</td><td class="cantonese">tiu4</td><td>长条状物体 / 鱼 / 路</td><td>一条鱼、一条路、一条牛仔裤</td></tr>
+    <tr><td>支</td><td class="cantonese">zi1</td><td>细长的杆状物</td><td>一支笔、一支歌、一支烟</td></tr>
+    <tr><td>幅</td><td class="cantonese">fuk1</td><td>画作、布匹</td><td>一幅画、一幅地图</td></tr>
+    <tr><td>樽 / 支</td><td class="cantonese">zeon1 / zi1</td><td>瓶装饮料</td><td>一樽可乐、一支奶茶</td></tr>
+    <tr><td>碟</td><td class="cantonese">dik6</td><td>盘装食物 / CD</td><td>一碟菜、一张 CD</td></tr>
+    <tr><td>间</td><td class="cantonese">gaan3</td><td>房间 / 公司 / 店</td><td>一间公司、一间店</td></tr>
+    <tr><td>架</td><td class="cantonese">gaa3</td><td>大型机械 / 交通工具</td><td>一架飞机、一架电梯</td></tr>
+    <tr><td>台</td><td class="cantonese">toi3</td><td>电器 / 机器</td><td>一台电视、一部电脑</td></tr>
+  </table>
+</div>
+
+<div class="card">
+  <h3>量词的特殊用法</h3>
+  <p>粤语量词有一些普通话没有的特殊用法：</p>
+  <ul class="example-list">
+    <li><strong>一啲（jat1 di1）</strong> — "一些"。这是粤语最常用的不定量词："饮一啲水"（喝一些水）、"买一啲嘢"（买一些东西）。</li>
+    <li><strong>几多（gei2 do1）</strong> — "多少"。用于提问数量："几多钱？"（多少钱？）、"几多人？"（多少人？）</li>
+    <li><strong>成（sing4）</strong> — "整 / 满"。"成个人" = "整个人"，"成杯水" = "一整杯水"。</li>
+    <li><strong>半（bu3）</strong> — "一半"。"半日" = "半天"，"半钟" = "半小时"。</li>
+  </ul>
+</div>
+
+<h2>第三部分：常见错误</h2>
+
+<div class="card">
+  <h3>错误 1：用普通话量词套粤语</h3>
+  <p>普通话说"一个车"，粤语应该说"部车"或"辆车"。虽然"个"在粤语中也通用（"一个车"也能听懂），但听起来非常不自然，像外地人在说粤语。</p>
+  <p><strong>正确说法：</strong>"部车"（bou6 ce1）、"部电话"（bou6 din6 wa6）</p>
+</div>
+
+<div class="card">
+  <h3>错误 2：把"二"和"两"混用</h3>
+  <p>普通话中"二"和"两"有分工（"二"用于编号，"两"用于数量），粤语也有类似规则：</p>
+  <ul class="example-list">
+    <li>数字 20+：用"二"（ji6）→ 二十（ji6 sap6）、二百（ji6 bak3）</li>
+    <li>量词前：用"两"（loeung5）→ 两个人（loeung5 go3 jan4）、两天（loeung5 tin3）</li>
+  </ul>
+  <p><strong>记住：</strong>"两个"在粤语中是"两个"（loeung5 go2），不是"二个"。</p>
+</div>
+
+<div class="card">
+  <h3>错误 3：忽略入声韵尾</h3>
+  <p>粤语的入声字（-p, -t, -k 结尾）在数字中很常见。比如"一"（jat1）、"八"（baat3）、"六"（luk6）都是入声字，读音短促。普通话使用者容易把它们拉长读成普通话的音，这是最明显的"外地口音"。</p>
+</div>
+
+<h2>第四部分：实用场景</h2>
+
+<div class="card">
+  <h3>购物场景</h3>
+  <ul class="example-list">
+    <li><strong>几钱？</strong>（gei2 cin2?）— 多少钱？</li>
+    <li><strong>平啲啦！</strong>（ping4 di1 laa3!）— 便宜一点嘛！</li>
+    <li><strong>三件衫</strong>（saam1 gin3 saam1）— 三件衣服</li>
+    <li><strong>包埋呢件</strong>（baau1 maai4 ni1 gin3）— 这件也一起包</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h3>时间场景</h3>
+  <ul class="example-list">
+    <li><strong>三点钟</strong>（saam1 di2 zung1）— 3 点钟</li>
+    <li><strong>两日</strong>（loeung5 jat6）— 两天</li>
+    <li><strong>成个月</strong>（sing4 go3 jyut6）— 整整一个月</li>
+    <li><strong>半日</strong>（bu3 jat6）— 半天</li>
+  </ul>
+</div>
+
+<div class="followup">
+  <strong>有问题？</strong>随时问我——我是你的粤语老师。不确定为什么某个量词要用这个而不用那个？这正是我们该讨论的地方。直接打字提问，我来解释。
+  <br><br>
+  <strong>推荐资源：</strong><a href="https://www.rthk.hk/rthk/ch/component/kb/canton.htm" target="_blank">香港电台粤语学习</a> — 听地道粤语中的数字和量词使用。
+  <br><br>
+  <a href="../reference/numbers-classifiers.html" class="resource-link">查看快速参考卡</a>
+</div>
+
+<div class="footer">
+  <a href="0003-common-pronouns-verbs.html">上一课</a> | <a href="0000-toc.html">目录</a> | <a href="0005-yum-cha-dining.html">下一课</a>
+
+</div>
+
+<div class="quiz-section">
+  <h2>练习：选择正确的粤语表达</h2>
+  <p>共 8 道题。点击你认为正确的选项，会显示详细解释。</p>
+
+  <div class="quiz-question" id="q1">
+    <span class="q-num">Q1</span>
+    <div class="context">你在报房间号码 1103。</div>
+    <div class="sentence">房间号码是 ________。</div>
+    <div class="options">
+      <button class="option-btn" data-correct="false" onclick="check(this)">十一零三</button>
+      <button class="option-btn" data-correct="true" onclick="check(this)">一十一零三</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="quiz-question" id="q2">
+    <span class="q-num">Q2</span>
+    <div class="context">你想说"三本书"。</div>
+    <div class="sentence">粤语怎么说？</div>
+    <div class="options">
+      <button class="option-btn" data-correct="true" onclick="check(this)">三本书</button>
+      <button class="option-btn" data-correct="false" onclick="check(this)">三本册书</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="quiz-question" id="q3">
+    <span class="q-num">Q3</span>
+    <div class="context">在街市买水果，你要"五个苹果"。</div>
+    <div class="sentence">粤语量词应该用哪个？</div>
+    <div class="options">
+      <button class="option-btn" data-correct="false" onclick="check(this)">五粒苹果</button>
+      <button class="option-btn" data-correct="true" onclick="check(this)">五个苹果</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="quiz-question" id="q4">
+    <span class="q-num">Q4</span>
+    <div class="context">你说"两杯水"。</div>
+    <div class="sentence">粤语量词"杯"的正确读音是？</div>
+    <div class="options">
+      <button class="option-btn" data-correct="true" onclick="check(this)">杯（bui1）</button>
+      <button class="option-btn" data-correct="false" onclick="check(this)">杯（bei3）</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="quiz-question" id="q5">
+    <span class="q-num">Q5</span>
+    <div class="context">你想问"多少钱？"（在商店）。</div>
+    <div class="sentence">地道的粤语说法是？</div>
+    <div class="options">
+      <button class="option-btn" data-correct="false" onclick="check(this)">多少价钱？</button>
+      <button class="option-btn" data-correct="true" onclick="check(this)">几钱？</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="quiz-question" id="q6">
+    <span class="q-num">Q6</span>
+    <div class="context">你说"一架电梯"。</div>
+    <div class="sentence">量词"架"在粤语中指什么类型的物品？</div>
+    <div class="options">
+      <button class="option-btn" data-correct="true" onclick="check(this)">大型机械 / 交通工具</button>
+      <button class="option-btn" data-correct="false" onclick="check(this)">细长杆状物</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="quiz-question" id="q7">
+    <span class="q-num">Q7</span>
+    <div class="context">你说"八十八"。</div>
+    <div class="sentence">粤语的正确读音组合是？</div>
+    <div class="options">
+      <button class="option-btn" data-correct="false" onclick="check(this)">ba1 ba1 shi2 ba1</button>
+      <button class="option-btn" data-correct="true" onclick="check(this)">baat3 baat3 sap6 baat3</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="quiz-question" id="q8">
+    <span class="q-num">Q8</span>
+    <div class="context">你想说"一些水"。</div>
+    <div class="sentence">粤语最常用的不定量词是？</div>
+    <div class="options">
+      <button class="option-btn" data-correct="false" onclick="check(this)">多啲水</button>
+      <button class="option-btn" data-correct="true" onclick="check(this)">一啲水</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="score-box" id="score-box">
+    <div class="score-num" id="score-num"></div>
+    <div class="score-label" id="score-label"></div>
+  </div>
+</div>
+
+<script>
+  const explanations = {
+    q1: {
+      correct: '"1103" 作为房间号码，粤语习惯读作"一十一零三"（yat1 sap6 yat1 ling4 saam1），而不是"十一零三"。报号码时，11 通常拆开读为"一十一"。',
+      wrong: '报房间号码时，11 不读"十一"，而是拆开读"一十一"（yat1 sap6 yat1）。这是粤语报号码的习惯："一十一零三"。'
+    },
+    q2: {
+      correct: '"三本书"是标准粤语说法。口语中也可以直接说"三书"省略量词，但"三本书"完全正确且自然。',
+      wrong: '"三本册书"虽然语法没错，但"册"在这里多余。标准说法是"三本书"。口语中甚至可以省略量词直接说"三书"。'
+    },
+    q3: {
+      correct: '"苹果"是圆形水果，粤语中既可以用"个"也可以用"粒"。"粒"强调小而圆的物体，"个"是通用量词。两个都对，但"个"更常见于正式场合。',
+      wrong: '"粒"用于小圆球状物体（如粒糖、粒珠），但苹果相对较大，一般用"个"。"五个苹果"是最自然的说法。'
+    },
+    q4: {
+      correct: '"杯"在粤语中读 bui1（粤拼），不是普通话的 bei。这是粤语保留的古汉语读音特征。',
+      wrong: '"杯"在普通话读 bei，但在粤语中读 bui1。粤语保留了更多古汉语的发音特征，"杯"的古音更接近 bui。'
+    },
+    q5: {
+      correct: '"几钱？"（gei2 cin2?）是粤语最地道的询价方式。"几"=多少，"钱"=钱，简洁有力。',
+      wrong: '"多少价钱"虽然能听懂，但非常书面化。粤语日常购物问价，最地道的是"几钱？"，三个字搞定。'
+    },
+    q6: {
+      correct: '"架"（gaa3）用于大型机械和交通工具：一架飞机、一架电梯、一架钢琴。细长杆状物用"支"（zi1）。',
+      wrong: '"细长杆状物"用的是"支"（zi1），如一支笔、一支烟。"架"（gaa3）用于大型机械和交通工具，如一架飞机、一架电梯。'
+    },
+    q7: {
+      correct: '"八十八"粤语读作 baat3 baat3 sap6 baat3。注意"八"是入声字 baat3（-t 韵尾），"十"是 sap6。读音短促有力。',
+      wrong: '"ba1 ba1 shi2 ba1"是普通话读音。粤语中"八"读 baat3（入声，-t 韵尾），"十"读 sap6。完整读法是 baat3 baat3 sap6 baat3。'
+    },
+    q8: {
+      correct: '"一啲"（jat1 di1）是粤语最常用的不定量词，相当于普通话的"一些"。"一啲水"=一些水，"一啲嘢"=一些东西。',
+      wrong: '"多啲"（do1 di1）意思是"多一点"，是程度比较，不是"一些"。"一些水"在粤语中说"一啲水"（jat1 di1 seoi2）。'
+    }
+  };
+
+  let answered = {};
+  let score = 0;
+  const total = 8;
+
+  function check(btn) {
+    const question = btn.closest('.quiz-question');
+    const qid = question.id;
+    if (answered[qid]) return;
+    answered[qid] = true;
+
+    const isCorrect = btn.dataset.correct === 'true';
+    const allBtns = question.querySelectorAll('.option-btn');
+    const feedback = question.querySelector('.feedback');
+
+    allBtns.forEach(b => {
+      b.style.pointerEvents = 'none';
+      if (b.dataset.correct === 'true') b.classList.add('reveal-correct');
+    });
+
+    if (isCorrect) {
+      btn.classList.add('correct');
+      feedback.className = 'feedback show correct-fb';
+      feedback.textContent = explanations[qid].correct;
+      score++;
+    } else {
+      btn.classList.add('wrong');
+      feedback.className = 'feedback show wrong-fb';
+      feedback.textContent = explanations[qid].wrong;
+    }
+
+    if (Object.keys(answered).length === total) {
+      const box = document.getElementById('score-box');
+      const num = document.getElementById('score-num');
+      const label = document.getElementById('score-label');
+      num.textContent = score + ' / ' + total;
+      if (score === total) label.textContent = '完美！你对粤语数字和量词掌握得很好。';
+      else if (score >= 6) label.textContent = '不错！回顾一下错题的解释，巩固薄弱环节。';
+      else label.textContent = '继续加油！重读上面的量词对比表和常见错误部分。';
+      box.classList.add('show');
+    }
+  }
+</script></body>
+</html>

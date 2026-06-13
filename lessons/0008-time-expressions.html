@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第八课 — 时间表达（粤式）</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap');
+
+  :root {
+    --bg: #fdfdfd;
+    --text: #1a1a1a;
+    --accent: #b71c1c;
+    --accent-light: #fce4ec;
+    --muted: #666;
+    --border: #e0e0e0;
+    --correct: #2e7d32;
+    --correct-bg: #e8f5e9;
+    --wrong: #c62828;
+    --wrong-bg: #ffebee;
+    --warn-bg: #fff8e1;
+    --warn-border: #f9a825;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Noto Sans SC', -apple-system, sans-serif;
+    font-size: 16px;
+    line-height: 1.8;
+    color: var(--text);
+    background: var(--bg);
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+  }
+
+  h1 {
+    font-family: 'Noto Serif SC', Georgia, serif;
+    font-size: 1.8rem;
+    margin-bottom: 0.25rem;
+    color: var(--accent);
+  }
+
+  .lesson-meta {
+    color: var(--muted);
+    font-size: 0.85rem;
+    margin-bottom: 2rem;
+  }
+
+  .goal-box {
+    background: var(--accent-light);
+    border-left: 4px solid var(--accent);
+    padding: 1rem 1.25rem;
+    margin-bottom: 2rem;
+    border-radius: 0 4px 4px 0;
+  }
+
+  .goal-box strong { color: var(--accent); }
+
+  h2 {
+    font-family: 'Noto Serif SC', Georgia, serif;
+    font-size: 1.2rem;
+    margin-top: 2.5rem;
+    margin-bottom: 0.75rem;
+    color: var(--accent);
+  }
+
+  h3 {
+    font-family: 'Noto Serif SC', Georgia, serif;
+    font-size: 1.05rem;
+    margin-bottom: 0.25rem;
+    color: var(--accent);
+  }
+
+  p { margin-bottom: 0.75rem; }
+
+  .card {
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1.25rem;
+    margin: 1rem 0;
+  }
+
+  .card h3 { margin-bottom: 0.5rem; }
+
+  .comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+    font-size: 0.95rem;
+  }
+
+  .comparison-table th {
+    background: var(--accent);
+    color: white;
+    padding: 0.6rem 0.8rem;
+    text-align: left;
+    font-weight: 600;
+  }
+
+  .comparison-table td {
+    padding: 0.5rem 0.8rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .comparison-table tr:nth-child(even) td {
+    background: #fafafa;
+  }
+
+  .comparison-table .cantonese {
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  .comparison-table .mandarin {
+    color: var(--muted);
+  }
+
+  .highlight-box {
+    background: var(--warn-bg);
+    border-left: 3px solid var(--warn-border);
+    padding: 0.8rem 1rem;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+  }
+
+  .highlight-box strong { color: #e65100; }
+
+  .example-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  .example-list li {
+    padding: 0.3rem 0;
+    padding-left: 1.2rem;
+    position: relative;
+  }
+
+  .example-list li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-weight: 700;
+  }
+
+  .jyutping {
+    font-family: 'Noto Serif SC', Georgia, serif;
+    font-size: 0.9rem;
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  .quiz-section {
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 2px solid var(--border);
+  }
+
+  .quiz-section h2 {
+    margin-top: 0;
+  }
+
+  .quiz-question {
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1.25rem;
+    margin: 1rem 0;
+    position: relative;
+  }
+
+  .quiz-question .q-num {
+    position: absolute;
+    top: -0.6rem;
+    left: 1rem;
+    background: var(--accent);
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.1rem 0.5rem;
+    border-radius: 3px;
+  }
+
+  .quiz-question .context {
+    color: var(--muted);
+    font-size: 0.85rem;
+    margin-bottom: 0.5rem;
+    font-style: italic;
+  }
+
+  .quiz-question .sentence {
+    font-size: 1.05rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .quiz-question .sentence .blank {
+    display: inline-block;
+    min-width: 100px;
+    border-bottom: 2px dashed var(--accent);
+    text-align: center;
+    font-weight: 600;
+    color: var(--accent);
+  }
+
+  .options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+  }
+
+  .option-btn {
+    background: white;
+    border: 2px solid var(--border);
+    border-radius: 4px;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.95rem;
+    cursor: pointer;
+    text-align: center;
+    font-family: 'Noto Sans SC', sans-serif;
+    transition: all 0.15s;
+  }
+
+  .option-btn:hover {
+    border-color: var(--accent);
+    background: var(--accent-light);
+  }
+
+  .option-btn.correct {
+    border-color: var(--correct);
+    background: var(--correct-bg);
+    color: var(--correct);
+    font-weight: 600;
+  }
+
+  .option-btn.wrong {
+    border-color: var(--wrong);
+    background: var(--wrong-bg);
+    color: var(--wrong);
+  }
+
+  .option-btn.reveal-correct {
+    border-color: var(--correct);
+    background: var(--correct-bg);
+    color: var(--correct);
+    font-weight: 600;
+  }
+
+  .feedback {
+    margin-top: 0.75rem;
+    padding: 0.6rem 0.8rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    display: none;
+  }
+
+  .feedback.show { display: block; }
+  .feedback.correct-fb { background: var(--correct-bg); color: var(--correct); }
+  .feedback.wrong-fb { background: var(--wrong-bg); color: var(--wrong); }
+
+  .score-box {
+    background: var(--accent-light);
+    border: 2px solid var(--accent);
+    border-radius: 6px;
+    padding: 1.25rem;
+    margin-top: 1.5rem;
+    text-align: center;
+    display: none;
+  }
+
+  .score-box.show { display: block; }
+  .score-box .score-num { font-size: 2rem; font-weight: 700; color: var(--accent); }
+  .score-box .score-label { color: var(--muted); font-size: 0.9rem; }
+
+  .followup {
+    background: #f0f4f8;
+    border-radius: 6px;
+    padding: 1rem 1.25rem;
+    margin-top: 2rem;
+    font-size: 0.9rem;
+  }
+
+  .followup strong { color: var(--accent); }
+
+  .resource-link {
+    display: inline-block;
+    margin-top: 0.5rem;
+    padding: 0.4rem 0.8rem;
+    background: var(--accent);
+    color: white;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+
+  .resource-link:hover { opacity: 0.9; }
+
+  .footer {
+    margin-top: 3rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+    font-size: 0.8rem;
+    color: var(--muted);
+    text-align: center;
+  }
+
+  .footer a { color: var(--accent); text-decoration: none; }
+
+  .nav-disabled {
+    color: var(--muted);
+    text-decoration: line-through;
+    opacity: 0.5;
+  }
+
+  @media print {
+    body { padding: 1.5cm; max-width: none; }
+    .option-btn, .feedback, .score-box { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<h1>时间表达（粤式）</h1>
+<p class="lesson-meta">第八课 · ~12 分钟 · 粤语时间与日期</p>
+
+<div class="goal-box">
+  <strong>本课结束时</strong>，你将能够：（1）用粤语准确表达时刻、日期和时长；（2）区分粤语与普通话在时间表达上的核心差异；（3）掌握粤语特有的时间副词（如「先」「迟啲」「早啲」）；（4）在约会、行程、计时等场景中自然使用粤语时间表达。
+</div>
+
+<h2>为什么这很重要</h2>
+<p>
+  时间是人类共同的经验，但不同语言对时间的「切片方式」截然不同。普通话和粤语在时间表达上看似大同小异，实际上隐藏着不少系统性差异。这些差异不仅仅是词汇替换——它们反映了两种语言对时间概念的编码方式不同。掌握粤语的时间表达，是让你的粤语从「能听懂」迈向「说得自然」的关键一步。
+</p>
+
+<h2>第一部分：时刻表达（几点钟）</h2>
+
+<p>
+  粤语的时刻表达与普通话最核心的区别在于<strong>量词的使用</strong>和<strong>「几多点」vs「几点」</strong>的选择。
+</p>
+
+<div class="card">
+  <h3>1. 「几多点」vs「几点」</h3>
+  <p>
+    普通话问时间用「几点」或「几点钟」，粤语则有两种常见说法：
+  </p>
+  <table class="comparison-table">
+    <tr><th>普通话</th><th>粤语</th><th>粤拼</th><th>场景</th></tr>
+    <tr><td>现在几点了？</td><td class="cantonese">而家几多点？</td><td class="cantonese">ji4 gaa1 gei2 do1 dim2?</td><td>最常用，口语首选</td></tr>
+    <tr><td>现在几点了？</td><td class="cantonese">而家几点了？</td><td class="cantonese">ji4 gaa1 gei2 liu2?</td><td>受普通话影响，年轻人常用</td></tr>
+    <tr><td>几点钟？</td><td class="cantonese">几多点钟？</td><td class="cantonese">gei2 do1 dim2 zung1?</td><td>较正式，强调「点钟」</td></tr>
+  </table>
+</div>
+
+<div class="card">
+  <h3>2. 整点与半点</h3>
+  <p>
+    粤语的整点和半点表达与普通话有细微但重要的差异：
+  </p>
+  <table class="comparison-table">
+    <tr><th>普通话</th><th>粤语</th><th>粤拼</th><th>备注</th></tr>
+    <tr><td>三点整</td><td class="cantonese">三点正</td><td class="cantonese">saam1 dim2 zeng3</td><td>「正」= 整（精确）</td></tr>
+    <tr><td>三点半</td><td class="cantonese">三点半</td><td class="cantonese">saam1 dim2 bun3</td><td>与普通话相同</td></tr>
+    <tr><td>三点一刻</td><td class="cantonese">三点一刻</td><td class="cantonese">saam1 dim2 jat1 hak1</td><td>与普通话相同</td></tr>
+    <tr><td>三点四十五</td><td class="cantonese">三点差一刻至四点</td><td class="cantonese">saam1 dim2 coe3 jat1 hak1 zi3 seoi3 dim6</td><td>粤语习惯用「差」表达</td></tr>
+  </table>
+</div>
+
+<div class="highlight-box">
+  <strong>关键差异：</strong>粤语说整点时常用<strong>「正」</strong>（zeng3）而非普通话的「整」。「三点正」= 三点整。这个「正」字来自「正点」，在粤语中已经语法化为表示精确时间的标记。
+</div>
+
+<div class="card">
+  <h3>3. 上午与下午的表达</h3>
+  <p>
+    粤语对一天中的时间段划分比普通话更细：
+  </p>
+  <table class="comparison-table">
+    <tr><th>时段</th><th>粤语</th><th>普通话</th><th>说明</th></tr>
+    <tr><td>凌晨</td><td class="cantonese">凌晨 / 深夜</td><td>凌晨</td><td>午夜至清晨</td></tr>
+    <tr><td>早上</td><td class="cantonese">朝早 / 朝上</td><td>早上</td><td>「朝」= 早晨</td></tr>
+    <tr><td>上午</td><td class="cantonese">朝早</td><td>上午</td><td>通常指 8-11 点</td></tr>
+    <tr><td>中午</td><td class="cantonese">午时正 / 中午</td><td>中午</td><td>「午时正」= 12 点整</td></tr>
+    <tr><td>下午</td><td class="cantonese">下晡 / 下午</td><td>下午</td><td>「下晡」是传统说法</td></tr>
+    <tr><td>傍晚</td><td class="cantonese>黄昏</td><td class="cantonese">wan4 gwong1</td><td>傍晚/日落时分</td></tr>
+    <tr><td>晚上</td><td class="cantonese">夜晚 / 晚上</td><td>晚上</td><td>通用</td></tr>
+    <tr><td>深夜</td><td class="cantonese">深夜 / 夜阑</td><td>深夜</td><td>深夜</td></tr>
+  </table>
+</div>
+
+<h2>第二部分：日期表达（年月日）</h2>
+
+<p>
+  粤语的日期表达与普通话高度一致——年、月、日的顺序完全相同（年→月→日），这一点与英语截然不同。但仍有几个值得注意的差异。
+</p>
+
+<div class="card">
+  <h3>4. 年、月、日的读法</h3>
+  <table class="comparison-table">
+    <tr><th>场景</th><th>普通话</th><th>粤语</th><th>粤拼</th></tr>
+    <tr><td>2026 年</td><td>二千零二十六年</td><td class="cantonese">两千零二十六年度</td><td class="cantonese">hi1 lin4 ling4 yi6 sap6 lok6 nin6</td></tr>
+    <tr><td>六月</td><td>六月</td><td class="cantonese">六月</td><td class="cantonese">luk6 jyut6</td></tr>
+    <tr><td>十三号</td><td>十三号</td><td class="cantonese">十三号</td><td class="cantonese">sap6 saam1 hou2</td></tr>
+    <tr><td>今天</td><td>今天</td><td class="cantonese>今日</td><td class="cantonese">gam1 jat6</td></tr>
+    <tr><td>明天</td><td>明天</td><td class="cantonese">明日</td><td class="cantonese">ming4 jat6</td></tr>
+    <tr><td>昨天</td><td>昨天</td><td class="cantonese">昨日</td><td class="cantonese">zoek6 jat6</td></tr>
+  </table>
+</div>
+
+<div class="card">
+  <h3>5. 今日、明日、昨日的扩展</h3>
+  <p>
+    粤语用「日」代替「天」来表达近几天，这是与普通话最直观的差异：
+  </p>
+  <ul class="example-list">
+    <li><strong>今日</strong>（gam1 jat6）= 今天 — 最核心的时间词，使用频率极高</li>
+    <li><strong>明日</strong>（ming4 jat6）= 明天 — 也可说「听日」(ting1 jat6)，后者更口语</li>
+    <li><strong>昨日</strong>（zoek6 jat6）= 昨天 — 也可说「前日」(cin4 jat6)，后者更口语</li>
+    <li><strong>后日</strong>（hao6 jat6）= 后天 — 普通话没有对应的单字表达</li>
+    <li><strong>大后日</strong>（daai6 hau6 jat6）= 大后天 — 粤语特有的时间表达</li>
+    <li><strong>前日</strong>（cin4 jat6）= 前天 — 注意不是「前天」</li>
+    <li><strong>大前日</strong>（daai6 cin4 jat6）= 大前天</li>
+  </ul>
+</div>
+
+<div class="highlight-box">
+  <strong>口语 vs 书面：</strong>「听日」和「前日」是口语说法，「明日」和「昨日」偏书面。但在日常生活中，两者都很常用。一个简单的方法：<strong>跟熟人说话用「听日/前日」，写正式消息用「明日/昨日」。</strong>
+</div>
+
+<h2>第三部分：相对时间表达（早晚快慢）</h2>
+
+<p>
+  粤语有一整套<strong>相对时间副词系统</strong>，用「先」「迟」「早」等词来表达时间上的先后关系。这部分是粤语时间表达中最有特色、也最容易出错的地方。
+</p>
+
+<div class="card">
+  <h3>6. 「先」— 先（句末位置）</h3>
+  <p>
+    这是粤语时间表达中最核心的差异之一。普通话的「先」放在动词前，但粤语的「先」可以<strong>放在句末</strong>，表示「先做 A，再做 B」：
+  </p>
+  <table class="comparison-table">
+    <tr><th>普通话</th><th>粤语</th><th>粤拼</th><th>差异</th></tr>
+    <tr><td>你先走</td><td class="cantonese">你行先</td><td class="cantonese">nei5 hong4 sin1</td><td>「先」在句末</td></tr>
+    <tr><td>我先食饭</td><td class="cantonese">我食饭先</td><td class="cantonese">ngo5 sik6 faan6 sin1</td><td>「先」在句末</td></tr>
+    <tr><td>你等等我</td><td class="cantonese">你等下我</td><td class="cantonese">nei5 dang2 haa2 ngo5</td><td>「等下」= 等一下</td></tr>
+    <tr><td>你先做，我做完了叫你</td><td class="cantonese">你做下先，我做咗就 call 你</td><td class="cantonese">nei5 zou6 haa2 sin1...</td><td>「下」= 一下</td></tr>
+  </table>
+</div>
+
+<div class="card">
+  <h3>7. 「迟啲」vs「早啲」— 迟一点 / 早一点</h3>
+  <p>
+    「啲」(di1) 是粤语中表示「一些、一点」的量词。加上「迟」或「早」就构成了相对时间表达：
+  </p>
+  <ul class="example-list">
+    <li><strong>迟啲</strong>（ci4 di1）= 迟一点 / 待会儿 — 「我迟啲同你讲」= 我待会儿跟你讲</li>
+    <li><strong>早啲</strong>（ zou2 di1 ）= 早一点 — 「你早啲返屋企」= 你早点回家</li>
+    <li><strong>迟啲再说</strong> = 待会儿再说 / 改天再说</li>
+    <li><strong>早啲睡</strong> = 早点睡</li>
+    <li><strong>迟少少</strong>（ci4 siu2 siu2）= 稍迟一点 — 「你迟少少来就得喇」= 你稍后来就可以</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h3>8. 「即刻」vs「待会」— 立刻 / 待会儿</h3>
+  <p>
+    粤语表达「立刻」和「待会儿」有几种常见说法：
+  </p>
+  <table class="comparison-table">
+    <tr><th>普通话</th><th>粤语</th><th>粤拼</th><th>语气</th></tr>
+    <tr><td>立刻</td><td class="cantonese">即刻</td><td class="cantonese">zek3adak1</td><td>立刻、马上</td></tr>
+    <tr><td>待会儿</td><td class="cantonese">待会</td><td class="cantonese">doi3 wui5</td><td>待会儿、等一下</td></tr>
+    <tr><td>马上</td><td class="cantonese">即管</td><td class="cantonese">zik1 gwaan2</td><td>立刻、赶紧</td></tr>
+    <tr><td>等一下</td><td class="cantonese">等下</td><td class="cantonese">dang2 haa2</td><td>等一下</td></tr>
+    <tr><td>稍等一下</td><td class="cantonese">等一阵</td><td class="cantonese">dang2 jat1 zan3</td><td>等一会儿</td></tr>
+  </table>
+</div>
+
+<h2>第四部分：时长与频率</h2>
+
+<p>
+  粤语在表达持续时间、频率和时间跨度时，有自己独特的语法结构。
+</p>
+
+<div class="card">
+  <h3>9. 持续时长的表达</h3>
+  <p>
+    普通话用「了 + 时间段」表示动作持续了多久（如「我等了十分钟」），粤语则用<strong>「紧 + 时间段 + 㗎喇」</strong>或<strong>「咗 + 时间段」</strong>：
+  </p>
+  <table class="comparison-table">
+    <tr><th>普通话</th><th>粤语</th><th>粤拼</th><th>说明</th></tr>
+    <tr><td>我等了十分钟</td><td class="cantonese">我等咗十分钟</td><td class="cantonese">ngo5 dang2 zo2 sap6 luk1 fun4 zung1</td><td>「咗」= 了（完成体标记）</td></tr>
+    <tr><td>我正在吃饭</td><td class="cantonese">我食紧饭</td><td class="cantonese">ngo5 sik6 zan2 faan6</td><td>「紧」= 正在</td></tr>
+    <tr><td>他住了三年</td><td class="cantonese">佢住咗三年喇</td><td class="cantonese">keoi5 zyut6 zo2 saam1 nin6 laa3</td><td>「喇」= 了（状态变化）</td></tr>
+    <tr><td>学了两年粤语</td><td class="cantonese">学咗两年粤语㗎喇</td><td class="cantonese">hok3 zo6 ji5 nin6 jyut6 jyu5 gaa3 laa3</td><td>「㗎喇」= 强调</td></tr>
+  </table>
+</div>
+
+<div class="card">
+  <h3>10. 频率表达</h3>
+  <p>
+    粤语的频率副词与普通话大体一致，但有几个独特的表达：
+  </p>
+  <ul class="example-list">
+    <li><strong>成日</strong>（sing4 jat6）= 整天 / 一直 — 「成日喊」= 一直在哭 / 整天哭</li>
+    <li><strong>时常</strong>（si4 soeng4）= 经常 — 较书面</li>
+    <li><strong>经常</strong>（ging1 coeng4）= 经常 — 通用</li>
+    <li><strong>日日</strong>（jat6 jat6）= 每天 — 叠词表「每天都」</li>
+    <li><strong>间中</strong>（gaan1 zung1）= 偶尔 / 有时候 — 「间中有去」= 偶尔去</li>
+    <li><strong>偶尔</strong>（ngoi6 jyu5）= 偶尔</li>
+    <li><strong>从来</strong>（cong4 loi4）= 从来 — 「从来冇」= 从来没有</li>
+  </ul>
+</div>
+
+<div class="highlight-box">
+  <strong>「成日」的用法：</strong>「成日」在粤语中极高频，既可以表示「一整天」（字面），也可以表示「老是、总是」（夸张）。语境决定了具体含义。<br>
+  「成日喊」= 一直在哭（持续）或 整天都在哭（频率），取决于上下文。
+</div>
+
+<h2>第五部分：星期与月份</h2>
+
+<div class="card">
+  <h3>11. 星期的表达</h3>
+  <p>
+    粤语的星期表达与普通话几乎完全相同，但有几个口语习惯：
+  </p>
+  <table class="comparison-table">
+    <tr><th>普通话</th><th>粤语</th><th>粤拼</th><th>备注</th></tr>
+    <tr><td>星期一</td><td class="cantonese">星期一</td><td class="cantonese">man1 qi1 jat6</td><td>完全相同</td></tr>
+    <tr><td>星期二</td><td class="cantonese">星期二</td><td class="cantonese">man5 qi1 jat6</td><td>完全相同</td></tr>
+    <tr><td>星期五</td><td class="cantonese">星期五</td><td class="cantonese">ng5 qi1 jat6</td><td>完全相同</td></tr>
+    <tr><td>周末</td><td class="cantonese">周末 / 礼拜尾</td><td class="cantonese">mui6 mou5 / lai5 bai3 mei5</td><td>「礼拜尾」更口语</td></tr>
+    <tr><td>工作日</td><td class="cantonese">上班日</td><td class="cantonese">soeng5 ban6 jat6</td><td>口语说法</td></tr>
+  </table>
+</div>
+
+<div class="card">
+  <h3>12. 季节的表达</h3>
+  <table class="comparison-table">
+    <tr><th>普通话</th><th>粤语</th><th>粤拼</th><th>备注</th></tr>
+    <tr><td>春天</td><td class="cantonese>春季 / 春</td><td class="cantonese">ceon1 gai3</td><td>通用</td></tr>
+    <tr><td>夏天</td><td class="cantonese">夏季</td><td class="cantonese">haa6 gai3</td><td>通用</td></tr>
+    <tr><td>秋天</td><td class="cantonese">秋季</td><td class="cantonese">cau1 gai3</td><td>通用</td></tr>
+    <tr><td>冬天</td><td class="cantonese">冬季</td><td class="cantonese">dung1 gai3</td><td>通用</td></tr>
+    <tr><td>今年夏天</td><td class="cantonese>今夏</td><td class="cantonese">gam1 haа6</td><td>口语说「今年夏天」即可</td></tr>
+  </table>
+</div>
+
+<h2>第六部分：粤语时间速查表</h2>
+
+<div class="card">
+  <h3>时间表达速查</h3>
+  <table class="comparison-table">
+    <tr><th>粤语</th><th>粤拼</th><th>普通话</th><th>场景</th></tr>
+    <tr><td>而家</td><td>ji4 gaa1</td><td>现在</td><td>万能时间词</td></tr>
+    <tr><td>今日</td><td>gam1 jat6</td><td>今天</td><td>日常核心</td></tr>
+    <tr><td>听日</td><td>ting1 jat6</td><td>明天</td><td>口语</td></tr>
+    <tr><td>前日</td><td>cin4 jat6</td><td>前天</td><td>口语</td></tr>
+    <tr><td>后日</td><td>hao6 jat6</td><td>后天</td><td>唯一说法</td></tr>
+    <tr><td>三点正</td><td>saam1 dim2 zeng3</td><td>三点整</td><td>精确时间</td></tr>
+    <tr><td>行先</td><td>hong4 sin1</td><td>你先走</td><td>告别用语</td></tr>
+    <tr><td>迟啲</td><td>ci4 di1</td><td>迟一点/待会儿</td><td>延后</td></tr>
+    <tr><td>早啲</td><td>zou2 di1</td><td>早一点</td><td>提前</td></tr>
+    <tr><td>即刻</td><td>zek3adak1</td><td>立刻</td><td>紧急</td></tr>
+    <tr><td>成日</td><td>sing4 jat6</td><td>整天/老是</td><td>频率</td></tr>
+    <tr><td>等下</td><td>dang2 haa2</td><td>等一下</td><td>请求等待</td></tr>
+    <tr><td>黄昏</td><td>wan4 gwong1</td><td>傍晚</td><td>日落前后</td></tr>
+    <tr><td>朝早</td><td>ziu1 zou2</td><td>早上</td><td>清晨时段</td></tr>
+    <tr><td>下晡</td><td>haa6 pu1</td><td>下午</td><td>传统说法</td></tr>
+  </table>
+</div>
+
+<h2>第七部分：常见错误</h2>
+
+<div class="card">
+  <h3>错误 1：用普通话的「先」语序</h3>
+  <p>
+    这是最常见的错误。普通话说「你先走」，但粤语中「先」的位置更灵活——放在句末反而更自然：
+  </p>
+  <p>
+    ❌ 你先走。（普通话语序，在粤语中听起来别扭）<br>
+    ✅ 你行先。（地道粤语）<br>
+    ❌ 我先食饭。（虽然也能听懂，但不如「食饭先」自然）<br>
+    ✅ 我食饭先。（更地道）
+  </p>
+</div>
+
+<div class="card">
+  <h3>错误 2：说「后天」而不是「后日」</h3>
+  <p>
+    普通话说「后天」「大后天」，但粤语用的是「后日」「大后日」。用「天」虽然能听懂，但立刻暴露了非母语者身份：
+  </p>
+  <p>
+    ❌ 我后天去。（普通话）<br>
+    ✅ 我后日去。（地道粤语）<br>
+    ❌ 大后天见。<br>
+    ✅ 大后日见。
+  </p>
+</div>
+
+<div class="card">
+  <h3>错误 3：混淆「即刻」和「待会」</h3>
+  <p>
+    「即刻」= 立刻（马上），「待会」= 待会儿（稍后）。这两个词的时间跨度完全不同：
+  </p>
+  <p>
+    ❌ 「我待会就来。」（想说立刻到）<br>
+    ✅ 「我即刻就到。」（立刻就到）<br>
+    ❌ 「我即刻同你讲。」（想说待会儿再聊）<br>
+    ✅ 「我待会同你讲。」（待会儿再聊）
+  </p>
+</div>
+
+<div class="highlight-box">
+  <strong>时间感进阶：</strong>想让自己的粤语更有「街坊味」？试试用「下晡」（下午）代替「下午」，用「黄昏」（傍晚）代替「傍晚」，用「朝早」（早上）代替「早上」。这些词在日常对话中出现频率极高，用了之后你的粤语立刻就有味道了。
+</div>
+
+<h2>参考资源</h2>
+<ul class="example-list">
+  <li>📚 <strong>《现代粤语语法》</strong> — 戴耀晶著，系统梳理粤语语法体系，含时间表达章节</li>
+  <li>🎧 <strong>RTHK 粤语节目</strong> — 香港电台粤语广播，感受真实的粤语时间表达</li>
+  <li>📖 <strong>粤语日常高频场景</strong> — 参考笔记，涵盖四大场景中的时间表达</li>
+</ul>
+
+<div class="quiz-section">
+  <h2>练习：选择地道的粤语时间表达</h2>
+  <p>以下场景，哪个是最地道的粤语说法？</p>
+
+  <div class="quiz-question" id="q1">
+    <span class="q-num">Q1</span>
+    <div class="context">朋友问你明天要不要一起吃饭。</div>
+    <div class="sentence">你回答「明天再说」：</div>
+    <div class="options">
+      <button class="option-btn" data-correct="false" onclick="check(this)">明天再说</button>
+      <button class="option-btn" data-correct="true" onclick="check(this)">听日再讲</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="quiz-question" id="q2">
+    <span class="q-num">Q2</span>
+    <div class="context">你要和朋友约时间见面。</div>
+    <div class="sentence">你说「三点整见」：</div>
+    <div class="options">
+      <button class="option-btn" data-correct="true" onclick="check(this)">三点正见</button>
+      <button class="option-btn" data-correct="false" onclick="check(this)">三点整见</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="quiz-question" id="q3">
+    <span class="q-num">Q3</span>
+    <div class="context">同事让你先走，他还要加班。</div>
+    <div class="sentence">你说「好的，我先走了」：</div>
+    <div class="options">
+      <button class="option-btn" data-correct="false" onclick="check(this)">好，我先走。</button>
+      <button class="option-btn" data-correct="true" onclick="check(this)">好，我行先。</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="quiz-question" id="q4">
+    <span class="q-num">Q4</span>
+    <div class="context">朋友问你后天有没有空。</div>
+    <div class="sentence">你说「后天我有空」：</div>
+    <div class="options">
+      <button class="option-btn" data-correct="false" onclick="check(this)">后天我有空。</button>
+      <button class="option-btn" data-correct="true" onclick="check(this)">后日我有空。</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="quiz-question" id="q5">
+    <span class="q-num">Q5</span>
+    <div class="context">老板让你立刻给他一份报告。</div>
+    <div class="sentence">你说「我马上给你」：</div>
+    <div class="options">
+      <button class="option-btn" data-correct="false" onclick="check(this)">我待会俾你。</button>
+      <button class="option-btn" data-correct="true" onclick="check(this)">我即刻俾你。</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="quiz-question" id="q6">
+    <span class="q-num">Q6</span>
+    <div class="context">朋友抱怨你总是迟到。</div>
+    <div class="sentence">你说「我总是迟到」：</div>
+    <div class="options">
+      <button class="option-btn" data-correct="false" onclick="check(this)">我经常迟到。</button>
+      <button class="option-btn" data-correct="true" onclick="check(this)">我成日迟到。</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="quiz-question" id="q7">
+    <span class="q-num">Q7</span>
+    <div class="context">你告诉朋友你等了十分钟。</div>
+    <div class="sentence">你说「我等了十分钟」：</div>
+    <div class="options">
+      <button class="option-btn" data-correct="true" onclick="check(this)">我等咗十分钟。</button>
+      <button class="option-btn" data-correct="false" onclick="check(this)">我等紧十分钟。</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="quiz-question" id="q8">
+    <span class="q-num">Q8</span>
+    <div class="context">朋友约你吃饭，你说「你迟一点来吧」。</div>
+    <div class="sentence">你说：</div>
+    <div class="options">
+      <button class="option-btn" data-correct="false" onclick="check(this)">你迟啲嚟啦。</button>
+      <button class="option-btn" data-correct="true" onclick="check(this)">你迟少少嚟就得喇。</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="quiz-question" id="q9">
+    <span class="q-num">Q9</span>
+    <div class="context">你说「你等一下」。</div>
+    <div class="sentence">最地道的粤语说法是：</div>
+    <div class="options">
+      <button class="option-btn" data-correct="false" onclick="check(this)">你等一会。</button>
+      <button class="option-btn" data-correct="true" onclick="check(this)">你等下。</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="quiz-question" id="q10">
+    <span class="q-num">Q10</span>
+    <div class="context">你说「明天」的口语说法。</div>
+    <div class="sentence">最地道的粤语口语是：</div>
+    <div class="options">
+      <button class="option-btn" data-correct="false" onclick="check(this)">明日</button>
+      <button class="option-btn" data-correct="true" onclick="check(this)">听日</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="score-box" id="score-box">
+    <div class="score-num" id="score-num"></div>
+    <div class="score-label" id="score-label"></div>
+  </div>
+</div>
+
+<div class="followup">
+  <strong>有问题？</strong>问我任何粤语时间表达的问题——无论是「后日和大后日有什么区别」还是「成日到底是什么意思」，我都会详细解释。不知道某个时间词为什么这么用？这正是我们该讨论的。随时问，我会解释给你听。
+  <br><br>
+  <strong>推荐资源：</strong><a href="https://www.rthk.hk/rthk/cantonese.htm" target="_blank">RTHK 粤语节目</a> — 听粤语母语者的真实对话，注意他们如何使用「听日」「后日」「成日」等时间词。
+  <br><br>
+  <a href="../reference/time-expressions.html" class="resource-link">查看快速参考卡</a>
+</div>
+
+<div class="footer">
+  <a href="0007-slang-catchphrases.html">上一课</a> | <a href="0000-toc.html">目录</a> | <a href="0009-shejiao-hanxuan.html">下一课</a>
+
+</div>
+
+<script>
+  const explanations = {
+    q1: { correct: '「听日」是「明天」的粤语口语说法，比「明日」更自然。粤语中「听」= 明（未来），所以「听日」= 明天。', wrong: '「明天再说」是普通话说法，在粤语对话中会说「听日再讲」，「明天」听起来太书面了。' },
+    q2: { correct: '粤语用「正」表示整点，「三点正」= 三点整。这是粤语时间表达的独特标记。', wrong: '「三点整」是普通话说法，粤语中用「三点正」。「正」字是粤语独有的整点标记。' },
+    q3: { correct: '粤语中「先」放在句末更自然。「你行先」= 你先走。这是粤语时间副词的核心特征。', wrong: '「我先走」是普通话语序，虽然在粤语中也能听懂，但「你行先」更地道。' },
+    q4: { correct: '「后日」是粤语中专指「后天」的说法，普通话没有对应的单字表达。用「后天」能听懂但不地道。', wrong: '「后天」是普通话说法。粤语中用「后日」来表示后天，这是粤语时间系统的独特之处。' },
+    q5: { correct: '「即刻」= 立刻、马上，表示立即行动。老板要你马上交报告，应该用「即刻」。', wrong: '「待会」= 待会儿，表示稍后才做。老板要你马上交报告，说「待会」就不对了。' },
+    q6: { correct: '「成日」= 整天、老是，是粤语中最常用的频率副词之一，比「经常」更口语、更地道。', wrong: '「经常」虽然也能用，但「成日」更地道、更口语化。母语者抱怨时会说「你成日迟到」。' },
+    q7: { correct: '「咗」是粤语的完成体标记，相当于普通话的「了」。「等咗十分钟」= 等了十分钟。', wrong: '「等紧」= 正在等，表示进行体。「我等紧十分钟」语法不通——「紧」表示正在进行，不能和「十分钟」搭配。' },
+    q8: { correct: '「迟少少」= 稍迟一点，「就得喇」= 就可以了。这是粤语中最自然的邀请别人稍后到达的说法。', wrong: '「你迟啲嚟啦」虽然也能用，但语气不够自然。「迟少少」比「迟啲」更委婉，配合「就得喇」更完整。' },
+    q9: { correct: '「等下」= 等一下，是粤语中最常用的请求等待的表达。简洁、自然、高频。', wrong: '「等一会」是普通话说法，粤语中用「等下」或「等一阵」，「等下」更简短常用。' },
+    q10: { correct: '「听日」是「明天」的粤语口语说法，使用频率远高于「明日」。跟熟人说话时说「听日」。', wrong: '「明日」是书面说法，虽然也能用，但口语中「听日」更自然、更地道。' }
+  };
+
+  let answered = {};
+  let score = 0;
+  const total = 10;
+
+  function check(btn) {
+    const question = btn.closest('.quiz-question');
+    const qid = question.id;
+    if (answered[qid]) return;
+    answered[qid] = true;
+
+    const isCorrect = btn.dataset.correct === 'true';
+    const allBtns = question.querySelectorAll('.option-btn');
+    const feedback = question.querySelector('.feedback');
+
+    allBtns.forEach(b => {
+      b.style.pointerEvents = 'none';
+      if (b.dataset.correct === 'true') b.classList.add('reveal-correct');
+    });
+
+    if (isCorrect) {
+      btn.classList.add('correct');
+      feedback.className = 'feedback show correct-fb';
+      feedback.textContent = explanations[qid].correct;
+      score++;
+    } else {
+      btn.classList.add('wrong');
+      feedback.className = 'feedback show wrong-fb';
+      feedback.textContent = explanations[qid].wrong;
+    }
+
+    if (Object.keys(answered).length === total) {
+      const box = document.getElementById('score-box');
+      const num = document.getElementById('score-num');
+      const label = document.getElementById('score-label');
+      num.textContent = score + ' / ' + total;
+      if (score === total) label.textContent = '全对！你的粤语时间表达已经很地道了。';
+      else if (score >= 7) label.textContent = '不错！复习一下错过的题目，解释告诉你为什么。';
+      else label.textContent = '继续加油！重读上面的时间卡片再试一次。';
+      box.classList.add('show');
+    }
+  }
+</script></body>
+</html>

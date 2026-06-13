@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>粵拼速查卡 — Jyutping Quick Reference</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@400;500;700&display=swap');
+
+  :root {
+    --bg: #fdfdfd;
+    --text: #1a1a1a;
+    --accent: #b71c1c;
+    --accent-light: #fce4ec;
+    --muted: #666;
+    --border: #e0e0e0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Noto Sans TC', -apple-system, sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--text);
+    background: var(--bg);
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 1.5rem 1.5rem;
+  }
+
+  h1 {
+    font-family: 'Noto Serif TC', Georgia, serif;
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+    color: var(--accent);
+  }
+
+  .subtitle { color: var(--muted); font-size: 0.85rem; margin-bottom: 1.5rem; }
+
+  h2 {
+    font-family: 'Noto Serif TC', Georgia, serif;
+    font-size: 1rem;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--accent);
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0.5rem 0;
+    font-size: 0.9rem;
+  }
+
+  th {
+    background: var(--accent-light);
+    color: var(--accent);
+    font-weight: 700;
+    padding: 0.5rem;
+    text-align: left;
+    border-bottom: 2px solid var(--accent);
+  }
+
+  td {
+    padding: 0.4rem 0.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  tr:hover td { background: #fafafa; }
+
+  .syllable {
+    font-family: 'Noto Serif TC', Georgia, serif;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: 0.02em;
+  }
+
+  .hanzi {
+    font-family: 'Noto Serif TC', Georgia, serif;
+    font-size: 1.05rem;
+  }
+
+  .back-link {
+    display: inline-block;
+    margin-bottom: 1.5rem;
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 0.85rem;
+  }
+
+  .back-link:hover { text-decoration: underline; }
+
+  .footer {
+    margin-top: 2rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--border);
+    font-size: 0.75rem;
+    color: var(--muted);
+  }
+
+  @media print {
+    body { padding: 1cm; max-width: none; }
+  }
+</style>
+</head>
+<body>
+
+<a href="../lessons/0002-jyutping-intro.html" class="back-link">← 返回第2課</a>
+
+<h1>粵拼速查卡</h1>
+<p class="subtitle">Jyutping Quick Reference — 粵語拼音速查表</p>
+
+<h2>聲母（Initials）</h2>
+<table>
+  <tr><th>粵拼</th><th>例字</th><th>說明</th></tr>
+  <tr><td class="syllable">b</td><td class="hanzi">巴</td><td>/p/ 不送氣</td></tr>
+  <tr><td class="syllable">p</td><td class="hanzi">爬</td><td>/pʰ/ 送氣</td></tr>
+  <tr><td class="syllable">m</td><td class="hanzi">媽</td><td>/m/</td></tr>
+  <tr><td class="syllable">f</td><td class="hanzi">花</td><td>/f/</td></tr>
+  <tr><td class="syllable">d</td><td class="hanzi">多</td><td>/t/ 不送氣</td></tr>
+  <tr><td class="syllable">t</td><td class="hanzi">拖</td><td>/tʰ/ 送氣</td></tr>
+  <tr><td class="syllable">n</td><td class="hanzi">那</td><td>/n/</td></tr>
+  <tr><td class="syllable">l</td><td class="hanzi">啦</td><td>/l/</td></tr>
+  <tr><td class="syllable">g</td><td class="hanzi">歌</td><td>/k/ 不送氣</td></tr>
+  <tr><td class="syllable">k</td><td class="hanzi">科</td><td>/kʰ/ 送氣</td></tr>
+  <tr><td class="syllable">h</td><td class="hanzi">蝦</td><td>/h/</td></tr>
+  <tr><td class="syllable">j</td><td class="hanzi">呀</td><td>/j/ 像 English yes</td></tr>
+  <tr><td class="syllable">w</td><td class="hanzi">蛙</td><td>/w/ 像 English we</td></tr>
+  <tr><td class="syllable">ng</td><td class="hanzi">五</td><td>/ŋ/ 喉鼻音，粵語特有</td></tr>
+  <tr><td class="syllable">z</td><td class="hanzi">自</td><td>/ts/ 不送氣</td></tr>
+  <tr><td class="syllable">c</td><td class="hanzi">次</td><td>/tsʰ/ 送氣</td></tr>
+  <tr><td class="syllable">s</td><td class="hanzi">四</td><td>/s/</td></tr>
+  <tr><td class="syllable">y</td><td class="hanzi">耳</td><td>/j/ 半元音</td></tr>
+</table>
+
+<h2>入聲韻尾（Stop Finals）</h2>
+<table>
+  <tr><th>粵拼</th><th>例字</th><th>發音</th></tr>
+  <tr><td class="syllable">-p</td><td class="hanzi">急</td><td>雙唇閉合，不爆破</td></tr>
+  <tr><td class="syllable">-t</td><td class="hanzi">八</td><td>舌尖抵上齶，不爆破</td></tr>
+  <tr><td class="syllable">-k</td><td class="hanzi">色</td><td>舌根抵軟齶，不爆破</td></tr>
+</table>
+
+<h2>鼻音韻尾（Nasal Finals）</h2>
+<table>
+  <tr><th>粵拼</th><th>例字</th><th>發音</th></tr>
+  <tr><td class="syllable">-m</td><td class="hanzi">咸</td><td>閉唇鼻音，普通話無</td></tr>
+  <tr><td class="syllable">-n</td><td class="hanzi">心</td><td>舌尖抵上齒齦</td></tr>
+  <tr><td class="syllable">-ng</td><td class="hanzi">聲</td><td>舌根抵軟齶</td></tr>
+</table>
+
+<h2>六個基本聲調</h2>
+<table>
+  <tr><th>調號</th><th>名稱</th><th>例字</th><th>音高</th></tr>
+  <tr><td>1</td><td>高平調</td><td class="hanzi">天</td><td>★★★★★</td></tr>
+  <tr><td>2</td><td>中升調</td><td class="hanzi">地</td><td>★★→★★★★</td></tr>
+  <tr><td>3</td><td>低平調</td><td class="hanzi">大</td><td>★★★</td></tr>
+  <tr><td>4</td><td>低降調</td><td class="hanzi">想</td><td>★★★★★→★</td></tr>
+  <tr><td>5</td><td>低升調</td><td class="hanzi">雪</td><td>★★→★★★</td></tr>
+  <tr><td>6</td><td>中降調</td><td class="hanzi">食</td><td>★★★→★</td></tr>
+</table>
+
+<h2>常用韻母（Finals）速查</h2>
+<table>
+  <tr><th>粵拼</th><th>例字</th></tr>
+  <tr><td class="syllable">aa</td><td class="hanzi">花</td></tr>
+  <tr><td class="syllable">a</td><td class="hanzi">茶</td></tr>
+  <tr><td class="syllable">ai</td><td class="hanzi">買</td></tr>
+  <tr><td class="syllable">au</td><td class="hanzi">手</td></tr>
+  <tr><td class="syllable">am</td><td class="hanzi">三</td></tr>
+  <tr><td class="syllable">an</td><td class="hanzi">山</td></tr>
+  <tr><td class="syllable">ang</td><td class="hanzi">光</td></tr>
+  <tr><td class="syllable">ap</td><td class="hanzi">接</td></tr>
+  <tr><td class="syllable">at</td><td class="hanzi">十</td></tr>
+  <tr><td class="syllable">ak</td><td class="hanzi">力</td></tr>
+  <tr><td class="syllable">e</td><td class="hanzi">車</td></tr>
+  <tr><td class="syllable">eoi</td><td class="hanzi">教</td></tr>
+  <tr><td class="syllable">o</td><td class="hanzi">多</td></tr>
+  <tr><td class="syllable">u</td><td class="hanzi">書</td></tr>
+  <tr><td class="syllable">u:</td><td class="hanzi">豬</td></tr>
+  <tr><td class="syllable">i</td><td class="hanzi">西</td></tr>
+  <tr><td class="syllable">u</td><td class="hanzi">書</td></tr>
+  <tr><td class="syllable">ui</td><td class="hanzi">貴</td></tr>
+  <tr><td class="syllable">un</td><td class="hanzi">寬</td></tr>
+  <tr><td class="syllable">ung</td><td class="hanzi">江</td></tr>
+  <tr><td class="syllable">eoiu</td><td class="hanzi">橋</td></tr>
+  <tr><td class="syllable">ym</td><td class="hanzi">容</td></tr>
+</table>
+
+<h2>拼讀公式</h2>
+<p style="text-align:center; font-family:'Noto Serif TC',Georgia,serif; font-size:1rem; margin:0.5rem 0;">
+  <strong>聲母 + 韻母 + 聲調數字</strong>
+</p>
+<p style="text-align:center; color:var(--muted); font-size:0.85rem;">
+  例：<strong>ngo5</strong> = ng + o + 5 = 我 &nbsp;|&nbsp; <strong>sat6</strong> = s + at + 6 = 食
+</p>
+
+<div class="footer">
+  <span>粵拼速查卡 · TeachHub · 第2課參考</span>
+</div>
+
+</body>
+</html>

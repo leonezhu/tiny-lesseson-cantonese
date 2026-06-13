@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第七课 — 俚语与口头禅</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap');
+
+  :root {
+    --bg: #fdfdfd;
+    --text: #1a1a1a;
+    --accent: #b71c1c;
+    --accent-light: #fce4ec;
+    --muted: #666;
+    --border: #e0e0e0;
+    --correct: #2e7d32;
+    --correct-bg: #e8f5e9;
+    --wrong: #c62828;
+    --wrong-bg: #ffebee;
+    --warn-bg: #fff8e1;
+    --warn-border: #f9a825;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Noto Sans SC', -apple-system, sans-serif;
+    font-size: 16px;
+    line-height: 1.8;
+    color: var(--text);
+    background: var(--bg);
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+  }
+
+  h1 {
+    font-family: 'Noto Serif SC', Georgia, serif;
+    font-size: 1.8rem;
+    margin-bottom: 0.25rem;
+    color: var(--accent);
+  }
+
+  .lesson-meta {
+    color: var(--muted);
+    font-size: 0.85rem;
+    margin-bottom: 2rem;
+  }
+
+  .goal-box {
+    background: var(--accent-light);
+    border-left: 4px solid var(--accent);
+    padding: 1rem 1.25rem;
+    margin-bottom: 2rem;
+    border-radius: 0 4px 4px 0;
+  }
+
+  .goal-box strong { color: var(--accent); }
+
+  h2 {
+    font-family: 'Noto Serif SC', Georgia, serif;
+    font-size: 1.2rem;
+    margin-top: 2.5rem;
+    margin-bottom: 0.75rem;
+    color: var(--accent);
+  }
+
+  h3 {
+    font-family: 'Noto Serif SC', Georgia, serif;
+    font-size: 1.05rem;
+    margin-bottom: 0.25rem;
+    color: var(--accent);
+  }
+
+  p { margin-bottom: 0.75rem; }
+
+  .card {
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1.25rem;
+    margin: 1rem 0;
+  }
+
+  .card h3 { margin-bottom: 0.5rem; }
+
+  .comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+    font-size: 0.95rem;
+  }
+
+  .comparison-table th {
+    background: var(--accent);
+    color: white;
+    padding: 0.6rem 0.8rem;
+    text-align: left;
+    font-weight: 600;
+  }
+
+  .comparison-table td {
+    padding: 0.5rem 0.8rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .comparison-table tr:nth-child(even) td {
+    background: #fafafa;
+  }
+
+  .comparison-table .cantonese {
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  .comparison-table .mandarin {
+    color: var(--muted);
+  }
+
+  .highlight-box {
+    background: var(--warn-bg);
+    border-left: 3px solid var(--warn-border);
+    padding: 0.8rem 1rem;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+  }
+
+  .highlight-box strong { color: #e65100; }
+
+  .example-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  .example-list li {
+    padding: 0.3rem 0;
+    padding-left: 1.2rem;
+    position: relative;
+  }
+
+  .example-list li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-weight: 700;
+  }
+
+  .jyutping {
+    font-family: 'Noto Serif SC', Georgia, serif;
+    font-size: 0.9rem;
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  .quiz-section {
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 2px solid var(--border);
+  }
+
+  .quiz-section h2 {
+    margin-top: 0;
+  }
+
+  .quiz-question {
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1.25rem;
+    margin: 1rem 0;
+    position: relative;
+  }
+
+  .quiz-question .q-num {
+    position: absolute;
+    top: -0.6rem;
+    left: 1rem;
+    background: var(--accent);
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.1rem 0.5rem;
+    border-radius: 3px;
+  }
+
+  .quiz-question .context {
+    color: var(--muted);
+    font-size: 0.85rem;
+    margin-bottom: 0.5rem;
+    font-style: italic;
+  }
+
+  .quiz-question .sentence {
+    font-size: 1.05rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .quiz-question .sentence .blank {
+    display: inline-block;
+    min-width: 100px;
+    border-bottom: 2px dashed var(--accent);
+    text-align: center;
+    font-weight: 600;
+    color: var(--accent);
+  }
+
+  .options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+  }
+
+  .option-btn {
+    background: white;
+    border: 2px solid var(--border);
+    border-radius: 4px;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.95rem;
+    cursor: pointer;
+    text-align: center;
+    font-family: 'Noto Sans SC', sans-serif;
+    transition: all 0.15s;
+  }
+
+  .option-btn:hover {
+    border-color: var(--accent);
+    background: var(--accent-light);
+  }
+
+  .option-btn.correct {
+    border-color: var(--correct);
+    background: var(--correct-bg);
+    color: var(--correct);
+    font-weight: 600;
+  }
+
+  .option-btn.wrong {
+    border-color: var(--wrong);
+    background: var(--wrong-bg);
+    color: var(--wrong);
+  }
+
+  .option-btn.reveal-correct {
+    border-color: var(--correct);
+    background: var(--correct-bg);
+    color: var(--correct);
+    font-weight: 600;
+  }
+
+  .feedback {
+    margin-top: 0.75rem;
+    padding: 0.6rem 0.8rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    display: none;
+  }
+
+  .feedback.show { display: block; }
+  .feedback.correct-fb { background: var(--correct-bg); color: var(--correct); }
+  .feedback.wrong-fb { background: var(--wrong-bg); color: var(--wrong); }
+
+  .score-box {
+    background: var(--accent-light);
+    border: 2px solid var(--accent);
+    border-radius: 6px;
+    padding: 1.25rem;
+    margin-top: 1.5rem;
+    text-align: center;
+    display: none;
+  }
+
+  .score-box.show { display: block; }
+  .score-box .score-num { font-size: 2rem; font-weight: 700; color: var(--accent); }
+  .score-box .score-label { color: var(--muted); font-size: 0.9rem; }
+
+  .followup {
+    background: #f0f4f8;
+    border-radius: 6px;
+    padding: 1rem 1.25rem;
+    margin-top: 2rem;
+    font-size: 0.9rem;
+  }
+
+  .followup strong { color: var(--accent); }
+
+  .resource-link {
+    display: inline-block;
+    margin-top: 0.5rem;
+    padding: 0.4rem 0.8rem;
+    background: var(--accent);
+    color: white;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+
+  .resource-link:hover { opacity: 0.9; }
+
+  .footer {
+    margin-top: 3rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+    font-size: 0.8rem;
+    color: var(--muted);
+    text-align: center;
+  }
+
+  .footer a { color: var(--accent); text-decoration: none; }
+
+  .nav-disabled {
+    color: var(--muted);
+    text-decoration: line-through;
+    opacity: 0.5;
+  }
+
+  @media print {
+    body { padding: 1.5cm; max-width: none; }
+    .option-btn, .feedback, .score-box { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<h1>俚语与口头禅</h1>
+<p class="lesson-meta">第七课 · ~12 分钟 · 粤语口语进阶</p>
+
+<div class="goal-box">
+  <strong>本课结束时</strong>，你将能够：（1）理解和使用粤语中最常见的口头禅和语气词；（2）识别和运用地道俚语（俚语）；（3）在不同社交场景中选择合适的口语表达；（4）听懂粤语母语者的"潜台词"。
+</div>
+
+<h2>为什么这很重要</h2>
+<p>
+  学粤语，如果只会课本上的标准说法，在香港和广州街头会遇到一个有趣的现象：<strong>别人说的话你大概听得懂，但你自己说的话听起来像从教科书里走出来的</strong>。粤语的口语魅力恰恰在于那些教科书不会教的东西——口头禅、俚语、语气词，它们让语言有温度、有个性、有"街坊味"。这一课就是帮你把粤语从"正确"变成"地道"。
+</p>
+
+<h2>第一部分：口头禅系统（必用高频口语）</h2>
+
+<p>
+  粤语有一些<strong>万用口头禅</strong>，出现在几乎所有对话中。掌握它们，你的粤语立刻就能摆脱"课本腔"。
+</p>
+
+<div class="card">
+  <h3>1. 「咩」（me1）— 什么（日常替代「什麼」）</h3>
+  <table class="comparison-table">
+    <tr><th>普通话</th><th>粤语</th><th>粤拼</th><th>场景</th></tr>
+    <tr><td>你在干什么？</td><td class="cantonese">你喺度做咩？</td><td class="cantonese">nei5 hai2 dou6 zou6 me1?</td><td>最万用的日常问句</td></tr>
+    <tr><td>怎么了？</td><td class="cantonese">出咩事？</td><td class="cantonese">ceot1 me1 sei3?</td><td>看到对方表情不对时</td></tr>
+    <tr><td>什么！（惊讶）</td><td class="cantonese">咩呀！</td><td class="cantonese">me1 aa3!</td><td>表示惊讶或难以置信</td></tr>
+    <tr><td>随便啦，没什么</td><td class="cantonese">冇咩嘅。</td><td class="cantonese">mou5 me1 ge3.</td><td>回答别人的关心</td></tr>
+  </table>
+</div>
+
+<div class="card">
+  <h3>2. 「唔该」（m4 goi1）— 谢谢（服务场合专用）</h3>
+  <p>
+    这是粤语最独特、也最容易让中文母语者困惑的表达。在粤语中，<strong>"唔该"只用于别人帮了你</strong>——服务员给你端茶、同事帮你递文件、司机等你上车。跟普通话说"谢谢"的场景，粤语几乎总是用"唔该"。
+  </p>
+  <ul class="example-list">
+    <li>服务员：「食嘢未呀？」→ 你：「唔该晒。」（最自然的服务场合感谢）</li>
+    <li>同事帮你按了电梯 → 「唔该晒！」</li>
+    <li>问路后对方回答了 → 「唔该晒！」</li>
+    <li>上地铁刷卡后 → 「唔该。」</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h3>3. 「多谢」（do1 zek3）— 谢谢（私人/礼物场合专用）</h3>
+  <p>
+    跟"唔该"相对的，<strong>"多谢"用于别人送了你东西、帮了你大忙、给了你好处</strong>。"唔该"像"劳驾"，"多谢"像"非常感谢"。
+  </p>
+  <ul class="example-list">
+    <li>别人送你礼物 → 「多谢晒！」（不是"唔该"！）</li>
+    <li>老板给你升职加薪 → 「多谢老板！」</li>
+    <li>朋友请你吃饭 → 「多谢呀！」</li>
+    <li>收到红包 → 「多谢晒！」</li>
+  </ul>
+</div>
+
+<div class="highlight-box">
+  <strong>关键差异：</strong>很多粤语学习者会混用「唔该」和「多谢」。一个简单的方法：<strong>「唔该」= 小忙/服务，「多谢」= 大恩/礼物</strong>。如果对方端了杯水给你，说"唔该"；如果对方请你吃了顿大餐，说"多谢"。
+</div>
+
+<div class="card">
+  <h3>4. 「啦」（laa1）— 啦（最通用的句末语气词）</h3>
+  <p>
+    "啦"是粤语中使用频率最高的语气词之一，它的作用跟普通话的"啦"类似，但使用频率高得多。几乎所有日常对话都会用到：
+  </p>
+  <table class="comparison-table">
+    <tr><th>粤语</th><th>粤拼</th><th>意思</th><th>语气</th></tr>
+    <tr><td>好啦</td><td>lou5 laa1</td><td>好了/行了</td><td>表示让步或结束讨论</td></tr>
+    <tr><td>快啲啦</td><td>faai3 di1 laa1</td><td>快点嘛</td><td>催促</td></tr>
+    <tr><td>唔使啦</td><td>m4 sai2 laa1</td><td>不用啦</td><td>婉拒</td></tr>
+    <tr><td>走啦</td><td>zau2 laa1</td><td>走吧</td><td>提议离开</td></tr>
+    <tr><td>知啦</td><td>zi1 laa1</td><td>知道啦</td><td>不耐烦地确认</td></tr>
+  </table>
+</div>
+
+<h2>第二部分：社交万能俚语</h2>
+
+<p>
+  以下俚语在粤语区几乎无处不在，掌握了它们，你就能听懂90%的日常对话。
+</p>
+
+<div class="card">
+  <h3>5. 「OK / 冇问题」（hou2 / mou5 man4 tai6）— 没问题</h3>
+  <p>
+    粤语中几乎万能的肯定回答。粤语有个独特之处：<strong>「OK」本身就是粤语中最常用的词之一</strong>，发音为 hou2，跟英语的 OK 几乎一样。
+  </p>
+  <ul class="example-list">
+    <li>「三点见面得唔得？」→ 「OK 㗎喇。」（三点见面可以吗？→ OK 的。）</li>
+    <li>「你帮我看一下呢份 document 啦。」→ 「OK 㗎。」（好的没问题。）</li>
+    <li>「你帮我 call 个 cabbie。」→ 「OK。」（帮我叫个出租车。→ OK。）</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h3>6. 「搞掂 / 搞掂佢」（gau2 dim6 / gau2 dim6 keoi5）— 搞定了</h3>
+  <p>
+    这是粤语中最实用的工作俚语。「搞掂」= 完成/搞定，「搞掂佢」= 搞定它（带一点干劲和霸气）。
+  </p>
+  <ul class="example-list">
+    <li>「份 report 几时交？」→ 「放工前搞掂。」（报告什么时候交？→ 下班前搞定。）</li>
+    <li>「呢个项目几难。」→ 「搞掂佢啦！」（这个项目很难。→ 搞定它！）</li>
+    <li>「我今日要搞掂三样嘢。」（我今天要搞定三件事。）</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h3>7. 「搞唔掂」（gau2 m4 dim6）— 搞不定/搞砸了</h3>
+  <p>
+    "搞掂"的否定形式。粤语里"唔"就是"不"，所以"搞唔掂"字面意思就是"搞不定"。
+  </p>
+  <ul class="example-list">
+    <li>「呢个 client 太难应付，我搞唔掂。」（这个客户太难应付，我搞不定。）</li>
+    <li>「如果你搞唔掂可以畀我。」（如果你搞不定的话可以给我。）</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h3>8. 「好嘢」（hou2 je5）— 好样的/厉害</h3>
+  <p>
+    用来夸奖别人做得好，类似普通话的"好样的"、"了不起"。但语气可以根据上下文变化——真心夸奖或讽刺都能用。
+  </p>
+  <ul class="example-list">
+    <li>（真心）「你一个人搞掂咗个 presentation？好嘢呀！」（你一个人搞定了那个 presentation？好样的！）</li>
+    <li>（讽刺）「你搞砸咗个 project 仲讲『我尽力啦』？好嘢！」（你搞砸了项目还说"我尽力了"？好样的！（反讽））</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h3>9. 「食咗饭未？」（sik6 zo2 faan6 mei6?）— 吃了吗？</h3>
+  <p>
+    这是粤语中最经典的<strong>社交寒暄语</strong>，相当于普通话的"吃了吗"。但注意：<strong>这真的是问候语，不是真的在问你吃了没有</strong>。标准回答是「食咗喇」或「未呀，打算食啲咩？」
+  </p>
+  <ul class="example-list">
+    <li>邻居见面：「食咗饭未？」→ 「食咗喇，你食咗未？」</li>
+    <li>同事路过你的座位：「食咗饭未？」→ 「先至食完，你呢？」</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h3>10. 「收皮」（sau1 pei4）— 闭嘴/滚开（粗口俚语）</h3>
+  <p>
+    <strong>这是一个比较粗鲁的俚语</strong>，字面意思是"把你的皮收起来"（类似"滚蛋"）。在朋友间开玩笑时偶尔使用，但<strong>不建议在正式场合或对不太熟的人使用</strong>。
+  </p>
+  <ul class="example-list">
+    <li>朋友间开玩笑：「你再咁嘈就收皮啦！」（你再这么吵就滚蛋！）</li>
+    <li>⚠️ 注意：在办公室或对长辈说这个非常不礼貌。</li>
+  </ul>
+</div>
+
+<h2>第三部分：情绪与感叹词</h2>
+
+<p>
+  粤语的感叹词非常丰富，这是粤语口语最有表现力的部分之一。它们能一句话传达强烈的情绪。
+</p>
+
+<div class="card">
+  <h3>11. 「哇」（wa1）— 哇！（惊讶、赞叹、不屑）</h3>
+  <p>
+    "哇"是粤语中最万用的感叹词，可以表达惊讶、赞叹、不屑等多种情绪，完全取决于<strong>语调</strong>和<strong>上下文</strong>。
+  </p>
+  <table class="comparison-table">
+    <tr><th>粤语</th><th>粤语拼</th><th>含义</th><th>语调</th></tr>
+    <tr><td>哇！好靓啊！</td><td>wa1! hou2 leng3 aa!</td><td>哇！好漂亮啊！（赞叹）</td><td>声调上扬</td></tr>
+    <tr><td>哇……</td><td>wa1……</td><td>哇……（无语、震惊）</td><td>拖长音</td></tr>
+    <tr><td>哇靠</td><td>wa1 hau3</td><td>靠！（惊讶、懊恼）</td><td>较重语气</td></tr>
+    <tr><td>哇塞</td><td>wa1 saai3</td><td>哇塞（年轻一代用）</td><td>轻松语调</td></tr>
+  </table>
+</div>
+
+<div class="card">
+  <h3>12. 「咦」（ji5）— 咦？（疑惑、发现）</h3>
+  <p>
+    表示疑惑或发现了什么意想不到的东西。和普通话的"咦"用法一样。
+  </p>
+  <ul class="example-list">
+    <li>「咦？个人点解唔喺度？」（咦？这个人怎么不在？）</li>
+    <li>「咦，个 menu 同上次唔同喎。」（咦，菜单跟上次不一样诶。）</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h3>13. 「唉」（oi3）— 唉（叹气、无奈）</h3>
+  <p>
+    表示叹息、无奈、烦恼。跟普通话的"唉"一样通用，但粤语的"唉"后面经常跟「噃」（be3）加强语气。
+  </p>
+  <ul class="example-list">
+    <li>「唉，又系咁。」（唉，还是这样。）</li>
+    <li>「唉，钱唔够使呀。」（唉，钱不够花了。）</li>
+    <li>「唉，搞唔掂㗎喇。」（唉，搞不定了。）</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h3>14. 「咯」（lo3）— 了/咯（强调结果）</h3>
+  <p>
+    "咯"是"了"的粤语加强版，强调事情已经完成、不可逆转。带有一种"完了/结束了"的意味。
+  </p>
+  <ul class="example-list">
+    <li>「完喇咯。」（完了。）</li>
+    <li>「搞掂咯。」（搞定了。）</li>
+    <li>「迟咗咯。」（迟到了。）</li>
+    <li>「冇得弹咯。」（没得挑剔了/无可挑剔了。）</li>
+  </ul>
+</div>
+
+<div class="highlight-box">
+  <strong>语气词总结：</strong>粤语的句末语气词是口语的灵魂。记住几个核心：<strong>「啦」（laa1）</strong>= 好了/行了，<strong>「嘅」（ge3）</strong>= 的/啊（表解释），<strong>「㗎」（gaa3）</strong>= 的/呀（强调），<strong>「喎」（wo3）</strong>= 诶/呀（表意外），<strong>「咯」（lo3）</strong>= 了（表终结）。掌握了这几个，你的粤语听起来就"有味"了。
+</div>
+
+<h2>第四部分：工作场合常用俚语</h2>
+
+<p>
+  在香港或广州的职场环境中，有一些特定的俚语和表达非常实用。
+</p>
+
+<div class="card">
+  <h3>15. 「收工」（sau1 gung1）— 下班</h3>
+  <table class="comparison-table">
+    <tr><th>粤语</th><th>粤拼</th><th>意思</th><th>场景</th></tr>
+    <tr><td>今日几时收工？</td><td>gam1 jat6 gei2 si6 sau1 gung1?</td><td>今天几点下班？</td><td>问同事下班时间</td></tr>
+    <tr><td>收工！走啦！</td><td>sau1 gung1! zau2 laa1!</td><td>下班！走吧！</td><td>下班时的欢呼</td></tr>
+    <tr><td>加钟/加钟收工</td><td>gaa1 zung1 / gaa1 zung1 sau1 gung1</td><td>加班/加钟下班</td><td>加班说法</td></tr>
+  </table>
+</div>
+
+<div class="card">
+  <h3>16. 「使乜」（sai2 mie1）— 何必/没必要</h3>
+  <p>
+    "使乜"= 没必要/何必，是粤语中非常实用的表达方式，用来建议不需要做某事。
+  </p>
+  <ul class="example-list">
+    <li>「你咁晚先返？使乜咁辛苦㗎！」（你那么晚才回来？何必这么辛苦啊！）</li>
+    <li>「使乜客气啦，坐下啦。」（没必要客气啦，坐下吧。）</li>
+    <li>「你买咁贵嘅嘢？使乜㗎嘛！」（你买这么贵的东西？何必啊！）</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h3>17. 「顶」（ding1）— 顶/超好/厉害到不行</h3>
+  <p>
+    "顶"在粤语俚语中有"很棒、非常好、厉害"的意思。跟普通话的"顶"（顶部）完全不同。
+  </p>
+  <ul class="example-list">
+    <li>「呢个 chef 嘅菜好顶㗎！」（这个厨师的菜超级好吃！）</li>
+    <li>「你顶唔顶得顺？」（你能应付得来吗？/ 你扛得住吗？）</li>
+    <li>「顶你个肺」（ding1 nei5 go3 feoi6）— 这是一个<strong>粗口</strong>，类似"你大爷的"，不建议使用。</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h3>18. 「执生」（zid6 sang1）— 随机应变/灵活处理</h3>
+  <p>
+    "执生"是粤语中最具智慧的词之一。它的意思是<strong>根据实际情况灵活处理，随机应变</strong>，带有一点"看着办"、"自己搞定"的意味。在职场中非常实用。
+  </p>
+  <ul class="example-list">
+    <li>「方案无固定，你执生啦。」（方案没有固定的，你自己看着办吧。）</li>
+    <li>「你执生同 client 讲，话我哋可以。」（你灵活地跟客户说，说我们可以。）</li>
+    <li>「执生」也可以作为名词：「呢个 project 好需要执生嘅人。」（这个项目很需要一个能随机应变的人。）</li>
+  </ul>
+</div>
+
+<div class="highlight-box">
+  <strong>「执生」的文化含义：</strong>这个词体现了粤语文化中一个重要的价值观——<strong>灵活性优于死板的规则</strong>。在香港的职场文化中，"识执生"（知道怎么灵活处理）是一个非常被看重的品质，甚至超过"听话"。
+</div>
+
+<h2>第五部分：常用俚语速查表</h2>
+
+<div class="card">
+  <h3>高频俚语速查</h3>
+  <table class="comparison-table">
+    <tr><th>粤语</th><th>粤拼</th><th>普通话</th><th>使用场景</th></tr>
+    <tr><td>唔该晒</td><td>m4 goi1 sai3</td><td>谢谢（服务场合）</td><td>万能感谢</td></tr>
+    <tr><td>多谢晒</td><td>do1 zek3 sai3</td><td>非常感谢（礼物场合）</td><td>私人感谢</td></tr>
+    <tr><td>OK 㗎喇</td><td>hou2 gaa3 laa1</td><td>好的/没问题</td><td>肯定回答</td></tr>
+    <tr><td>搞掂</td><td>gau2 dim6</td><td>搞定/完成</td><td>工作/任务</td></tr>
+    <tr><td>搞唔掂</td><td>gau2 m4 dim6</td><td>搞不定</td><td>否定回答</td></tr>
+    <tr><td>好嘢</td><td>hou2 je5</td><td>好样的</td><td>夸奖/讽刺</td></tr>
+    <tr><td>收皮</td><td>sau1 pei4</td><td>滚蛋</td><td>粗口（慎用）</td></tr>
+    <tr><td>食咗饭未</td><td>sik6 zo2 faan6 mei6</td><td>吃了吗</td><td>日常寒暄</td></tr>
+    <tr><td>顶</td><td>ding1</td><td>超好/厉害</td><td>赞赏</td></tr>
+    <tr><td>执生</td><td>zid6 sang1</td><td>随机应变</td><td>工作/灵活处理</td></tr>
+    <tr><td>使乜</td><td>sai2 mie1</td><td>何必/没必要</td><td>建议/劝告</td></tr>
+    <tr><td>冇嘢啦</td><td>mou5 je5 laa1</td><td>没什么/没事啦</td><td>婉拒/安抚</td></tr>
+    <tr><td>真系犀利</td><td>zan1 sai6 hai1 lei6</td><td>真的很厉害</td><td>真心夸赞</td></tr>
+    <tr><td>估我啊？</td><td>gu3 ngo5 aa3?</td><td>你骗我啊？</td><td>开玩笑或质疑</td></tr>
+    <tr><td>讲笑㗎嘛</td><td>gong2 siu6 gaa3 maa4</td><td>开玩笑的嘛</td><td>缓解气氛</td></tr>
+  </table>
+</div>
+
+<h2>第六部分：常见错误</h2>
+
+<div class="card">
+  <h3>错误 1：对所有人都说「谢谢」</h3>
+  <p>
+    很多中文母语者会说普通话的"谢谢"，但粤语中<strong>服务场合必须用"唔该"</strong>。你如果在茶餐厅用"谢谢"而不是"唔该"，服务员会觉得你很奇怪。
+  </p>
+  <p>
+    ❌ 服务员端茶来 → 「谢谢！」（奇怪）<br>
+    ✅ 服务员端茶来 → 「唔该晒！」（自然）<br>
+    ❌ 朋友送了你一个礼物 → 「唔该！」（不够郑重）<br>
+    ✅ 朋友送了你一个礼物 → 「多谢晒！」（合适）
+  </p>
+</div>
+
+<div class="card">
+  <h3>错误 2：「OK」说成英语原音</h3>
+  <p>
+    粤语中的「OK」已经本地化为<strong>hou2</strong>（读音接近"猴"），不是英语的 /oʊk/。说成英语原音虽然能听懂，但立刻暴露了"外地人"身份。
+  </p>
+  <p>
+    ❌ 「OK，没问题。」（英语发音）<br>
+    ✅ 「hou2 㗎喇，冇问题。」（地道粤语）<br>
+    ❌ 「I will call you back, OK?」<br>
+    ✅ 「我 call 返你，hou2 㗎。」
+  </p>
+</div>
+
+<div class="card">
+  <h3>错误 3：把「搞掂」和「做咗」混用</h3>
+  <p>
+    「搞掂」强调的是<strong>完成一个任务/解决问题</strong>，而「做咗」只是说"做了"。如果你在会议上说「我今日做咗个 report」，同事会以为你只是"写了个报告"；但如果说「我今日搞掂咗个 report」，意思是「报告完成了（可以提交了）」。
+  </p>
+  <p>
+    ❌ 「我做好份 report 喇。」（我只做了，没说完成）<br>
+    ✅ 「我搞掂咗份 report 喇。」（搞定了，可以交了）
+  </p>
+</div>
+
+<div class="highlight-box">
+  <strong>口语进阶建议：</strong>想要粤语说得更地道？每天听一段粤语播客（推荐「粤语学习」或「港式生活」类），注意母语者如何使用「啦」「㗎」「嘅」「喎」这些语气词。你会发现，母语者讲话时语气词出现频率是外语学习者的<strong>3-5 倍</strong>。
+</div>
+
+<h2>参考资源</h2>
+<ul class="example-list">
+  <li>📚 <strong>《粤语常用口语词典》</strong> — 黄伯飞著，收录最地道的粤语口语表达</li>
+  <li>🎧 <strong>「粤语学习」播客</strong> — 每集 10 分钟，讲解一个粤语文化话题</li>
+  <li>📖 <strong>「港式生活」YouTube 频道</strong> — 通过真实生活场景学粤语</li>
+</ul>
+
+<div class="quiz-section">
+  <h2>练习：选择地道的粤语表达</h2>
+  <p>以下场景，哪个是最地道的粤语回答？</p>
+
+  <div class="quiz-question" id="q1">
+    <span class="q-num">Q1</span>
+    <div class="context">你在茶餐厅，服务员帮你加了一杯茶。</div>
+    <div class="sentence">你：</div>
+    <div class="options">
+      <button class="option-btn" data-correct="false" onclick="check(this)">多谢晒！</button>
+      <button class="option-btn" data-correct="true" onclick="check(this)">唔该晒！</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="quiz-question" id="q2">
+    <span class="q-num">Q2</span>
+    <div class="context">同事帮你按了电梯。</div>
+    <div class="sentence">你说：</div>
+    <div class="options">
+      <button class="option-btn" data-correct="true" onclick="check(this)">唔该！</button>
+      <button class="option-btn" data-correct="false" onclick="check(this)">谢谢！</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="quiz-question" id="q3">
+    <span class="q-num">Q3</span>
+    <div class="context">朋友送你一份生日礼物。</div>
+    <div class="sentence">你说：</div>
+    <div class="options">
+      <button class="option-btn" data-correct="false" onclick="check(this)">唔该晒！</button>
+      <button class="option-btn" data-correct="true" onclick="check(this)">多谢晒！</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="quiz-question" id="q4">
+    <span class="q-num">Q4</span>
+    <div class="context">老板让你在周五前交一份报告。</div>
+    <div class="sentence">你回答：</div>
+    <div class="options">
+      <button class="option-btn" data-correct="false" onclick="check(this)">收到，我做咗。</button>
+      <button class="option-btn" data-correct="true" onclick="check(this)">OK 㗎喇，周五前搞掂。</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="quiz-question" id="q5">
+    <span class="q-num">Q5</span>
+    <div class="context">你想夸同事做的 presentation 很棒。</div>
+    <div class="sentence">你说：</div>
+    <div class="options">
+      <button class="option-btn" data-correct="true" onclick="check(this)">好嘢呀， presentation 做得真系犀利！</button>
+      <button class="option-btn" data-correct="false" onclick="check(this)">你收皮啦！presentation 做好咗！</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="quiz-question" id="q6">
+    <span class="q-num">Q6</span>
+    <div class="context">你同事说方案没有定稿，需要你自己灵活处理。</div>
+    <div class="sentence">你说：</div>
+    <div class="options">
+      <button class="option-btn" data-correct="false" onclick="check(this)">好，我死守方案啦。</button>
+      <button class="option-btn" data-correct="true" onclick="check(this)">好，我执生啦。</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="quiz-question" id="q7">
+    <span class="q-num">Q7</span>
+    <div class="context">朋友问你今天忙不忙。</div>
+    <div class="sentence">你说（忙得不可开交）：</div>
+    <div class="options">
+      <button class="option-btn" data-correct="false" onclick="check(this)">我非常忙呀。</button>
+      <button class="option-btn" data-correct="true" onclick="check(this)">顶唔顺呀！</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="quiz-question" id="q8">
+    <span class="q-num">Q8</span>
+    <div class="context">朋友约你见面，你说「三点在茶餐厅见」。</div>
+    <div class="sentence">你想加一句表示确定的语气词：</div>
+    <div class="options">
+      <button class="option-btn" data-correct="false" onclick="check(this)">三点喺茶餐厅见啦。</button>
+      <button class="option-btn" data-correct="true" onclick="check(this)">三点喺茶餐厅见㗎喇。</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="score-box" id="score-box">
+    <div class="score-num" id="score-num"></div>
+    <div class="score-label" id="score-label"></div>
+  </div>
+</div>
+
+<div class="followup">
+  <strong>有问题？</strong>问我任何粤语问题——我不只是你的老师，我还是你的粤语伙伴。不知道某个词为什么这么用？这正是我们该讨论的。随时问，我会解释给你听。
+  <br><br>
+  <strong>推荐资源：</strong><a href="https://www.rthk.hk/rthk/cantonese.htm" target="_blank">RTHK 粤语节目</a> — 听粤语母语者的真实对话，进步最快。
+  <br><br>
+  <a href="../reference/slang-catchphrases.html" class="resource-link">查看快速参考卡</a>
+</div>
+
+<div class="footer">
+  <a href="0006-transportation-directions.html">上一课</a> | <a href="0000-toc.html">目录</a> | <a href="0008-time-expressions.html">下一课</a>
+
+</div>
+
+<script>
+  const explanations = {
+    q1: { correct: '服务员帮你加茶是「服务场合」，必须用「唔该晒」。在粤语中，服务行业的一切都用「唔该」。', wrong: '「多谢晒」用于收到礼物或帮大忙。服务员只是加了杯茶，用「唔该晒」更地道。' },
+    q2: { correct: '同事按电梯属于小忙/服务，用「唔该」最合适。这是粤语中感谢服务场合的标准说法。', wrong: '「谢谢」是普通话说法，粤语中说「唔该」才地道。' },
+    q3: { correct: '朋友送礼物属于「私人/礼物场合」，用「多谢晒」。礼物比服务更值得郑重感谢。', wrong: '「唔该晒」用于服务场合，送礼物应该用「多谢晒」。' },
+    q4: { correct: '「OK 㗎喇，周五前搞掂」是最地道的职场回答。「OK」表示确认，「搞掂」表示完成。', wrong: '「做咗」只表示"做了"，没有表达"完成了"的意思。老板要的是"搞掂"（搞定）。' },
+    q5: { correct: '「好嘢」是夸奖用语，配合「犀利」加强赞美。这是粤语中最自然的夸奖方式。', wrong: '「收皮」是粗口俚语，意思是"滚蛋"，绝对不能用来夸人！' },
+    q6: { correct: '「执生」= 随机应变/灵活处理。老板说方案没定稿，就是让你自己灵活处理。', wrong: '「死守方案」违背了老板的意思——老板说方案没有定稿，就是要你灵活应对。' },
+    q7: { correct: '「顶唔顺」= 扛不住/应付不来，是粤语中最常用的表达"太忙了"的俚语。', wrong: '「我非常忙」是普通话说法，粤语中「顶唔顺」或「忙到飞起」更地道。' },
+    q8: { correct: '「㗎喇」= 「的」+「了」的合体语气词，表示强调确认。「三点喺茶餐厅见㗎喇」= 三点在茶餐厅见（我确定）。', wrong: '「啦」单独用也可以，但「㗎喇」才是更地道的确认语气。「㗎」= 的（强调），「啦」= 了（完成），合起来就是最自然的确认。' }
+  };
+
+  let answered = {};
+  let score = 0;
+  const total = 8;
+
+  function check(btn) {
+    const question = btn.closest('.quiz-question');
+    const qid = question.id;
+    if (answered[qid]) return;
+    answered[qid] = true;
+
+    const isCorrect = btn.dataset.correct === 'true';
+    const allBtns = question.querySelectorAll('.option-btn');
+    const feedback = question.querySelector('.feedback');
+
+    allBtns.forEach(b => {
+      b.style.pointerEvents = 'none';
+      if (b.dataset.correct === 'true') b.classList.add('reveal-correct');
+    });
+
+    if (isCorrect) {
+      btn.classList.add('correct');
+      feedback.className = 'feedback show correct-fb';
+      feedback.textContent = explanations[qid].correct;
+      score++;
+    } else {
+      btn.classList.add('wrong');
+      feedback.className = 'feedback show wrong-fb';
+      feedback.textContent = explanations[qid].wrong;
+    }
+
+    if (Object.keys(answered).length === total) {
+      const box = document.getElementById('score-box');
+      const num = document.getElementById('score-num');
+      const label = document.getElementById('score-label');
+      num.textContent = score + ' / ' + total;
+      if (score === total) label.textContent = '全对！你的粤语已经很地道了。';
+      else if (score >= 6) label.textContent = '不错！复习一下错过的题目，解释告诉你为什么。';
+      else label.textContent = '继续加油！重读上面的俚语卡片再试一次。';
+      box.classList.add('show');
+    }
+  }
+</script></body>
+</html>

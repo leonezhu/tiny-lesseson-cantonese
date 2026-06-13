@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第2課 — 粵拼入門：Jyutping 拼音系統</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@400;500;700&display=swap');
+
+  :root {
+    --bg: #fdfdfd;
+    --text: #1a1a1a;
+    --accent: #b71c1c;
+    --accent-light: #fce4ec;
+    --muted: #666;
+    --border: #e0e0e0;
+    --correct: #2e7d32;
+    --correct-bg: #e8f5e9;
+    --wrong: #c62828;
+    --wrong-bg: #ffebee;
+    --warn-bg: #fff8e1;
+    --warn-border: #f9a825;
+    --tone1: #d32f2f;
+    --tone2: #f57c00;
+    --tone3: #fbc02d;
+    --tone4: #388e3c;
+    --tone5: #7b1fa2;
+    --tone6: #1976d2;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Noto Sans TC', -apple-system, sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--text);
+    background: var(--bg);
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+  }
+
+  h1 {
+    font-family: 'Noto Serif TC', Georgia, serif;
+    font-size: 1.8rem;
+    margin-bottom: 0.25rem;
+    color: var(--accent);
+  }
+
+  .lesson-meta {
+    color: var(--muted);
+    font-size: 0.85rem;
+    margin-bottom: 2rem;
+  }
+
+  .goal-box {
+    background: var(--accent-light);
+    border-left: 4px solid var(--accent);
+    padding: 1rem 1.25rem;
+    margin-bottom: 2rem;
+    border-radius: 0 4px 4px 0;
+  }
+
+  .goal-box strong { color: var(--accent); }
+
+  h2 {
+    font-family: 'Noto Serif TC', Georgia, serif;
+    font-size: 1.2rem;
+    margin-top: 2.5rem;
+    margin-bottom: 0.75rem;
+    color: var(--accent);
+  }
+
+  h3 {
+    font-family: 'Noto Serif TC', Georgia, serif;
+    font-size: 1.05rem;
+    margin-bottom: 0.25rem;
+    color: var(--accent);
+  }
+
+  p { margin-bottom: 0.75rem; }
+
+  .intro-card {
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1.25rem;
+    margin: 1rem 0;
+  }
+
+  .intro-card .form {
+    font-family: 'Noto Serif TC', Georgia, serif;
+    font-size: 0.9rem;
+    color: var(--muted);
+    margin-bottom: 0.5rem;
+  }
+
+  .intro-card .examples {
+    list-style: none;
+    padding: 0;
+  }
+
+  .intro-card .examples li {
+    padding: 0.25rem 0;
+    padding-left: 1.2rem;
+    position: relative;
+  }
+
+  .intro-card .examples li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-weight: 700;
+  }
+
+  .chinese-note {
+    background: var(--warn-bg);
+    border-left: 3px solid var(--warn-border);
+    padding: 0.8rem 1rem;
+    margin: 1.5rem 0;
+    font-size: 0.9rem;
+  }
+
+  .chinese-note strong { color: #e65100; }
+
+  .jyutping-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+  }
+
+  .jyutping-table th {
+    background: var(--accent-light);
+    color: var(--accent);
+    font-family: 'Noto Serif TC', Georgia, serif;
+    font-weight: 700;
+    padding: 0.75rem 0.5rem;
+    text-align: left;
+    border-bottom: 2px solid var(--accent);
+  }
+
+  .jyutping-table td {
+    padding: 0.6rem 0.5rem;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+
+  .jyutping-table tr:hover td {
+    background: #fafafa;
+  }
+
+  .jyutping-table .syllable {
+    font-family: 'Noto Serif TC', Georgia, serif;
+    font-weight: 700;
+    color: var(--accent);
+    font-size: 1.05rem;
+    letter-spacing: 0.02em;
+  }
+
+  .jyutping-table .hanzi {
+    font-family: 'Noto Serif TC', Georgia, serif;
+    font-size: 1.1rem;
+  }
+
+  .tone-badge {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 18px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: white;
+    margin-right: 4px;
+  }
+
+  .tone1 { background: var(--tone1); }
+  .tone2 { background: var(--tone2); }
+  .tone3 { background: var(--tone3); color: #333; }
+  .tone4 { background: var(--tone4); }
+  .tone5 { background: var(--tone5); }
+  .tone6 { background: var(--tone6); }
+
+  .quiz-section {
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 2px solid var(--border);
+  }
+
+  .quiz-section h2 {
+    margin-top: 0;
+  }
+
+  .quiz-question {
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1.25rem;
+    margin: 1rem 0;
+    position: relative;
+  }
+
+  .quiz-question .q-num {
+    position: absolute;
+    top: -0.6rem;
+    left: 1rem;
+    background: var(--accent);
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.1rem 0.5rem;
+    border-radius: 3px;
+  }
+
+  .quiz-question .context {
+    color: var(--muted);
+    font-size: 0.85rem;
+    margin-bottom: 0.5rem;
+    font-style: italic;
+  }
+
+  .quiz-question .sentence {
+    font-size: 1.05rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .quiz-question .hanzi-display {
+    font-family: 'Noto Serif TC', Georgia, serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+
+  .options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+  }
+
+  .option-btn {
+    background: white;
+    border: 2px solid var(--border);
+    border-radius: 4px;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.95rem;
+    cursor: pointer;
+    text-align: center;
+    font-family: 'Noto Sans TC', sans-serif;
+    transition: all 0.15s;
+  }
+
+  .option-btn:hover {
+    border-color: var(--accent);
+    background: var(--accent-light);
+  }
+
+  .option-btn.correct {
+    border-color: var(--correct);
+    background: var(--correct-bg);
+    color: var(--correct);
+    font-weight: 600;
+  }
+
+  .option-btn.wrong {
+    border-color: var(--wrong);
+    background: var(--wrong-bg);
+    color: var(--wrong);
+  }
+
+  .option-btn.reveal-correct {
+    border-color: var(--correct);
+    background: var(--correct-bg);
+    color: var(--correct);
+    font-weight: 600;
+  }
+
+  .feedback {
+    margin-top: 0.75rem;
+    padding: 0.6rem 0.8rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    display: none;
+  }
+
+  .feedback.show { display: block; }
+  .feedback.correct-fb { background: var(--correct-bg); color: var(--correct); }
+  .feedback.wrong-fb { background: var(--wrong-bg); color: var(--wrong); }
+
+  .score-box {
+    background: var(--accent-light);
+    border: 2px solid var(--accent);
+    border-radius: 6px;
+    padding: 1.25rem;
+    margin-top: 1.5rem;
+    text-align: center;
+    display: none;
+  }
+
+  .score-box.show { display: block; }
+  .score-box .score-num { font-size: 2rem; font-weight: 700; color: var(--accent); }
+  .score-box .score-label { color: var(--muted); font-size: 0.9rem; }
+
+  .followup {
+    background: #f0f4f8;
+    border-radius: 6px;
+    padding: 1rem 1.25rem;
+    margin-top: 2rem;
+    font-size: 0.9rem;
+  }
+
+  .followup strong { color: var(--accent); }
+
+  .resource-link {
+    display: inline-block;
+    margin-top: 0.5rem;
+    padding: 0.4rem 0.8rem;
+    background: var(--accent);
+    color: white;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+
+  .resource-link:hover { opacity: 0.9; }
+
+  .footer {
+    margin-top: 3rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+    font-size: 0.8rem;
+    color: var(--muted);
+    text-align: center;
+  }
+
+  .footer a { color: var(--accent); text-decoration: none; }
+
+  .nav-disabled {
+    color: var(--muted);
+    text-decoration: line-through;
+    opacity: 0.5;
+  }
+
+  @media print {
+    body { padding: 1.5cm; max-width: none; }
+    .option-btn, .feedback, .score-box { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<h1>粵拼入門：Jyutping 拼音系統</h1>
+<p class="lesson-meta">第2課 &middot; ~12 分鐘 &middot; 粵語拼音基礎</p>
+
+<div class="goal-box">
+  <strong>完成本課後</strong>，你能認讀粵語拼音（Jyutping）的聲母、韻母、聲調標記，並能將粵字正確拼讀。這是粵語學習最重要的第一步——拼音不熟，後面每一步都會卡住。
+</div>
+
+<h2>什麼是粵拼？</h2>
+<p>
+  粵語拼音（Jyutping，粵拼）是由香港語言學學會在1993年制定的粵語羅馬字拼音方案。它的設計哲學很務實：<strong>一個符號＝一個聲音</strong>。不像普通話拼音有 <em>i</em>、<em>ü</em>、<em>ng</em> 這種重疊，粵拼盡量讓每個字母組合只對應一個音。
+</p>
+<p>
+  學粵拼就像學樂譜——你不用馬上唱出歌，但認識了音符，就能讀出任何字的讀音。
+</p>
+
+<div class="chinese-note">
+  <strong>與普通話拼音的對比：</strong>普通話拼音用拉丁字母，粵語拼音也用拉丁字母，但拼法完全不同。例如「我」普通話是 <em>wǒ</em>，粵拼是 <em>ngo5</em>。記住這一點：兩套系統不能互換！
+</div>
+
+<h2>聲母（Initials）— 字開頭的聲音</h2>
+<p>粵語拼音有 19 個聲母。下面是核心聲母，分為三組：</p>
+
+<div class="intro-card">
+  <h3>常見聲母（必須掌握）</h3>
+  <table class="jyutping-table">
+    <tr><th width="30%">粵拼</th><th width="30%">例字</th><th width="40%">近似普通話 / 說明</th></tr>
+    <tr><td class="syllable">b</td><td class="hanzi">巴</td><td>同普通話 b，不送氣</td></tr>
+    <tr><td class="syllable">p</td><td class="hanzi">爬</td><td>同普通話 p，送氣</td></tr>
+    <tr><td class="syllable">m</td><td class="hanzi">媽</td><td>同普通話 m</td></tr>
+    <tr><td class="syllable">f</td><td class="hanzi">花</td><td>同普通話 f</td></tr>
+    <tr><td class="syllable">d</td><td class="hanzi">多</td><td>同普通話 d</td></tr>
+    <tr><td class="syllable">t</td><td class="hanzi">拖</td><td>同普通話 t，送氣</td></tr>
+    <tr><td class="syllable">n</td><td class="hanzi">那</td><td>同普通話 n</td></tr>
+    <tr><td class="syllable">l</td><td class="hanzi">啦</td><td>同普通話 l</td></tr>
+    <tr><td class="syllable">g</td><td class="hanzi">歌</td><td>同普通話 g</td></tr>
+    <tr><td class="syllable">k</td><td class="hanzi">科</td><td>同普通話 k，送氣</td></tr>
+    <tr><td class="syllable">h</td><td class="hanzi">蝦</td><td>同普通話 h</td></tr>
+    <tr><td class="syllable">j</td><td class="hanzi">呀</td><td>不是 j！讀 /j/，像 English "yes"</td></tr>
+    <tr><td class="syllable">w</td><td class="hanzi">蛙</td><td>不是 w！讀 /w/，像 English "we"</td></tr>
+  </table>
+</div>
+
+<div class="intro-card">
+  <h3>粵語特有聲母（普通話沒有！）</h3>
+  <table class="jyutping-table">
+    <tr><th width="30%">粵拼</th><th width="30%">例字</th><th width="40%">說明</th></tr>
+    <tr><td class="syllable">ng</td><td class="hanzi">五</td><td>鼻音 /ŋ/，普通話沒有這個聲母。喉嚨深處發音</td></tr>
+    <tr><td class="syllable">z</td><td class="hanzi">自</td><td>類似普通話 z，但不送氣</td></tr>
+    <tr><td class="syllable">c</td><td class="hanzi">次</td><td>類似普通話 c，送氣</td></tr>
+    <tr><td class="syllable">s</td><td class="hanzi">四</td><td>類似普通話 s</td></tr>
+    <tr><td class="syllable">y</td><td class="hanzi">耳</td><td>半元音 /j/，在韻母開頭</td></tr>
+  </table>
+</div>
+
+<div class="chinese-note">
+  <strong>ng 是最關鍵的粵語聲母。</strong>很多粵語字以 ng 開始（我、邊、見），普通話使用者常常發成 /ŋ/ 直接開頭或誤加 a/o 音。練習時，先發「嗯——」的音，那就是 ng 的起點。
+</div>
+
+<h2>韻母（Finals）— 字的核心聲音</h2>
+<p>粵語韻母是拼音的核心。粵拼把韻母分得很細，因為粵語的元音變化比普通話豐富得多。記住這些最常見的：</p>
+
+<div class="intro-card">
+  <h3>基本元音韻母</h3>
+  <table class="jyutping-table">
+    <tr><th width="30%">粵拼</th><th width="30%">例字</th><th width="40%">發音提示</th></tr>
+    <tr><td class="syllable">a</td><td class="hanzi">茶</td><td>像 English "father" 的 a，口腔張開</td></tr>
+    <tr><td class="syllable">e</td><td class="hanzi">车</td><td>像 English "bed" 的 e，但不完全一樣</td></tr>
+    <tr><td class="syllable">o</td><td class="hanzi">多</td><td>圓唇音，像 English "more" 但更短</td></tr>
+    <tr><td class="syllable">u</td><td class="hanzi">多</td><td>像普通話 u，但嘴更圓更前</td></tr>
+    <tr><td class="syllable">i</td><td class="hanzi">西</td><td>像 English "see" 的 ee</td></tr>
+    <tr><td class="syllable">u:</td><td class="hanzi">書</td><td>注意冒號！這是長音 u，和普通話 "书" 不同</td></tr>
+  </table>
+</div>
+
+<div class="intro-card">
+  <h3>特殊韻母（粵語標誌性聲音）</h3>
+  <table class="jyutping-table">
+    <tr><th width="30%">粵拼</th><th width="30%">例字</th><th width="40%">說明</th></tr>
+    <tr><td class="syllable">ng</td><td class="hanzi">影</td><td>鼻音韻尾，字尾 -ng</td></tr>
+    <tr><td class="syllable">n</td><td class="hanzi">心</td><td>鼻音韻尾 -n，舌尖抵上齒齦</td></tr>
+    <tr><td class="syllable">m</td><td class="hanzi">喺</td><td>唇鼻音 -m，嘴唇閉合發音，普通話沒有！</td></tr>
+    <tr><td class="syllable">p</td><td class="hanzi">急</td><td>塞音韻尾 -p，雙唇閉合，不發音</td></tr>
+    <tr><td class="syllable">t</td><td class="hanzi">八</td><td>塞音韻尾 -t，舌尖抵上齶，不發音</td></tr>
+    <tr><td class="syllable">k</td><td class="hanzi">色</td><td>塞音韻尾 -k，舌根抵軟齶，不發音</td></tr>
+  </table>
+</div>
+
+<div class="chinese-note">
+  <strong>入聲韻尾 -p/-t/-k 是粵語保留古漢語的特徵。</strong>普通話中這些韻尾在歷史上消失了（所以說「八」是 ba，沒有收尾），但粵語完整保留了三種塞音收尾。發音時只閉合不爆破——像突然截斷聲音。
+</div>
+
+<h2>聲調標記 — 數字標調法</h2>
+<p>粵拼使用 1-6 的數字標記六個基本聲調（加上陰入、中入、陽入共九聲）。第一課學過九聲六調，這裡對應到拼音標記：</p>
+
+<div class="intro-card">
+  <table class="jyutping-table">
+    <tr><th>調號</th><th>名稱</th><th>例字</th><th>音高走向</th><th>記憶口訣</th></tr>
+    <tr>
+      <td><span class="tone-badge tone1">1</span></td>
+      <td>高平調</td>
+      <td class="hanzi">天</td>
+      <td>高而平 ★★★★★</td>
+      <td>像醫生說「啊——」</td>
+    </tr>
+    <tr>
+      <td><span class="tone-badge tone2">2</span></td>
+      <td>中升調</td>
+      <td class="hanzi">地</td>
+      <td>中→高 ↑</td>
+      <td>像問「咦？」上揚</td>
+    </tr>
+    <tr>
+      <td><span class="tone-badge tone3">3</span></td>
+      <td>低平調</td>
+      <td class="hanzi">大</td>
+      <td>低而平 ★★★</td>
+      <td>像嘆氣「唉——」</td>
+    </tr>
+    <tr>
+      <td><span class="tone-badge tone4">4</span></td>
+      <td>低降調</td>
+      <td class="hanzi">想</td>
+      <td>高→低 ↓</td>
+      <td>像下命令「不！」</td>
+    </tr>
+    <tr>
+      <td><span class="tone-badge tone5">5</span></td>
+      <td>低升調</td>
+      <td class="hanzi">雪</td>
+      <td>低→中高 ↗</td>
+      <td>像疑惑「嗯？」</td>
+    </tr>
+    <tr>
+      <td><span class="tone-badge tone6">6</span></td>
+      <td>中降調</td>
+      <td class="hanzi">食</td>
+      <td>中→低 ↘</td>
+      <td>像安慰「好啦——」</td>
+    </tr>
+  </table>
+</div>
+
+<div class="chinese-note">
+  <strong>為什麼用數字不用符號？</strong>普通話拼音用聲調符號（ā á ǎ à），但粵語有九個聲調，符號不夠用。粵拼用數字 1-6 標示六個舒聲調，入聲調則用 -p/-t/-k 韻尾標記。數字法簡單直接，打字也方便。
+</div>
+
+<h2>拼讀規則</h2>
+<p>粵拼的拼法很規則，遵循一個簡單公式：</p>
+
+<div class="intro-card">
+  <p style="text-align:center; font-size:1.15rem; font-family:'Noto Serif TC',Georgia,serif; margin:1rem 0;">
+    <strong>聲母 + 韻母 + 聲調數字 = 一個完整的粵拼</strong>
+  </p>
+</div>
+
+<p>舉例：</p>
+<ul style="list-style:none; padding:0; margin:1rem 0;">
+  <li style="padding:0.3rem 0; padding-left:1.2rem; position:relative;"><span style="position:absolute;left:0;color:var(--accent);font-weight:700;">→</span> <strong>ngo5</strong> = ng（聲母）+ o（韻母）+ 5（聲調）=「我」</li>
+  <li style="padding:0.3rem 0; padding-left:1.2rem; position:relative;"><span style="position:absolute;left:0;color:var(--accent);font-weight:700;">→</span> <strong>zan1</strong> = z（聲母）+ an（韻母）+ 1（聲調）=「人」</li>
+  <li style="padding:0.3rem 0; padding-left:1.2rem; position:relative;"><span style="position:absolute;left:0;color:var(--accent);font-weight:700;">→</span> <strong>sat6</strong> = s（聲母）+ at（韻母含 -t 韻尾）+ 6（聲調）=「食」</li>
+  <li style="padding:0.3rem 0; padding-left:1.2rem; position:relative;"><span style="position:absolute;left:0;color:var(--accent);font-weight:700;">→</span> <strong>ming6</strong> = m（聲母）+ ing（韻母含 -ng 韻尾）+ 6（聲調）=「明」</li>
+</ul>
+
+<h2>常見錯誤</h2>
+<div class="chinese-note">
+  <strong>1. 把 ng 發成 en：</strong>普通話使用者常把「我」讀成 en。記住：ng 是從喉嚨深處發出的鼻音，嘴唇不用動。<br><br>
+  <strong>2. 忽略聲調數字：</strong>粵語是聲調語言，同一個拼音不同聲調意義完全不同。比如 <em>saan1</em>（山）和 <em>saan3</em>（掃）是完全不同的字。<br><br>
+  <strong>3. 用普通話拼音讀粵拼：</strong><em>sik1</em> 在粵拼裡是「吸」，不要用普通話拼音去讀。
+</div>
+
+<div class="quiz-section">
+  <h2>練習：認讀粵拼</h2>
+  <p>選擇正確的拼音或聲調。共 8 題。</p>
+
+  <div class="quiz-question" id="q1">
+    <span class="q-num">Q1</span>
+    <div class="hanzi-display">我</div>
+    <div class="context">這是粵語最核心的字——「我」。</div>
+    <div class="sentence">「我」的粵拼是：</div>
+    <div class="options">
+      <button class="option-btn" data-correct="false" onclick="check(this)">wo3</button>
+      <button class="option-btn" data-correct="true" onclick="check(this)">ngo5</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="quiz-question" id="q2">
+    <span class="q-num">Q2</span>
+    <div class="hanzi-display">食</div>
+    <div class="context">「食」是粵語最常用的動詞之一。</div>
+    <div class="sentence">「食」的粵拼是：</div>
+    <div class="options">
+      <button class="option-btn" data-correct="true" onclick="check(this)">sik6</button>
+      <button class="option-btn" data-correct="false" onclick="check(this)">shi2</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="quiz-question" id="q3">
+    <span class="q-num">Q3</span>
+    <div class="hanzi-display">八</div>
+    <div class="context">「八」字有一個特殊的入聲韻尾。</div>
+    <div class="sentence">「八」的粵拼是：</div>
+    <div class="options">
+      <button class="option-btn" data-correct="false" onclick="check(this)">ba1</button>
+      <button class="option-btn" data-correct="true" onclick="check(this)">baat3</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="quiz-question" id="q4">
+    <span class="q-num">Q4</span>
+    <div class="hanzi-display">天</div>
+    <div class="context">「天」是高平調，是第一聲。</div>
+    <div class="sentence">「天」的粵拼是：</div>
+    <div class="options">
+      <button class="option-btn" data-correct="true" onclick="check(this)">tin1</button>
+      <button class="option-btn" data-correct="false" onclick="check(this)">tian3</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="quiz-question" id="q5">
+    <span class="q-num">Q5</span>
+    <div class="hanzi-display">邊</div>
+    <div class="context">「邊」以粵語特有的鼻音聲母開頭。</div>
+    <div class="sentence">「邊」的聲母是：</div>
+    <div class="options">
+      <button class="option-btn" data-correct="false" onclick="check(this)">b</button>
+      <button class="option-btn" data-correct="true" onclick="check(this)">bin1</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="quiz-question" id="q6">
+    <span class="q-num">Q6</span>
+    <div class="context">你在粵語對話中聽到：「你好嗎？——我好好。」</div>
+    <div class="sentence">「好好」的粵拼中，兩個「好」的聲調關係通常是：</div>
+    <div class="options">
+      <button class="option-btn" data-correct="false" onclick="check(this)">完全相同</button>
+      <button class="option-btn" data-correct="true" onclick="check(this)">第二個變調為高平調</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="quiz-question" id="q7">
+    <span class="q-num">Q7</span>
+    <div class="hanzi-display">心</div>
+    <div class="context">「心」的粵拼是 <em>sam1</em>，但「新」是 <em>san1</em>。</div>
+    <div class="sentence">兩者的韻尾分別是什麼？</div>
+    <div class="options">
+      <button class="option-btn" data-correct="false" onclick="check(this)">都是 -n 尾</button>
+      <button class="option-btn" data-correct="true" onclick="check(this)">sam1 是 -m 尾，san1 是 -n 尾</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="quiz-question" id="q8">
+    <span class="q-num">Q8</span>
+    <div class="hanzi-display">色</div>
+    <div class="context">「色」的粵拼是 <em>sik1</em>。</div>
+    <div class="sentence">這裡的 -k 韻尾是什麼？</div>
+    <div class="options">
+     <button class="option-btn" data-correct="true" onclick="check(this)">入聲塞音尾，閉合不爆破</button>
+      <button class="option-btn" data-correct="false" onclick="check(this)">普通話式的 /k/ 尾，需要發音</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="score-box" id="score-box">
+    <div class="score-num" id="score-num"></div>
+    <div class="score-label" id="score-label"></div>
+  </div>
+</div>
+
+<div class="followup">
+  <strong>有問題？</strong>隨時問我——粵拼的任何一環都可以拆解重講。不確定為什麼「心」和「新」韻尾不同？這就是最該問的問題。<br><br>
+  <strong>推薦資源：</strong>
+  <a href="https://www.jyutping.com/" target="_blank" class="resource-link">Jyutping.com 粵拼線上查詢</a>
+  <br><br>
+  <strong>練習建議：</strong>找 20 個常用粵語字，用粵拼寫出它們的拼音。每天讀一遍，一週後就不需要看拼音了。
+  <br><br>
+  <a href="../reference/jyutping-cheatsheet.html" class="resource-link">查看粵拼速查卡</a>
+</div>
+
+<div class="footer">
+  <a href="0001-jiusheng-liudiao.html">上一课</a> | <a href="0000-toc.html">目录</a> | <a href="0003-common-pronouns-verbs.html">下一课</a>
+
+</div>
+
+<script>
+  const explanations = {
+    q1: {
+      correct: '「我」是粵語最核心的字。聲母 ng（喉鼻音）+ 韻母 o + 聲調 5（低升調）= ngo5。普通話的 "wo" 在粵語完全不存在這個拼法。',
+      wrong: '"wo3" 是普通話拼音。粵語中「我」以 ng 聲母開頭，讀作 ngo5。ng 是粵語特有的鼻音聲母，普通話沒有。'
+    },
+    q2: {
+      correct: '「食」的粵拼是 sik6。s（聲母）+ ik（韻母含入聲 -k 韻尾）+ 6（中降調）。入聲韻尾 -k 不爆破。',
+      wrong: '"shi2" 是普通話拼音。粵語中「食」是 sik6，用 -k 入聲韻尾而不是普通話的韻腹元音。'
+    },
+    q3: {
+      correct: '「八」是入聲字，粵拼是 baat3。雙元音 aa 表示長音 a，-t 是入聲塞音韻尾，3 是低平調。',
+      wrong: '"ba1" 是普通話拼音。粵語中「八」保留入聲，讀作 baat3，有 -t 收尾。'
+    },
+    q4: {
+      correct: '「天」的粵拼是 tin1。t（聲母）+ in（韻母）+ 1（高平調）。高平調像醫生說「啊——」一樣高而平。',
+      wrong: '"tian3" 是普通話拼音。粵語中「天」是 tin1，第一聲高平調，韻母是 in 不是 ian。'
+    },
+    q5: {
+      correct: '「邊」的粵拼是 bin1，聲母是 b。這是一個容易出錯的陷阱題——bin1 整個拼音中，b 是聲母，in 是韻母，1 是聲調。',
+      wrong: '邊 bin1 中 bin1 不是聲母。bin1 是完整的粵拼，聲母是 b，韻母是 in。'
+    },
+    q6: {
+      correct: '粵語中，連續兩個第三聲時第二個變為高平調（第一聲）。所以「好好」實際讀作 hou2 hou2，第二個字變調為高平調。這是粵語重要的變調規則。',
+      wrong: '粵語有變調規則：當兩個第三聲字連在一起，第二個通常變為高平調（第一聲）。所以「好好」實際讀作 hou2 hou2。'
+    },
+    q7: {
+      correct: '「心」是 sam1（-m 鼻音韻尾）、「新」是 san1（-n 鼻音韻尾）。-m 和 -n 在粵語中是截然不同的韻尾，-m 要閉唇發音，-n 舌尖抵上齶。',
+      wrong: 'sam1 和 san1 的區別就在於韻尾。-m 是唇鼻音（閉唇），-n 是齒齦鼻音（舌尖抵上齦）。這在粵語中是兩個完全不同的韻尾類別。'
+    },
+    q8: {
+      correct: '-k 是入聲塞音韻尾，發音時舌根抵住軟齶閉合，然後突然放鬆——不爆破。這和古漢語的入聲系統一致，普通話中這類韻尾已經消失。',
+      wrong: '粵語的入聲韻尾 -p/-t/-k 不是真正的 /k/ 音。它們是「不爆破塞音」——只閉合不發音，突然截斷聲音。这和 English /k/ 完全不同。'
+    }
+  };
+
+  let answered = {};
+  let score = 0;
+  const total = 8;
+
+  function check(btn) {
+    const question = btn.closest('.quiz-question');
+    const qid = question.id;
+    if (answered[qid]) return;
+    answered[qid] = true;
+
+    const isCorrect = btn.dataset.correct === 'true';
+    const allBtns = question.querySelectorAll('.option-btn');
+    const feedback = question.querySelector('.feedback');
+
+    allBtns.forEach(b => {
+      b.style.pointerEvents = 'none';
+      if (b.dataset.correct === 'true') b.classList.add('reveal-correct');
+    });
+
+    if (isCorrect) {
+      btn.classList.add('correct');
+      feedback.className = 'feedback show correct-fb';
+      feedback.textContent = explanations[qid].correct;
+      score++;
+    } else {
+      btn.classList.add('wrong');
+      feedback.className = 'feedback show wrong-fb';
+      feedback.textContent = explanations[qid].wrong;
+    }
+
+    if (Object.keys(answered).length === total) {
+      const box = document.getElementById('score-box');
+      const num = document.getElementById('score-num');
+      const label = document.getElementById('score-label');
+      num.textContent = score + ' / ' + total;
+      if (score === total) label.textContent = '完美！粵拼基礎很紮實。';
+      else if (score >= 6) label.textContent = '不錯！看看錯題的解釋，補足薄弱環節。';
+      else label.textContent = '繼續加油！重新讀一遍聲母韻母表，再試一次。';
+      box.classList.add('show');
+    }
+  }
+</script></body>
+</html>

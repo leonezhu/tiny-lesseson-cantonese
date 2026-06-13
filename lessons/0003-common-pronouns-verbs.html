@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第3課 — 常用代詞與動詞：粵語日常會話的骨架</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@400;500;700&display=swap');
+
+  :root {
+    --bg: #fdfdfd;
+    --text: #1a1a1a;
+    --accent: #b71c1c;
+    --accent-light: #fce4ec;
+    --muted: #666;
+    --border: #e0e0e0;
+    --correct: #2e7d32;
+    --correct-bg: #e8f5e9;
+    --wrong: #c62828;
+    --wrong-bg: #ffebee;
+    --warn-bg: #fff8e1;
+    --warn-border: #f9a825;
+    --tone1: #d32f2f;
+    --tone2: #f57c00;
+    --tone3: #fbc02d;
+    --tone4: #388e3c;
+    --tone5: #7b1fa2;
+    --tone6: #1976d2;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Noto Sans TC', -apple-system, sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--text);
+    background: var(--bg);
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+  }
+
+  h1 {
+    font-family: 'Noto Serif TC', Georgia, serif;
+    font-size: 1.8rem;
+    margin-bottom: 0.25rem;
+    color: var(--accent);
+  }
+
+  .lesson-meta {
+    color: var(--muted);
+    font-size: 0.85rem;
+    margin-bottom: 2rem;
+  }
+
+  .goal-box {
+    background: var(--accent-light);
+    border-left: 4px solid var(--accent);
+    padding: 1rem 1.25rem;
+    margin-bottom: 2rem;
+    border-radius: 0 4px 4px 0;
+  }
+
+  .goal-box strong { color: var(--accent); }
+
+  h2 {
+    font-family: 'Noto Serif TC', Georgia, serif;
+    font-size: 1.2rem;
+    margin-top: 2.5rem;
+    margin-bottom: 0.75rem;
+    color: var(--accent);
+  }
+
+  h3 {
+    font-family: 'Noto Serif TC', Georgia, serif;
+    font-size: 1.05rem;
+    margin-bottom: 0.25rem;
+    color: var(--accent);
+  }
+
+  p { margin-bottom: 0.75rem; }
+
+  .intro-card {
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1.25rem;
+    margin: 1rem 0;
+  }
+
+  .intro-card .form {
+    font-family: 'Noto Serif TC', Georgia, serif;
+    font-size: 0.9rem;
+    color: var(--muted);
+    margin-bottom: 0.5rem;
+  }
+
+  .intro-card .examples {
+    list-style: none;
+    padding: 0;
+  }
+
+  .intro-card .examples li {
+    padding: 0.25rem 0;
+    padding-left: 1.2rem;
+    position: relative;
+  }
+
+  .intro-card .examples li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-weight: 700;
+  }
+
+  .chinese-note {
+    background: var(--warn-bg);
+    border-left: 3px solid var(--warn-border);
+    padding: 0.8rem 1rem;
+    margin: 1.5rem 0;
+    font-size: 0.9rem;
+  }
+
+  .chinese-note strong { color: #e65100; }
+
+  .vocab-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+  }
+
+  .vocab-table th {
+    background: var(--accent-light);
+    color: var(--accent);
+    font-family: 'Noto Serif TC', Georgia, serif;
+    font-weight: 700;
+    padding: 0.75rem 0.5rem;
+    text-align: left;
+    border-bottom: 2px solid var(--accent);
+  }
+
+  .vocab-table td {
+    padding: 0.6rem 0.5rem;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+
+  .vocab-table tr:hover td {
+    background: #fafafa;
+  }
+
+  .vocab-table .syllable {
+    font-family: 'Noto Serif TC', Georgia, serif;
+    font-weight: 700;
+    color: var(--accent);
+    font-size: 1.05rem;
+    letter-spacing: 0.02em;
+  }
+
+  .vocab-table .hanzi {
+    font-family: 'Noto Serif TC', Georgia, serif;
+    font-size: 1.1rem;
+  }
+
+  .vocab-table .pinyin {
+    font-family: monospace;
+    color: var(--muted);
+    font-size: 0.9rem;
+  }
+
+  .tone-badge {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 18px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: white;
+    margin-right: 4px;
+  }
+
+  .tone1 { background: var(--tone1); }
+  .tone2 { background: var(--tone2); }
+  .tone3 { background: var(--tone3); color: #333; }
+  .tone4 { background: var(--tone4); }
+  .tone5 { background: var(--tone5); }
+  .tone6 { background: var(--tone6); }
+
+  .dialogue-box {
+    background: #f5f5f5;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.25rem;
+    margin: 1.5rem 0;
+    font-family: 'Noto Sans TC', sans-serif;
+  }
+
+  .dialogue-line {
+    margin: 0.5rem 0;
+    padding: 0.4rem 0;
+  }
+
+  .dialogue-line .speaker {
+    font-weight: 700;
+    color: var(--accent);
+    margin-right: 0.5rem;
+  }
+
+  .dialogue-line .cantonese {
+    font-family: 'Noto Serif TC', Georgia, serif;
+    font-size: 1.05rem;
+  }
+
+  .dialogue-line .pinyin-display {
+    color: var(--muted);
+    font-size: 0.85rem;
+    font-family: monospace;
+  }
+
+  .dialogue-line .mandarin {
+    color: var(--muted);
+    font-size: 0.85rem;
+  }
+
+  .quiz-section {
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 2px solid var(--border);
+  }
+
+  .quiz-section h2 {
+    margin-top: 0;
+  }
+
+  .quiz-question {
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1.25rem;
+    margin: 1rem 0;
+    position: relative;
+  }
+
+  .quiz-question .q-num {
+    position: absolute;
+    top: -0.6rem;
+    left: 1rem;
+    background: var(--accent);
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.1rem 0.5rem;
+    border-radius: 3px;
+  }
+
+  .quiz-question .context {
+    color: var(--muted);
+    font-size: 0.85rem;
+    margin-bottom: 0.5rem;
+    font-style: italic;
+  }
+
+  .quiz-question .sentence {
+    font-size: 1.05rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .quiz-question .hanzi-display {
+    font-family: 'Noto Serif TC', Georgia, serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+
+  .options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+  }
+
+  .option-btn {
+    background: white;
+    border: 2px solid var(--border);
+    border-radius: 4px;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.95rem;
+    cursor: pointer;
+    text-align: center;
+    font-family: 'Noto Sans TC', sans-serif;
+    transition: all 0.15s;
+  }
+
+  .option-btn:hover {
+    border-color: var(--accent);
+    background: var(--accent-light);
+  }
+
+  .option-btn.correct {
+    border-color: var(--correct);
+    background: var(--correct-bg);
+    color: var(--correct);
+    font-weight: 600;
+  }
+
+  .option-btn.wrong {
+    border-color: var(--wrong);
+    background: var(--wrong-bg);
+    color: var(--wrong);
+  }
+
+  .option-btn.reveal-correct {
+    border-color: var(--correct);
+    background: var(--correct-bg);
+    color: var(--correct);
+    font-weight: 600;
+  }
+
+  .feedback {
+    margin-top: 0.75rem;
+    padding: 0.6rem 0.8rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    display: none;
+  }
+
+  .feedback.show { display: block; }
+  .feedback.correct-fb { background: var(--correct-bg); color: var(--correct); }
+  .feedback.wrong-fb { background: var(--wrong-bg); color: var(--wrong); }
+
+  .score-box {
+    background: var(--accent-light);
+    border: 2px solid var(--accent);
+    border-radius: 6px;
+    padding: 1.25rem;
+    margin-top: 1.5rem;
+    text-align: center;
+    display: none;
+  }
+
+  .score-box.show { display: block; }
+  .score-box .score-num { font-size: 2rem; font-weight: 700; color: var(--accent); }
+  .score-box .score-label { color: var(--muted); font-size: 0.9rem; }
+
+  .followup {
+    background: #f0f4f8;
+    border-radius: 6px;
+    padding: 1rem 1.25rem;
+    margin-top: 2rem;
+    font-size: 0.9rem;
+  }
+
+  .followup strong { color: var(--accent); }
+
+  .resource-link {
+    display: inline-block;
+    margin-top: 0.5rem;
+    padding: 0.4rem 0.8rem;
+    background: var(--accent);
+    color: white;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+
+  .resource-link:hover { opacity: 0.9; }
+
+  .footer {
+    margin-top: 3rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+    font-size: 0.8rem;
+    color: var(--muted);
+    text-align: center;
+  }
+
+  .footer a { color: var(--accent); text-decoration: none; }
+
+  .nav-disabled {
+    color: var(--muted);
+    text-decoration: line-through;
+    opacity: 0.5;
+  }
+
+  @media print {
+    body { padding: 1.5cm; max-width: none; }
+    .option-btn, .feedback, .score-box { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<h1>常用代詞與動詞</h1>
+<p class="lesson-meta">第3課 · ~12 分鐘 · 粵語核心詞彙</p>
+
+<div class="goal-box">
+  <strong>完成本課後</strong>，你能認讀和使用粵語中最常見的 20 個代詞和 15 個動詞，並能用它們組成基本的日常會話句。這些詞是粵語會話的「骨架」——認識了它們，你已經能用粵語表達一半以上的基本意思。
+</div>
+
+<h2>代詞：誰在做什麼</h2>
+<p>
+  粵語的代詞和普通话很像，但有一兩個關鍵區別。最需要注意的是<strong>「你哋」而不是「你們」</strong>。粵語的複數形式不是加「們」，而是在代詞後面加「哋」（di3）。
+</p>
+
+<div class="intro-card">
+  <h3>人称代詞對照表</h3>
+  <table class="vocab-table">
+    <tr><th width="15%">粵語</th><th width="20%">粵拼</th><th width="20%">普通話</th><th width="45%">說明</th></tr>
+    <tr><td class="hanzi">我</td><td class="pinyin">ngo5</td><td>我</td><td>和普通话完全一样</td></tr>
+    <tr><td class="hanzi">你</td><td class="pinyin">nei5</td><td>你</td><td>和普通话完全一样</td></tr>
+    <tr><td class="hanzi">佢</td><td class="pinyin">keoi5</td><td>他/她/它</td><td>粤语用佢，不分性别！男女通用</td></tr>
+    <tr><td class="hanzi">我哋</td><td class="pinyin">ngo5 dei6</td><td>我们</td><td>我 + 哋（複數標記）</td></tr>
+    <tr><td class="hanzi">你哋</td><td class="pinyin">nei5 dei6</td><td>你们</td><td>你 + 哋，不是「你門」！</td></tr>
+    <tr><td class="hanzi">佢哋</td><td class="pinyin">keoi5 dei6</td><td>他们</td><td>佢 + 哋，他們不分性別</td></tr>
+    <tr><td class="hanzi">朕</td><td class="pinyin">ngai2</td><td>咱们</td><td>包含對方的「我們」，口語常用「我哋」代替</td></tr>
+    <tr><td class="hanzi">邊個</td><td class="pinyin">bin1 go3</td><td>誰</td><td>誰？——「邊」=哪，「個」=個</td></tr>
+    <tr><td class="hanzi">呢個</td><td class="pinyin">ni1 go3</td><td>这个</td><td>近指：這個、這裡</td></tr>
+    <tr><td class="hanzi">嗰個</td><td class="pinyin">go2 go3</td><td>那个</td><td>遠指：那個、那裡</td></tr>
+  </table>
+</div>
+
+<div class="chinese-note">
+  <strong>佢（keoi5）是最特別的一個。</strong>普通話用「他/她/它」來區分性別和物體，但粵語全部用「佢」。上下文通常就能知道在說誰，不需要區分。另外，「邊個」用來問「是誰」，「邊」就是「哪」的意思，所以「邊度」=哪裡、「邊個」=誰。
+</div>
+
+<h3>指示代詞</h3>
+<table class="vocab-table">
+  <tr><th width="30%">粵語</th><th width="20%">粵拼</th><th width="25%">普通話</th><th width="25%">說明</th></tr>
+  <tr><td class="hanzi">呢度 / 呢度</td><td class="pinyin">ni1 dou6 / nei1 dou6</td><td>這裡</td><td>近指，口語常用「呢度」</td></tr>
+  <tr><td class="hanzi">嗰度</td><td class="pinyin">go2 dou6</td><td>那裡</td><td>遠指，口語常用「嗰度」</td></tr>
+  <tr><td class="hanzi">呢啲</td><td class="pinyin">ni1 di1</td><td>這些</td><td>複數：這些</td></tr>
+  <tr><td class="hanzi">嗰啲</td><td class="pinyin">go2 di1</td><td>那些</td><td>複數：那些</td></tr>
+</table>
+
+<div class="chinese-note">
+  <strong>「啲」（di1）是粵語特有的複數標記，比「哋」更靈活。</strong>它既能用在事物上（呢啲=這些），也能用作量詞表示「一些」：「食啲嘢」（吃點東西）。所以「食啲嘢」字面意思是「吃一些東西」。
+</div>
+
+<h2>核心動詞：動作與狀態</h2>
+<p>
+  下面這些動詞是粵語日常會話中使用頻率最高的。大部分和普通话意思相近，但要注意語法差異——特別是在否定形式時。
+</p>
+
+<div class="intro-card">
+  <h3>必學動詞表</h3>
+  <table class="vocab-table">
+    <tr><th width="15%">粵語</th><th width="20%">粵拼</th><th width="20%">普通話</th><th width="45%">例句</th></tr>
+    <tr><td class="hanzi">食</td><td class="pinyin">sik6</td><td>吃</td><td>「你去食咗飯未？」（你吃饭了吗？）</td></tr>
+    <tr><td class="hanzi">飲</td><td class="pinyin">jam2</td><td>喝</td><td>「我想飲杯茶。」（我想喝一杯茶。）</td></tr>
+    <tr><td class="hanzi">行</td><td class="pinyin">haang4</td><td>走/走</td><td>「我成日行路上班。」（我每天走路上班。）</td></tr>
+    <tr><td class="hanzi">睇</td><td class="pinyin">tai2</td><td>看</td><td>「你有睇今日新聞未？」（你看今天新聞了嗎？）</td></tr>
+    <tr><td class="hanzi">聽</td><td class="pinyin">ting1</td><td>聽</td><td>「我想聽粤语歌。」（我想听粤语歌。）</td></tr>
+    <tr><td class="hanzi">講</td><td class="pinyin">gong2</td><td>讲</td><td>「我地講下嘢。」（我們聊聊天。）</td></tr>
+    <tr><td class="hanzi">做</td><td class="pinyin">zou6</td><td>做</td><td>「你今日做乜嘢？」（你今天做什麼？）</td></tr>
+    <tr><td class="hanzi">去</td><td class="pinyin">heoi3</td><td>去</td><td>「我明天去廣州。」（我明天去广州。）</td></tr>
+    <tr><td class="hanzi">嚟 / 黎</td><td class="pinyin">lai4</td><td>来</td><td>「快啲嚟啦！」（快點來！）</td></tr>
+    <tr><td class="hanzi">有</td><td class="pinyin">jau5</td><td>有</td><td>「你有冇睇咗個電影？」（你有沒有看那個電影？）</td></tr>
+    <tr><td class="hanzi">係</td><td class="pinyin">hai6</td><td>是</td><td>「佢係我同學。」（他是我的同學。）</td></tr>
+    <tr><td class="hanzi">鍾意</td><td class="pinyin">zung3 ji3</td><td>喜歡</td><td>「我好鍾意食粵菜。」（我喜歡吃粵菜。）</td></tr>
+    <tr><td class="hanzi">識</td><td class="pinyin">sik1</td><td>認識/會</td><td>「我識講廣東話。」（我會說廣東話。）注意：認識人和學會技能都用「識」</td></tr>
+    <tr><td class="hanzi">想</td><td class="pinyin">soeng2</td><td>想</td><td>「我想返屋企。」（我想回家。）</td></tr>
+    <tr><td class="hanzi">得</td><td class="pinyin">dak1</td><td>可以</td><td>「得唔得？」（可以不可以？）</td></tr>
+  </table>
+</div>
+
+<h3>重要句型：否定式</h3>
+<p>
+  這裡是最容易犯錯誤的地方。粵語的否定方式和普通话不同：
+</p>
+
+<div class="intro-card">
+  <h3>否定形式對照</h3>
+  <table class="vocab-table">
+    <tr><th width="30%">用法</th><th width="25%">粵語</th><th width="25%">普通話</th><th width="20%">粵拼</th></tr>
+    <tr><td>不做某事</td><td class="hanzi">唔 [動詞]</td><td>不/不是 [動詞]</td><td class="pinyin">m4</td></tr>
+    <tr><td>沒有做某事</td><td class="hanzi">冇 [動詞]</td><td>沒/沒有 [動詞]</td><td class="pinyin">mou5</td></tr>
+    <tr><td>有沒有？</td><td class="hanzi">有冇 [動詞]？</td><td>沒有…嗎？</td><td class="pinyin">動 + mou5</td></tr>
+    <tr><td>不要！</td><td class="hanzi">唔好</td><td>不要！</td><td class="pinyin">m4 hou2</td></tr>
+  </table>
+</div>
+
+<div class="dialogue-box">
+  <div class="dialogue-line">
+    <span class="speaker">A：</span>
+    <span class="cantonese">你去咗邊度？</span>
+    <span class="pinyin-display">[nei5 heoi3 zo2 bin1 dou6?]</span>
+  </div>
+  <div class="dialogue-line">
+    <span class="speaker">B：</span>
+    <span class="cantonese">我去咗超市。你去未？</span>
+    <span class="pinyin-display">[ngo5 heoi3 zo2 ciu1 syu1. nei5 heoi3 mei6?]</span>
+  </div>
+  <div class="dialogue-line">
+    <span class="speaker">A：</span>
+    <span class="cantonese">我唔去喇，我今日好攰。</span>
+    <span class="pinyin-display">[ngo5 m4 heoi3 laa3, ngo5 gam1 zik6 hou2 gwai3.]</span>
+  </div>
+  <div class="dialogue-line">
+    <span class="speaker">B：</span>
+    <span class="cantonese">咁你自己食啦。唔好餓親！</span>
+    <span class="pinyin-display">[gam2 nei5 zi6 gei2 sik6 laa3. m4 hou2 o3 can1!]</span>
+  </div>
+  <hr style="margin: 1rem 0; border: none; border-top: 1px solid var(--border);">
+  <p style="font-size: 0.85rem; color: var(--muted); margin: 0;">
+    <strong>翻譯：</strong>A：你去哪裡了？B：我去超市了。你去過嗎？A：我不去了，我今天很累。B：那你就自己吃吧。別餓著！
+  </p>
+</div>
+
+<div class="chinese-note">
+  <strong>「咗」和「未」的用法：</strong>「咗」（zo2）放在動詞後面表示動作已完成，類似普通話的「了」。例如「食咗飯」= 吃了飯。「未」（mei6）用在句尾表示「還沒有」，例如「食未？」= 吃過了嗎？<br><br>
+  <strong>「識」的雙重含義：</strong>粵語中「識」既可表示「認識某人」也可表示「學會某種技能」。如果不懂某事，說「唔識」：「我唔識煮飯」= 我不會煮飯。
+</div>
+
+<h2>組合練習：搭建句子</h2>
+<p>
+  掌握了代詞和動詞後，你可以試著組合它們。以下是幾個最常用的句型框架：
+</p>
+
+<div class="intro-card">
+  <h3>基礎句型</h3>
+  <ul class="examples">
+    <li><strong>主語 + 動詞 + 賓語</strong>：我食飯（我吃飯）、你睇電視（你看電視）</li>
+    <li><strong>主語 + 唔 + 動詞</strong>：我唔食肉（我不吃肉）、你唔好驚（你不要怕）</li>
+    <li><strong>主語 + 冇 + 動詞</strong>：我冇睇新聞（我沒看新聞）</li>
+    <li><strong>主語 + 動詞 + 咗 + 賓語</strong>：我食咗飯（我吃了飯）</li>
+    <li><strong>主語 + 去/嚟 + 地點</strong>：你去邊度？（你去哪裡？）我嚟香港（我來香港）</li>
+    <li><strong>主語 + 鍾意 + 動詞/名詞</strong>：我好鍾意唱歌（我很喜歡唱歌）</li>
+  </ul>
+</div>
+
+<div class="quiz-section">
+  <h2>練習：選擇正確的詞</h2>
+  <p>共有 10 題，每題選一個答案。點擊選項後會顯示解釋。</p>
+
+  <div class="quiz-question" id="q1">
+    <span class="q-num">Q1</span>
+    <div class="context">你想知道對方是誰。</div>
+    <div class="hanzi-display">__________ 啊？</div>
+    <p style="font-size: 0.9rem; color: var(--muted);">意思是：「是誰啊？」</p>
+    <div class="options">
+      <button class="option-btn" data-correct="true" onclick="check(this)">邊個</button>
+      <button class="option-btn" data-correct="false" onclick="check(this)">呢個</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="quiz-question" id="q2">
+    <span class="q-num">Q2</span>
+    <div class="context">你想表達「不吃」。</div>
+    <div class="sentence">我 ______ 食辣嘢。</div>
+    <p style="font-size: 0.9rem; color: var(--muted);">意思是：「我不吃辣的食物。」</p>
+    <div class="options">
+      <button class="option-btn" data-correct="false" onclick="check(this)">冇</button>
+      <button class="option-btn" data-correct="true" onclick="check(this)">唔</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="quiz-question" id="q3">
+    <span class="q-num">Q3</span>
+    <div class="context">你想問朋友「你吃飯了嗎？」</div>
+    <div class="sentence">你去咗邊度？—— 你去未？</div>
+    <p style="font-size: 0.9rem; color: var(--muted);">「你」的粵語是什麼？</p>
+    <div class="options">
+      <button class="option-btn" data-correct="false" onclick="check(this)">佢</button>
+      <button class="option-btn" data-correct="true" onclick="check(this)">你</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="quiz-question" id="q4">
+    <span class="q-num">Q4</span>
+    <div class="context">你想表達「沒看新聞」。</div>
+    <div class="sentence">我 ______ 睇新聞。</div>
+    <p style="font-size: 0.9rem; color: var(--muted);">意思是：「我沒有看新聞。」</p>
+    <div class="options">
+      <button class="option-btn" data-correct="false" onclick="check(this)">唔</button>
+      <button class="option-btn" data-correct="true" onclick="check(this)">冇</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="quiz-question" id="q5">
+    <span class="q-num">Q5</span>
+    <div class="context">你想說「他們是我同學」。</div>
+    <div class="sentence">__________ 係我同學。</div>
+    <p style="font-size: 0.9rem; color: var(--muted);">意思是：「他們是我的同學。」</p>
+    <div class="options">
+      <button class="option-btn" data-correct="false" onclick="check(this)">佢</button>
+      <button class="option-btn" data-correct="true" onclick="check(this)">佢哋</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="quiz-question" id="q6">
+    <span class="q-num">Q6</span>
+    <div class="context">你想說「你看電視」。</div>
+    <div class="sentence">你 ______ 電視。</div>
+    <p style="font-size: 0.9rem; color: var(--muted);">「看」的粵語是？</p>
+    <div class="options">
+      <button class="option-btn" data-correct="false" onclick="check(this)">聽</button>
+      <button class="option-btn" data-correct="true" onclick="check(this)">睇</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="quiz-question" id="q7">
+    <span class="q-num">Q7</span>
+    <div class="context">你想說「我不會煮飯」。</div>
+    <div class="sentence">我 ______ 煮飯。</div>
+    <p style="font-size: 0.9rem; color: var(--muted);">「不會（技能）」的粵語是？</p>
+    <div class="options">
+      <button class="option-btn" data-correct="false" onclick="check(this)">冇</button>
+      <button class="option-btn" data-correct="true" onclick="check(this)">唔識</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="quiz-question" id="q8">
+    <span class="q-num">Q8</span>
+    <div class="context">你想問「這裡在哪裡？」</div>
+    <div class="sentence">__________ 啊？</div>
+    <p style="font-size: 0.9rem; color: var(--muted);">意思是：「這裡在哪裡？」</p>
+    <div class="options">
+      <button class="option-btn" data-correct="false" onclick="check(this)">邊個</button>
+      <button class="option-btn" data-correct="true" onclick="check(this)">呢度</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="quiz-question" id="q9">
+    <span class="q-num">Q9</span>
+    <div class="context">你想說「我喜歡唱歌」。</div>
+    <div class="sentence">我好 ______ 唱歌。</div>
+    <p style="font-size: 0.9rem; color: var(--muted);">「喜歡」的粵語是？</p>
+    <div class="options">
+      <button class="option-btn" data-correct="false" onclick="check(this)">識</button>
+      <button class="option-btn" data-correct="true" onclick="check(this)">鍾意</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="quiz-question" id="q10">
+    <span class="q-num">Q10</span>
+    <div class="context">你想表達「吃了飯」。</div>
+    <div class="sentence">我食 ______ 飯。</div>
+    <p style="font-size: 0.9rem; color: var(--muted);">「了」（完成）的粵語是？</p>
+    <div class="options">
+      <button class="option-btn" data-correct="false" onclick="check(this)">未</button>
+      <button class="option-btn" data-correct="true" onclick="check(this)">咗</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="score-box" id="score-box">
+    <div class="score-num" id="score-num"></div>
+    <div class="score-label" id="score-label"></div>
+  </div>
+</div>
+
+<div class="followup">
+  <strong>有什麼不懂？</strong>隨時問我——我不懂為什麼這個答案對、那個不對？這正是我們該討論的。直接輸入你的問題，我會解釋。<br><br>
+  <strong>推薦資源：</strong>
+  <a href="https://www.youtube.com/results?search_query=%E7%B2%A1%E8%AA%9E%E5%8F%A3%E8%AA%9E%E7%B4%A0%E6%9D%90" target="_blank">粵語口語素素材（YouTube）</a> — 聽真實粵語對話，練習聽代詞和動詞。<br><br>
+  <a href="../reference/common-pronouns-verbs.html" class="resource-link">查看速查卡</a>
+</div>
+
+<div class="footer">
+  <a href="0002-jyutping-intro.html">上一课</a> | <a href="0000-toc.html">目录</a> | <a href="0004-numbers-classifiers.html">下一课</a>
+
+</div>
+
+<script>
+  const explanations = {
+    q1: { correct: '「邊個」（bin1 go3）= 誰。「邊」= 哪，「個」= 個。邊個 = 誰。「呢個」= 這個，不適合問人。', wrong: '「邊個」才是「誰」的意思。「呢個」意思是「這個」，不能用來問人。記住：邊 = 哪，邊個 = 誰。' },
+    q2: { correct: '「唔」是否定動作習慣或狀態的否定詞。「唔食辣嘢」= 不吃辣的食物。「唔」用於否定一般事實。', wrong: '「冇」用於否定「有」或否定完成動作（冇食=沒有吃）。這裡是說「不吃辣」，是習慣/偏好，應該用「唔」。' },
+    q3: { correct: '「你」的粵語就是「你」（nei5），和普通话一样！佢才是他/她。', wrong: '「你」在粵語中就是「你」，和普通话完全一樣。佢（keoi5）才是他/她。粵語的代詞很多和普通话相同，但語法和用法有差異。' },
+    q4: { correct: '「冇」用於否定「有」或表示動作未完成。「冇睇新聞」= 沒有看新聞。表示動作沒做過。', wrong: '「唔」用於否定習慣或狀態（唔食=不吃）。這裡要表達「沒有做過」，應該用「冇」。「冇睇新聞」= 沒有看新聞。' },
+    q5: { correct: '「佢哋」= 他們。複數形式在代詞後面加「哋」（dei6）。佢 = 他/她，佢哋 = 他們。', wrong: '「佢」是單數（他/她），「佢哋」才是複數（他們）。複數形式在單數代詞後加「哋」。' },
+    q6: { correct: '「睇」（tai2）= 看。粵語用「睇電視」「睇書」「睇新聞」，不用「看」。', wrong: '「聽」= 聽（ting1），是用耳朵聽。用眼睛看東西用「睇」（tai2）。粵語中「睇電視」「睇書」「睇新聞」都是「睇」。' },
+    q7: { correct: '「唔識」= 不會（技能）。「識」= 會/認識。「唔識煮飯」= 不會煮飯。注意「識」既有「認識人」也有「學會技能」的含義。', wrong: '「冇」用於否定「有」，不能用於技能。「唔識」才是「不會（技能）」的意思。「我唔識煮飯」= 我不會煮飯。' },
+    q8: { correct: '「呢度」= 這裡。問「呢度邊度啊？」= 「這裡在哪裡？」。「邊個」= 誰，不能用於地點。', wrong: '「邊個」= 誰，是用來問人的。「呢度」= 這裡，才是用來問地點的。記住：「邊度」= 哪裡，「邊個」= 誰。' },
+    q9: { correct: '「鍾意」（zung3 ji3）= 喜歡。「我好鍾意唱歌」= 我很喜歡唱歌。這是粵語中最常用的表達喜好方式。', wrong: '「識」= 會/認識，不是喜歡的意思。「鍾意」才是喜歡。「我好鍾意唱歌」= 我很喜歡唱歌。' },
+    q10: { correct: '「咗」（zo2）是粵語的完成體標記，放在動詞後面表示動作已完成。「食咗飯」= 吃了飯。類似普通話的「了」。', wrong: '「未」（mei6）用於句尾表示「還沒有」，例如「食未？」= 吃過了嗎？這裡要表示已完成，應該用「咗」。「食咗飯」= 吃了飯。' }
+  };
+
+  let answered = {};
+  let score = 0;
+  const total = 10;
+
+  function check(btn) {
+    const question = btn.closest('.quiz-question');
+    const qid = question.id;
+    if (answered[qid]) return;
+    answered[qid] = true;
+
+    const isCorrect = btn.dataset.correct === 'true';
+    const allBtns = question.querySelectorAll('.option-btn');
+    const feedback = question.querySelector('.feedback');
+
+    allBtns.forEach(b => {
+      b.style.pointerEvents = 'none';
+      if (b.dataset.correct === 'true') b.classList.add('reveal-correct');
+    });
+
+    if (isCorrect) {
+      btn.classList.add('correct');
+      feedback.className = 'feedback show correct-fb';
+      feedback.textContent = explanations[qid].correct;
+      score++;
+    } else {
+      btn.classList.add('wrong');
+      feedback.className = 'feedback show wrong-fb';
+      feedback.textContent = explanations[qid].wrong;
+    }
+
+    if (Object.keys(answered).length === total) {
+      const box = document.getElementById('score-box');
+      const num = document.getElementById('score-num');
+      const label = document.getElementById('score-label');
+      num.textContent = score + ' / ' + total;
+      if (score === total) label.textContent = '太棒了！代詞和動詞你已經掌握得很熟了！';
+      else if (score >= 7) label.textContent = '很好！複習錯的題目，你已經掌握了大部分核心詞彙。';
+      else label.textContent = '繼續加油！多讀上面的對照表，再試一次。';
+      box.classList.add('show');
+    }
+  }
+</script></body>
+</html>

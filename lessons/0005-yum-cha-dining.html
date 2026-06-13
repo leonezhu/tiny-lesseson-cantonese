@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第五课 — 吃喝（饮茶/点心/街市）</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap');
+
+  :root {
+    --bg: #fdfdfd;
+    --text: #1a1a1a;
+    --accent: #b71c1c;
+    --accent-light: #fce4ec;
+    --muted: #666;
+    --border: #e0e0e0;
+    --correct: #2e7d32;
+    --correct-bg: #e8f5e9;
+    --wrong: #c62828;
+    --wrong-bg: #ffebee;
+    --warn-bg: #fff8e1;
+    --warn-border: #f9a825;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Noto Sans SC', -apple-system, sans-serif;
+    font-size: 16px;
+    line-height: 1.8;
+    color: var(--text);
+    background: var(--bg);
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+  }
+
+  h1 {
+    font-family: 'Noto Serif SC', Georgia, serif;
+    font-size: 1.8rem;
+    margin-bottom: 0.25rem;
+    color: var(--accent);
+  }
+
+  .lesson-meta {
+    color: var(--muted);
+    font-size: 0.85rem;
+    margin-bottom: 2rem;
+  }
+
+  .goal-box {
+    background: var(--accent-light);
+    border-left: 4px solid var(--accent);
+    padding: 1rem 1.25rem;
+    margin-bottom: 2rem;
+    border-radius: 0 4px 4px 0;
+  }
+
+  .goal-box strong { color: var(--accent); }
+
+  h2 {
+    font-family: 'Noto Serif SC', Georgia, serif;
+    font-size: 1.2rem;
+    margin-top: 2.5rem;
+    margin-bottom: 0.75rem;
+    color: var(--accent);
+  }
+
+  h3 {
+    font-family: 'Noto Serif SC', Georgia, serif;
+    font-size: 1.05rem;
+    margin-bottom: 0.25rem;
+    color: var(--accent);
+  }
+
+  p { margin-bottom: 0.75rem; }
+
+  .card {
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1.25rem;
+    margin: 1rem 0;
+  }
+
+  .card h3 { margin-bottom: 0.5rem; }
+
+  .comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+    font-size: 0.95rem;
+  }
+
+  .comparison-table th {
+    background: var(--accent);
+    color: white;
+    padding: 0.6rem 0.8rem;
+    text-align: left;
+    font-weight: 600;
+  }
+
+  .comparison-table td {
+    padding: 0.5rem 0.8rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .comparison-table tr:nth-child(even) td {
+    background: #fafafa;
+  }
+
+  .comparison-table .cantonese {
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  .comparison-table .mandarin {
+    color: var(--muted);
+  }
+
+  .highlight-box {
+    background: var(--warn-bg);
+    border-left: 3px solid var(--warn-border);
+    padding: 0.8rem 1rem;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+  }
+
+  .highlight-box strong { color: #e65100; }
+
+  .example-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  .example-list li {
+    padding: 0.3rem 0;
+    padding-left: 1.2rem;
+    position: relative;
+  }
+
+  .example-list li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-weight: 700;
+  }
+
+  .jyutping {
+    font-family: 'Noto Serif SC', Georgia, serif;
+    font-size: 0.9rem;
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  .quiz-section {
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 2px solid var(--border);
+  }
+
+  .quiz-section h2 {
+    margin-top: 0;
+  }
+
+  .quiz-question {
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1.25rem;
+    margin: 1rem 0;
+    position: relative;
+  }
+
+  .quiz-question .q-num {
+    position: absolute;
+    top: -0.6rem;
+    left: 1rem;
+    background: var(--accent);
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.1rem 0.5rem;
+    border-radius: 3px;
+  }
+
+  .quiz-question .context {
+    color: var(--muted);
+    font-size: 0.85rem;
+    margin-bottom: 0.5rem;
+    font-style: italic;
+  }
+
+  .quiz-question .sentence {
+    font-size: 1.05rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .quiz-question .sentence .blank {
+    display: inline-block;
+    min-width: 100px;
+    border-bottom: 2px dashed var(--accent);
+    text-align: center;
+    font-weight: 600;
+    color: var(--accent);
+  }
+
+  .options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+  }
+
+  .option-btn {
+    background: white;
+    border: 2px solid var(--border);
+    border-radius: 4px;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.95rem;
+    cursor: pointer;
+    text-align: center;
+    font-family: 'Noto Sans SC', sans-serif;
+    transition: all 0.15s;
+  }
+
+  .option-btn:hover {
+    border-color: var(--accent);
+    background: var(--accent-light);
+  }
+
+  .option-btn.correct {
+    border-color: var(--correct);
+    background: var(--correct-bg);
+    color: var(--correct);
+    font-weight: 600;
+  }
+
+  .option-btn.wrong {
+    border-color: var(--wrong);
+    background: var(--wrong-bg);
+    color: var(--wrong);
+  }
+
+  .option-btn.reveal-correct {
+    border-color: var(--correct);
+    background: var(--correct-bg);
+    color: var(--correct);
+    font-weight: 600;
+  }
+
+  .feedback {
+    margin-top: 0.75rem;
+    padding: 0.6rem 0.8rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    display: none;
+  }
+
+  .feedback.show { display: block; }
+  .feedback.correct-fb { background: var(--correct-bg); color: var(--correct); }
+  .feedback.wrong-fb { background: var(--wrong-bg); color: var(--wrong); }
+
+  .score-box {
+    background: var(--accent-light);
+    border: 2px solid var(--accent);
+    border-radius: 6px;
+    padding: 1.25rem;
+    margin-top: 1.5rem;
+    text-align: center;
+    display: none;
+  }
+
+  .score-box.show { display: block; }
+  .score-box .score-num { font-size: 2rem; font-weight: 700; color: var(--accent); }
+  .score-box .score-label { color: var(--muted); font-size: 0.9rem; }
+
+  .followup {
+    background: #f0f4f8;
+    border-radius: 6px;
+    padding: 1rem 1.25rem;
+    margin-top: 2rem;
+    font-size: 0.9rem;
+  }
+
+  .followup strong { color: var(--accent); }
+
+  .resource-link {
+    display: inline-block;
+    margin-top: 0.5rem;
+    padding: 0.4rem 0.8rem;
+    background: var(--accent);
+    color: white;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+
+  .resource-link:hover { opacity: 0.9; }
+
+  .footer {
+    margin-top: 3rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+    font-size: 0.8rem;
+    color: var(--muted);
+    text-align: center;
+  }
+
+  .footer a { color: var(--accent); text-decoration: none; }
+
+  .nav-disabled {
+    color: var(--muted);
+    text-decoration: line-through;
+    opacity: 0.5;
+  }
+
+  @media print {
+    body { padding: 1.5cm; max-width: none; }
+    .option-btn, .feedback, .score-box { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<h1>吃喝（饮茶/点心/街市）</h1>
+<p class="lesson-meta">第五课 · ~12 分钟 · 粤语基础</p>
+
+<div class="goal-box">
+  <strong>本课结束时</strong>，你将能够：（1）在茶餐厅或酒楼用粤语点餐；（2）理解"饮茶"文化的核心表达；（3）掌握街市购物的基本用语；（4）区分粤语与普通话在饮食表达上的关键差异。
+</div>
+
+<h2>为什么这很重要</h2>
+<p>
+  饮食是粤语使用频率最高的场景。无论你是去茶餐厅吃早餐、去酒楼"饮茶"（yum cha）、在街市买菜，还是在办公室叫外卖，粤语的饮食用语都会频繁出现。最关键的认知转变是：<strong>粤语不说"吃"，说"食"</strong>；不说"点菜"，说"叫嘢食"。掌握这套表达，你就掌握了粤语日常生活的钥匙。
+</p>
+
+<h2>第一部分：饮茶文化与早茶用语</h2>
+
+<p>
+  "饮茶"（jam2 caa4）在粤语中不只是"喝茶"，它指的是去酒楼或茶餐厅吃点心、喝早茶的整套文化体验。在广东和港澳地区，周末全家去酒楼"饮茶"是重要的社交和家庭活动。即使是香港外企的同事说"let's go for yum cha"，也是在约你吃点心。
+</p>
+
+<div class="card">
+  <h3>常见点心名称</h3>
+  <table class="comparison-table">
+    <tr><th>点心</th><th>粤语写法</th><th>粤拼</th><th>说明</th></tr>
+    <tr><td>虾饺</td><td class="cantonese">虾饺</td><td class="cantonese">haa1 gaau2</td><td>经典点心，透明皮包鲜虾馅</td></tr>
+    <tr><td>烧卖</td><td class="cantonese">烧卖</td><td class="cantonese">siu1 maai6</td><td>猪肉或虾肉馅，顶部散开如花朵</td></tr>
+    <tr><td>肠粉</td><td class="cantonese">肠粉</td><td class="cantonese">coeng4 fan2</td><td>米浆蒸成的薄皮，包肉或虾仁</td></tr>
+    <tr><td>叉烧包</td><td class="cantonese">叉烧包</td><td class="cantonese">caa1 siu1 baau1</td><td>发酵面皮包蜜汁叉烧馅</td></tr>
+    <tr><td>凤爪</td><td class="cantonese">凤爪</td><td class="cantonese">fung6 zoeng2</td><td>豉汁蒸鸡爪，入口即化</td></tr>
+    <tr><td>排骨</td><td class="cantonese">排骨</td><td class="cantonese">paai4 guk3</td><td>蒜香或豉汁蒸排骨</td></tr>
+    <tr><td>流沙包</td><td class="cantonese">流沙包</td><td class="cantonese">laau4 saa1 baau1</td><td>咸蛋黄奶黄馅，掰开会"流沙"</td></tr>
+    <tr><td>蛋挞</td><td class="cantonese">蛋挞</td><td class="cantonese">daan3 taat3</td><td>酥皮蛋挞，茶餐厅标配</td></tr>
+    <tr><td>萝卜糕</td><td class="cantonese">萝卜糕</td><td class="cantonese">lo4 bok6 gou1</td><td>白萝卜丝和米粉蒸成，煎着吃</td></tr>
+    <tr><td>糯米鸡</td><td class="cantonese">糯米鸡</td><td class="cantonese">nak6 moi5 gai1</td><td>荷叶包糯米、鸡肉、香菇蒸制</td></tr>
+  </table>
+</div>
+
+<div class="card">
+  <h3>酒楼点餐流程</h3>
+  <p>在酒楼"饮茶"有一套固定的点餐流程：</p>
+  <ul class="example-list">
+    <li><strong>拣位</strong>（zam2 wai6）— 找座位坐下</li>
+    <li><strong>执菜单</strong>（zib3 maan5 cyun1）— 看菜单选菜</li>
+    <li><strong>叫嘢</strong>（giu3 je5）— 叫服务员来点餐</li>
+    <li><strong>加嘢</strong>（gaa1 je5）— 追加点菜（可以一直加到吃不下为止）</li>
+    <li><strong>埋数</strong>（maai4 sou3）— 结账（"埋"本义为"靠近"，这里语法化为"结算"）</li>
+  </ul>
+  <p style="margin-top: 0.75rem;">
+    <strong>"埋数"</strong>是粤语中最经典的语法化案例之一。"埋"从空间动词"靠近"（埋嚟 = 过来）演变为商业动词"结算"。类似的还有"包走"（baau1 zau2）= 打包带走。
+  </p>
+</div>
+
+<div class="highlight-box">
+  <strong>文化提示：</strong>在酒楼饮茶，服务员会用小车推着一笼笼点心到桌前，这叫"飞车"（fei1 ce1）。你可以看到什么就指什么说"我要呢笼"（ngo5 jiu3 ni1 lung6），不需要背菜单编号。这是最地道的点餐方式。
+</div>
+
+<h2>第二部分：茶餐厅点餐用语</h2>
+
+<p>
+  茶餐厅是粤语区最常见的快餐场所，比酒楼便宜快捷，但同样有丰富的菜品。茶餐厅的点餐语言更加简洁直接。
+</p>
+
+<div class="card">
+  <h3>必点经典菜品</h3>
+  <table class="comparison-table">
+    <tr><th>菜品</th><th>粤语写法</th><th>粤拼</th><th>说明</th></tr>
+    <tr><td>鸳鸯</td><td class="cantonese">鸳鸯</td><td class="cantonese">ngaau5 jyun1</td><td>红茶+咖啡，茶餐厅灵魂饮品</td></tr>
+    <tr><td>冻柠茶</td><td class="cantonese">凍檸茶</td><td class="cantonese">dung6 ning4 caa4</td><td>冰柠檬茶，"冻"=冰的</td></tr>
+    <tr><td>丝袜奶茶</td><td class="cantonese">絲襪奶茶</td><td class="cantonese">si1 nga5 naai4 caa4</td><td>用丝袜袋过滤的港式奶茶</td></tr>
+    <tr><td>干免治牛肉饭</td><td class="cantonese">乾免治牛肉飯</td><td class="cantonese">gon1 min6 zi3 ngau4 jun6 faan6</td><td>经典套餐，"免治"=绞碎</td></tr>
+    <tr><td>西多士</td><td class="cantonese">西多士</td><td class="cantonese"> sai1 do1 si6</td><td>法式吐司的粤语名</td></tr>
+    <tr><td>菠萝油</td><td class="cantonese">菠蘿油</td><td class="cantonese">bo1 lo4 jau2</td><td>菠萝包+冰黄油，绝配</td></tr>
+    <tr><td>滑蛋虾仁饭</td><td class="cantonese">滑蛋蝦仁飯</td><td class="cantonese">waat6 daan2 haa4 jan4 faan6</td><td>嫩滑炒蛋配虾仁盖饭</td></tr>
+    <tr><td>猪扒包</td><td class="cantonese">豬扒包</td><td class="cantonese">zyu1 paa3 baau1</td><td>炸猪排夹面包，街头经典</td></tr>
+  </table>
+</div>
+
+<div class="card">
+  <h3>点餐句型模板</h3>
+  <p>茶餐厅点餐的核心句型非常直接：</p>
+  <ul class="example-list">
+    <li><strong>「唔该，要一碟虾饺。」</strong>（m4 goi1, jiu2 jat1 dik6 haa1 gaau2.）— 麻烦，要一笼虾饺。</li>
+    <li><strong>「我要一杯冻柠茶，唔该。」</strong>（ngo5 jiu3 jat1 bai1 dung6 ning4 caa4, m4 goi1.）— 我要一杯冰柠檬茶，谢谢。</li>
+    <li><strong>「埋数。」</strong>（maai4 sou3.）— 结账。</li>
+    <li><strong>「包走。」</strong>（baau1 zau2.）— 打包带走。</li>
+    <li><strong>「要少甜。」</strong>（jiu2 siu2 tim3.）— 请少放糖。</li>
+    <li><strong>「唔该，加饭。」</strong>（m4 goi1, gaa1 faan6.）— 麻烦加饭（免费续饭的常用语）。</li>
+  </ul>
+</div>
+
+<div class="highlight-box">
+  <strong>关键差异：</strong>普通话用"点菜""点餐"，粤语用<strong>"叫嘢"（giu3 je5）</strong>或<strong>"叫嘢食"（giu3 je5 sik6）</strong>。"叫"在这里是"点餐/下单"的意思，不是"喊叫"。比如"我开咗 Foodpanda，你叫咗未？"（我已经在 Foodpanda 上下单了，你点了没？）
+</div>
+
+<h2>第三部分：街市购物用语</h2>
+
+<p>
+  街市（gaai1 si6）是粤语区的传统菜市场。在街市买菜、买鱼、买肉的语言和超市完全不同——这里充满了砍价、讨价还价的生动表达。
+</p>
+
+<div class="card">
+  <h3>街市常见食材</h3>
+  <table class="comparison-table">
+    <tr><th>食材</th><th>粤语写法</th><th>粤拼</th><th>普通话</th></tr>
+    <tr><td>菜心</td><td class="cantonese">菜心</td><td class="cantonese">coi3 sam1</td><td>菜心/广东菜心</td></tr>
+    <tr><td>生菜</td><td class="cantonese">生菜</td><td class="cantonese">soeng3 coi3</td><td>生菜</td></tr>
+    <tr><td>排骨</td><td class="cantonese">排骨</td><td class="cantonese">paai4 guk3</td><td>排骨</td></tr>
+    <tr><td>鲈鱼</td><td class="cantonese">鲈鱼</td><td class="cantonese">lou4 jyu4</td><td>鲈鱼</td></tr>
+    <tr><td>虾</td><td class="cantonese">虾</td><td class="cantonese">haa1</td><td>虾</td></tr>
+    <tr><td>鸡髀</td><td class="cantonese">雞髀</td><td class="cantonese">gai1 tai3</td><td>鸡腿（髀=大腿）</td></tr>
+    <tr><td>腩角</td><td class="cantonese">腩角</td><td class="cantonese">naam5 gok3</td><td>牛腩</td></tr>
+    <tr><td>姜葱</td><td class="cantonese">薑蔥</td><td class="cantonese">gong1 cung1</td><td>生姜和大葱</td></tr>
+  </table>
+</div>
+
+<div class="card">
+  <h3>街市砍价句型</h3>
+  <ul class="example-list">
+    <li><strong>「几钱一斤？」</strong>（gei2 cin2 jat1 gang1?）— 多少钱一斤？</li>
+    <li><strong>「平啲啦！」</strong>（ping4 di1 laa3!）— 便宜一点嘛！</li>
+    <li><strong>「再平一少少啦！」</strong>（zoi3 ping4 jat1 siu2 siu2 laa3!）— 再便宜一点点嘛！</li>
+    <li><strong>「五蚊十份啦。」</strong>（ng5 man1 sap6 fan6 laa3.）— 五块十份吧。（"蚊"=元，"份"=份）</li>
+    <li><strong>「包埋呢啲。」</strong>（baau1 maai4 ni1 di1.）— 这些也一起算。（"包埋"=打包一起）</li>
+    <li><strong>「唔使找数啦。」</strong>（m4 sai2 zeou3 sou3 laa3.）— 不用找了。（买完东西大方地说不用找零）</li>
+  </ul>
+</div>
+
+<div class="highlight-box">
+  <strong>货币单位：</strong>粤语中"元"常说<strong>"蚊"（man1）</strong>，是英语"dollar"的音译。"蚊"在口语中极高频：「几蚊啊？」= 多少钱？「五十蚊。」= 五十块。
+</div>
+
+<h2>第四部分：饮食相关语法特色</h2>
+
+<p>
+  粤语饮食用语中隐藏着一些重要的语法特征，理解这些能让你说得更加地道。
+</p>
+
+<div class="card">
+  <h3>体标记在餐饮场景中的应用</h3>
+  <p>粤语的体标记（aspect markers）在描述饮食时非常关键：</p>
+  <ul class="example-list">
+    <li><strong>紧（gan2）</strong> — 进行体。「食紧嘢」= 正在吃饭。例：「你食紧嘢啊？等我一下。」</li>
+    <li><strong>咗（zo2）</strong> — 完成体。「食咗未？」= 吃了没？（最日常的一句问候）</li>
+    <li><strong>紧喇（gan2 laa5）</strong> — 正在进行且提醒对方。「佢食紧喇。」= 他正在吃呢。</li>
+    <li><strong>晒（saai3）</strong> — 全部完成体。「食晒」= 全部吃完。例：「成碟菜都食晒喇。」</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h3>「食」vs「饮」</h3>
+  <p>
+    粤语严格区分<strong>"食"（sik6）</strong>和<strong>"饮"（jam2）</strong>，不像普通话有时混用"吃"：
+  </p>
+  <ul class="example-list">
+    <li><strong>食</strong>用于固体食物：食饭（吃饭）、食粥（吃粥）、食面（吃面）、食水果</li>
+    <li><strong>饮</strong>用于液体：饮水（喝水）、饮茶（喝茶/饮茶）、饮酒（喝酒）、饮奶茶（喝奶茶）</li>
+    <li><strong>例外：</strong>"饮风"（jam1 fung1）= 白忙一场、吃亏（字面"喝风"），这是一个不能按字面理解的习语。</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h3>「嘢」—— 万能名词</h3>
+  <p>
+    "嘢"（je5）是粤语中使用频率最高的词之一，意思是"东西/东西吃/东西喝"，几乎可以代替任何名词：
+  </p>
+  <ul class="example-list">
+    <li><strong>食嘢</strong>（sik6 je5）— 吃东西</li>
+    <li><strong>饮嘢</strong>（jam2 je5）— 喝东西</li>
+    <li><strong>好食嘢</strong>（hou2 sik6 je5）— 好吃的东西</li>
+    <li><strong>有冇好食嘢介绍？</strong>（jau5 mou5 hou2 sik6 je5 git3 siu6?）— 有什么好吃的推荐吗？</li>
+    <li><strong>食咗嘢未？</strong>（sik6 zo2 je5 mei6?）— 吃了东西没？（日常问候）</li>
+  </ul>
+</div>
+
+<h2>第五部分：常见错误</h2>
+
+<div class="card">
+  <h3>错误 1：说"吃"而不是"食"</h3>
+  <p>
+    普通话的"吃"在粤语中永远是<strong>"食"（sik6）</strong>。这是最明显的外地口音标志。
+  </p>
+  <p>
+    ❌ "你吃咗饭未？" → ✅ "你<strong>食</strong>咗饭未？"<br>
+    ❌ "我去吃饭" → ✅ "我去<strong>食</strong>饭"<br>
+    ❌ "好吃" → ✅ "<strong>好食</strong>"（hou2 sik6）
+  </p>
+</div>
+
+<div class="card">
+  <h3>错误 2：用"点菜"代替"叫嘢"</h3>
+  <p>
+    粤语不说"点菜"或"点餐"，说<strong>"叫嘢食"（giu3 je5 sik6）</strong>或直接说<strong>"叫嘢"（giu3 je5）</strong>。
+  </p>
+  <p>
+    ❌ "我要点菜" → ✅ "我要<strong>叫嘢食</strong>"<br>
+    ❌ "你点咗菜未？" → ✅ "你<strong>叫嘢</strong>咗未？"
+  </p>
+</div>
+
+<div class="card">
+  <h3>错误 3：忽略"唔该"的万能用法</h3>
+  <p>
+    "唔该"（m4 goi1）是粤语最实用的礼貌用语，相当于"麻烦/劳驾/谢谢"。在餐饮场景中，它出现在几乎所有互动中：
+  </p>
+  <p>
+    服务员端菜给你 → 你说"唔该"<br>
+    你叫服务员 → 你说"唔该"<br>
+    你让路给别人 → 你说"唔该"<br>
+    你请求别人帮忙 → 你说"唔该"<br><br>
+    加一个<strong>"晒"（saai3）</strong>变成"唔该晒"（m4 goi1 saai3），表示更深的感谢："多谢了！"
+  </p>
+</div>
+
+<div class="card">
+  <h3>错误 4：用普通话量词点餐</h3>
+  <p>
+    点餐时量词的选择直接影响你听起来是否地道。记住几个关键点餐量词：
+  </p>
+  <p>
+    一<strong>笼</strong>虾饺（lung6）— 蒸笼装的食物<br>
+    一<strong>碟</strong>菜（dik6）— 盘装的食物<br>
+    一<strong>碗</strong>饭（waan2）— 碗装的<br>
+    一<strong>杯</strong>茶（bai1）— 杯装的饮品<br>
+    一<strong>扎</strong>柠檬茶（zaa1）— 壶装的（扎 = pitcher）
+  </p>
+</div>
+
+<h2>第六部分：实用场景对话</h2>
+
+<div class="card">
+  <h3>场景 1：在茶餐厅</h3>
+  <p>
+    <strong>服务员：</strong>「几位呀？」（gei3 wai6 aa3?）— 几位？<br>
+    <strong>你：</strong>「两位。」（loi6 wai6.）<br>
+    <strong>服务员：</strong>「食咩呀？」（sik6 me1 aa3?）— 吃什么？<br>
+    <strong>你：</strong>「唔该，要一碟肠粉、一杯冻柠茶，埋单。」<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;（m4 goi1, jiu2 jat1 dik6 coeng4 faan2、jat1 bai1 dung6 ning4 caa4, maai4 daan6.）<br>
+    <strong>服务员：</strong>「好嘅，即刻出。」（hou2 ge3, gik1 zak1 ceot1.）— 好的，马上上菜。
+  </p>
+</div>
+
+<div class="card">
+  <h3>场景 2：在酒楼饮茶</h3>
+  <p>
+    <strong>你：</strong>「执菜单。」（zib3 maan5 cyun1.）— 拿菜单。<br>
+    <strong>你（指着推车上的点心）：</strong>「呢笼虾饺几钱？」（ni1 lung6 haa1 gaau2 gei2 cin2?）— 这笼虾饺多少钱？<br>
+    <strong>服务员：</strong>「六十蚊。」（luk6 sap6 man1.）<br>
+    <strong>你：</strong>「要两笼。」（jiu2 loeng5 lung6.）<br>
+    <strong>你（对家人）：</strong>「有冇想食嘢？」（jau5 mou5 soeng2 sik6 je5?）— 有没有想吃的？<br>
+    <strong>家人：</strong>「要个流沙包。」（jiu2 go3 laau4 saa1 baau1.）<br>
+    <strong>你（结账）：</strong>「埋数。」（maai4 sou3.）
+  </p>
+</div>
+
+<div class="card">
+  <h3>场景 3：在街市买菜</h3>
+  <p>
+    <strong>你：</strong>「菜心几钱一斤？」（coi3 sam1 gei2 cin2 jat1 gang1?）<br>
+    <strong>摊主：</strong>「十五蚊。」（sap6 loi5 man1.）<br>
+    <strong>你：</strong>「平啲啦！十蚊十份。」（ping4 di1 laa3! sap6 man1 sap6 fan6.）<br>
+    <strong>摊主：</strong>「得啦，十蚊十份畀你。」（dak1 laa3, sap6 man1 sap6 fan6 bei2 nei5.）<br>
+    <strong>你：</strong>「包埋啲姜葱。」（baau1 maai4 di1 gong1 cung1.）— 顺便把姜葱也给我。
+  </p>
+</div>
+
+<div class="followup">
+  <strong>有问题？</strong>随时问我——我是你的粤语老师。不确定"埋数"为什么是"结账"的意思？这正是我们该讨论的地方。直接打字提问，我来解释。
+  <br><br>
+  <strong>推荐资源：</strong><a href="https://www.rthk.hk/rthk/ch/component/kb/canton.htm" target="_blank">香港电台粤语学习</a> — 听地道粤语中的餐饮用语。
+  <br><br>
+  <a href="../reference/yum-cha-dining.html" class="resource-link">查看快速参考卡</a>
+</div>
+
+<div class="footer">
+  <a href="0004-numbers-classifiers.html">上一课</a> | <a href="0000-toc.html">目录</a> | <a href="0006-transportation-directions.html">下一课</a>
+
+</div>
+
+<div class="quiz-section">
+  <h2>练习：选择正确的粤语表达</h2>
+  <p>共 8 道题。点击你认为正确的选项，会显示详细解释。</p>
+
+  <div class="quiz-question" id="q1">
+    <span class="q-num">Q1</span>
+    <div class="context">你想问朋友"你吃饭了吗？"（日常问候）。</div>
+    <div class="sentence">地道的粤语说法是？</div>
+    <div class="options">
+      <button class="option-btn" data-correct="false" onclick="check(this)">你食咗饭未？</button>
+      <button class="option-btn" data-correct="true" onclick="check(this)">你食咗嘢未？</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="quiz-question" id="q2">
+    <span class="q-num">Q2</span>
+    <div class="context">你在茶餐厅，想叫服务员过来点餐。</div>
+    <div class="sentence">粤语怎么说？</div>
+    <div class="options">
+      <button class="option-btn" data-correct="true" onclick="check(this)">叫嘢</button>
+      <button class="option-btn" data-correct="false" onclick="check(this)">点菜</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="quiz-question" id="q3">
+    <span class="q-num">Q3</span>
+    <div class="context">你想说"正在吃饭"。</div>
+    <div class="sentence">粤语应该用哪个体标记？</div>
+    <div class="options">
+      <button class="option-btn" data-correct="true" onclick="check(this)">食紧嘢</button>
+      <button class="option-btn" data-correct="false" onclick="check(this)">食紧饭</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="quiz-question" id="q4">
+    <span class="q-num">Q4</span>
+    <div class="context">在酒楼结账。</div>
+    <div class="sentence">地道的粤语说法是？</div>
+    <div class="options">
+      <button class="option-btn" data-correct="false" onclick="check(this)">买单</button>
+      <button class="option-btn" data-correct="true" onclick="check(this)">埋数</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="quiz-question" id="q5">
+    <span class="q-num">Q5</span>
+    <div class="context">你想说"一壶柠檬茶"（大壶装）。</div>
+    <div class="sentence">粤语的量词应该用哪个？</div>
+    <div class="options">
+      <button class="option-btn" data-correct="false" onclick="check(this)">一杯柠檬茶</button>
+      <button class="option-btn" data-correct="true" onclick="check(this)">一扎柠檬茶</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="quiz-question" id="q6">
+    <span class="q-num">Q6</span>
+    <div class="context">你在街市，摊主问你买多少。</div>
+    <div class="sentence">「平啲啦」的意思是？</div>
+    <div class="options">
+      <button class="option-btn" data-correct="true" onclick="check(this)">便宜一点嘛</button>
+      <button class="option-btn" data-correct="false" onclick="check(this)">快点啦</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="quiz-question" id="q7">
+    <span class="q-num">Q7</span>
+    <div class="context">你想说"鸡大腿"（鸡腿）。</div>
+    <div class="sentence">粤语中"髀"的意思是？</div>
+    <div class="options">
+      <button class="option-btn" data-correct="true" onclick="check(this)">大腿</button>
+      <button class="option-btn" data-correct="false" onclick="check(this)">小腿</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="quiz-question" id="q8">
+    <span class="q-num">Q8</span>
+    <div class="context">朋友请你吃东西，你想说"不用找了"。</div>
+    <div class="sentence">粤语怎么说？</div>
+    <div class="options">
+      <button class="option-btn" data-correct="false" onclick="check(this)">不用找钱</button>
+      <button class="option-btn" data-correct="true" onclick="check(this)">唔使找数啦</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="score-box" id="score-box">
+    <div class="score-num" id="score-num"></div>
+    <div class="score-label" id="score-label"></div>
+  </div>
+</div>
+
+<script>
+  const explanations = {
+    q1: {
+      correct: '"你食咗嘢未？"（nei5 sik6 zo2 je5 mei6?）是粤语最地道的日常问候语。"嘢"（je5）= 东西，泛指食物。比"食咗饭未"更口语、更自然，因为"嘢"涵盖了所有食物，不限于"饭"。',
+      wrong: '"你食咗饭未？"虽然语法没错，但粤语日常问候更常用"食咗嘢未？"（食咗东西未？）。"嘢"比"饭"更口语化、更通用，是粤语母语者的首选说法。'
+    },
+    q2: {
+      correct: '"叫嘢"（giu3 je5）是粤语中"点餐"的标准说法。"叫"在这里是"点/下单"的意思，"嘢"是"东西"。"点菜"是普通话说法，粤语不用。',
+      wrong: '"点菜"是普通话的表达方式。粤语中点餐说"叫嘢"（giu3 je5）或"叫嘢食"（giu3 je5 sik6），"叫"在这里是"点餐/下单"的意思，不是"喊叫"。'
+    },
+    q3: {
+      correct: '"食紧嘢"（sik6 gan2 je5）= 正在吃东西。"紧"（gan2）是进行体标记，相当于普通话的"正在"。"嘢"代替了具体食物名称，是粤语高频用法。',
+      wrong: '"食紧饭"虽然能听懂，但不如"食紧嘢"自然。粤语在日常对话中更常用"嘢"代替具体食物名词，"食紧嘢"才是母语者的标准说法。'
+    },
+    q4: {
+      correct: '"埋数"（maai4 sou3）是粤语最地道的结账说法。"埋"本义为"靠近"，在商业语境中语法化为"结算/完成"。"埋数"字面意思是"接近结算"。',
+      wrong: '"买单"虽然能听懂（受普通话影响），但不是粤语原生表达。地道的粤语结账说法是"埋数"（maai4 sou3），"埋"从"靠近"语法化为"结算"。'
+    },
+    q5: {
+      correct: '"一扎柠檬茶"（jat1 zaa1 ning4 caa4）是正确说法。"扎"（zaa1）是粤语特有的量词，用于壶装/瓶装的饮品，如"一扎啤酒""一扎橙汁"。',
+      wrong: '"一杯柠檬茶"指单杯装的，不是大壶装。大壶装的柠檬茶用"扎"（zaa1）："一扎柠檬茶"。"扎"是粤语中专门用于壶装饮品的量词。'
+    },
+    q6: {
+      correct: '"平啲啦"（ping4 di1 laa3）= "便宜一点嘛"。"平"=便宜，"啲"=一点（程度副词），"啦"=语气助词（了+啊）。这是街市砍价时最常用的句子。',
+      wrong: '"快点啦"在粤语中是"快啲啦"（faai3 di1 laa3），不是"平啲啦"。"平"=便宜，"平啲啦"=便宜一点嘛，是砍价用语，不是催促。'
+    },
+    q7: {
+      correct: '"髀"（tai3）在粤语中是"大腿"的意思。"鸡髀"=鸡腿（鸡大腿），"猪髀"=猪腿。这是粤语保留的古汉语词汇，普通话已改用"腿"。',
+      wrong: '"髀"（tai3）在粤语中是"大腿"，不是小腿。"鸡髀"=鸡大腿。普通话用"腿"统称，但粤语细分"髀"（大腿）和"胫"（小腿）。'
+    },
+    q8: {
+      correct: '"唔使找数啦"（m4 sai2 zeou3 sou3 laa3）= 不用找零了。"唔使"=不用，"找数"=找零，"啦"=语气词。在街市或茶餐厅，买完东西后大方地说这句话很常见。',
+      wrong: '"不用找钱"是普通话说法。粤语中说"唔使找数啦"（m4 sai2 zeou3 sou3 laa3），"唔使"=不用，"找数"=找零钱。'
+    }
+  };
+
+  let answered = {};
+  let score = 0;
+  const total = 8;
+
+  function check(btn) {
+    const question = btn.closest('.quiz-question');
+    const qid = question.id;
+    if (answered[qid]) return;
+    answered[qid] = true;
+
+    const isCorrect = btn.dataset.correct === 'true';
+    const allBtns = question.querySelectorAll('.option-btn');
+    const feedback = question.querySelector('.feedback');
+
+    allBtns.forEach(b => {
+      b.style.pointerEvents = 'none';
+      if (b.dataset.correct === 'true') b.classList.add('reveal-correct');
+    });
+
+    if (isCorrect) {
+      btn.classList.add('correct');
+      feedback.className = 'feedback show correct-fb';
+      feedback.textContent = explanations[qid].correct;
+      score++;
+    } else {
+      btn.classList.add('wrong');
+      feedback.className = 'feedback show wrong-fb';
+      feedback.textContent = explanations[qid].wrong;
+    }
+
+    if (Object.keys(answered).length === total) {
+      const box = document.getElementById('score-box');
+      const num = document.getElementById('score-num');
+      const label = document.getElementById('score-label');
+      num.textContent = score + ' / ' + total;
+      if (score === total) label.textContent = '完美！你对粤语餐饮用语掌握得很好。';
+      else if (score >= 6) label.textContent = '不错！回顾一下错题的解释，巩固薄弱环节。';
+      else label.textContent = '继续加油！重读上面的餐饮场景和常见错误部分。';
+      box.classList.add('show');
+    }
+  }
+</script></body>
+</html>
