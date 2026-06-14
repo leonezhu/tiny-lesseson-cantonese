@@ -2,7 +2,7 @@
 
 零基础粤语入门课程，共 10 课，覆盖九声六调、粤拼、日常会话、俚语、歌词解析等内容。
 
-📖 **在线浏览**：<https://leonezhu.github.io/tiny-lesseson-cantonese/>
+📖 **在线浏览**：<https://leonezhu.github.io/tiny-lesson-cantonese/>
 
 ## 目录
 
